@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,700;0,9..40,900;0,9..40,1000;1,9..40,500&family=Mulish:wght@400;600;700&display=swap");
+
+body {
+    width: 375px;
+}
+
+.container {
+    width: 335px;
+    padding: 0;
+    margin-top: 1rem;
+}
+
+.button-theme {
+    background-color: #111111;
+    border: none;
+    color: #fff;
+    font-family: "Mulish", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 60px;
+    width: 335px;
+    height: 50px;
+}
+
+.input-grp input {
+    position: relative;
+    border: 1px solid #DBE3F5;
+    color: #fff;
+    font-family: "Mulish", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 60px;
+    width: 335px;
+    height: 50px;
+}
+
+.input-grp label {
+    position: absolute;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: "Mulish", sans-serif;
+    padding-left: 10px;
+    padding-right: 14px;
+    color: #626262;
+    background-color: #fff;
+    z-index: 1;
+    top: 10px;
+    left: 40px;
+}
