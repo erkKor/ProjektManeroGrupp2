@@ -21,3 +21,29 @@ body {
     width: 335px;
     height: 50px;
 }
+
+.input-grp input {
+    position: relative;
+    border: 1px solid #DBE3F5;
+    color: #fff;
+    font-family: "Mulish", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 60px;
+    width: 335px;
+    height: 50px;
+}
+
+.input-grp label {
+    position: absolute;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: "Mulish", sans-serif;
+    padding-left: 10px;
+    padding-right: 14px;
+    color: #626262;
+    background-color: #fff;
+    z-index: 1;
+    top: 10px;
+    left: 40px;
+}
