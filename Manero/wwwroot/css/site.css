@@ -47,3 +47,28 @@ body {
     top: 10px;
     left: 40px;
 }
+
+
+/* Grundstilar för navigationen */
+.navbar .navigation {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    position: fixed; /* Gör navigationen sticky */
+    left: 0;
+    bottom: 0;
+    background-color: white;
+    z-index: 100;
+}
+
+.nav-links {
+    color: black; /* Byt till root-färg när root är klar */
+    font-size: 18px;
+    padding: 5px;
+    border-radius: 50%;
+    text-align: center;    
+}
+
+.nav-links:active, .nav-links:hover {
+    background-color: #DBE3F5; /* Byt till root-färg när root är klar */
+ }
