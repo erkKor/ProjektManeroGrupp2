@@ -72,3 +72,176 @@ body {
 .nav-links:active, .nav-links:hover {
     background-color: #DBE3F5; /* Byt till root-färg när root är klar */
  }
+
+.welcome-page {
+    background-color: #DBE3F5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+    .welcome-page .loader {
+        height: 140px;
+        width: 140px;
+    }
+
+        .welcome-page .loader .outer-ring {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            background-color: #DBE3F5;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: width 1s ease-in-out;
+        }
+
+            .welcome-page .loader .outer-ring::before {
+                content: "";
+                position: absolute;
+                border: 4px solid #fff;
+                width: 130px;
+                height: 130px;
+                border-radius: 50%;
+                animation: scale-ring 1s infinite alternate;
+            }
+
+            .welcome-page .loader .outer-ring span {
+                position: absolute;
+                border: 1px solid #111111;
+                border-radius: 3px;
+                width: 18px;
+                height: 5px;
+                top: 30px;
+            }
+
+            .welcome-page .loader .outer-ring h1 {
+                font-size: 38px;
+                font-weight: 600;
+                position: absolute;
+            }
+
+            .welcome-page .loader .outer-ring .middle-ring {
+                width: 95px;
+                height: 95px;
+                background-color: #fff;
+                border-radius: 50%;
+            }
+
+    .welcome-page .welcome-navigation {
+        display: none;
+        position: absolute;
+        bottom: -50px;
+    }
+
+        .welcome-page .welcome-navigation .outer-ring {
+            position: relative;
+            border: 4px solid #fff;
+            height: 475px;
+            width: 475px;
+            background-color: #DBE3F5;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+            .welcome-page .welcome-navigation .outer-ring .middle-ring {
+                position: relative;
+                width: 415px;
+                height: 415px;
+                background-color: #fff;
+                border-radius: 50%;
+                padding-top: 2.5rem;
+                padding-left: 3.5rem;
+            }
+
+                .welcome-page .welcome-navigation .outer-ring .middle-ring .circles {
+                    display: flex;
+                    justify-content: flex-start;
+                    gap: 4.5rem;
+                    transition: 0.5s ease-in-out;
+                }
+
+                    .welcome-page .welcome-navigation .outer-ring .middle-ring .circles .content {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: flex-start;
+                        align-items: center;
+                    }
+
+            .welcome-page .welcome-navigation .outer-ring .vertical-line {
+                background-color: #111111;
+                border-radius: 3px;
+                width: 1px;
+                height: 30px;
+                margin-bottom: 1rem;
+            }
+
+            .welcome-page .welcome-navigation .outer-ring .horizontal-line {
+                background-color: #111111;
+                border-radius: 3px;
+                width: 134px;
+                height: 5px;
+                margin-top: 5rem;
+            }
+
+            .welcome-page .welcome-navigation .outer-ring h1 {
+                font-size: 32px;
+                font-weight: 700;
+                width: 250px;
+            }
+
+            .welcome-page .welcome-navigation .outer-ring p {
+                width: 305px;
+                margin: 0;
+                margin-bottom: 2rem;
+            }
+
+            .welcome-page .welcome-navigation .outer-ring .button-theme {
+                width: 255px;
+            }
+
+            .welcome-page .welcome-navigation .outer-ring nav {
+                position: absolute;
+                bottom: 70px;
+                left: 175px;
+                margin-top: 1.5rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+                .welcome-page .welcome-navigation .outer-ring nav .current {
+                    width: 22px !important;
+                    height: 8px !important;
+                    border-radius: 4px !important;
+                    border: 2px solid #111111 !important;
+                    background-color: #fff !important;
+                }
+
+                .welcome-page .welcome-navigation .outer-ring nav .dots {
+                    width: 6px;
+                    height: 6px;
+                    background-color: #111111;
+                    border-radius: 50%;
+                    padding: 0;
+                }
+
+@keyframes scale-ring {
+    0% {
+        height: 130px;
+        width: 130px;
+    }
+
+    100% {
+        height: 160px;
+        width: 160px;
+    }
+}
