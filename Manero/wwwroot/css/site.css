@@ -22,8 +22,11 @@ body {
     height: 50px;
 }
 
+.input-grp{
+    position:relative;
+}
+
 .input-grp input {
-    position: relative;
     border: 1px solid #DBE3F5;
     color: #fff;
     font-family: "Mulish", sans-serif;
@@ -160,6 +163,7 @@ body {
                 border-radius: 50%;
                 padding-top: 2.5rem;
                 padding-left: 3.5rem;
+                overflow: hidden;
             }
 
                 .welcome-page .welcome-navigation .outer-ring .middle-ring .circles {
