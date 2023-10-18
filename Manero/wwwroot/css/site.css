@@ -253,3 +253,30 @@ body {
         width: 160px;
     }
 }
+
+.section-order .container {
+    text-align: center;
+}
+
+    .section-order .container .order-line {
+        height: 25px;
+        color: #111111;
+        border-left: 1.5px solid #111111;
+        margin-left: 167.5px;
+    }
+
+    .section-order .container img {
+        margin-top: 100px;
+        margin-bottom: 20px;
+    }
+
+    .section-order .container h2 {
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+    .section-order .container p {
+        color: #626262;
+        font-size: 16px;
+        font-weight: 400;
+    }
