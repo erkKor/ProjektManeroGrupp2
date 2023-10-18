@@ -1,14 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,700;0,9..40,900;0,9..40,1000;1,9..40,500&family=Mulish:wght@400;600;700&display=swap");
 
-body {
-    width: 375px;
-}
 
-.container {
-    width: 335px;
-    padding: 0;
-    margin-top: 1rem;
-}
 
 .button-theme {
     background-color: #111111;
@@ -22,8 +14,11 @@ body {
     height: 50px;
 }
 
-.input-grp input {
+.input-grp {
     position: relative;
+}
+
+.input-grp input {
     border: 1px solid #DBE3F5;
     color: #fff;
     font-family: "Mulish", sans-serif;
@@ -44,8 +39,8 @@ body {
     color: #626262;
     background-color: #fff;
     z-index: 1;
-    top: 10px;
-    left: 40px;
+    top: -7px;
+    left: 20px;
 }
 
 
@@ -72,3 +67,237 @@ body {
 .nav-links:active, .nav-links:hover {
     background-color: #DBE3F5; /* Byt till root-färg när root är klar */
  }
+
+/* Go back navbar */
+.go-back-navbar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding-top: 12px;
+}
+
+    /* first position, the back arrow */
+    .go-back-navbar .first {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        background-color: transparent;
+        border: none;
+        text-align: start;
+    }
+
+@media (min-width: 1200px) {
+    .go-back-navbar .first {
+        display: none;
+    }
+}
+
+.go-back-navbar .first i {
+    color: #111111;
+}
+
+/* second position, title */
+.go-back-navbar .middle {
+    grid-column-start: 2;
+    grid-column-end: 4;
+    font-size: 18px;
+    font-style: "Mulish", sans-serif;
+    font-weight: 600;
+    color: #111111;
+    text-align: center;
+}
+
+@media (min-width: 1200px) {
+    .go-back-navbar .middle {
+        font-size: 48px;
+    }
+}
+
+/* last position, the shopping cart etc. */
+.go-back-navbar .last {
+    grid-column-start: 4;
+    grid-column-end: -1;
+    text-align: end;
+    display: none;
+}
+
+.sign-in .container .sign-in-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+@media (min-width: 1200px) {
+    .sign-in .container .sign-in-section {
+        border: 1px solid #DBE3F5;
+        padding: 80px;
+    }
+}
+
+.sign-in .container .sign-in-section .sign-in-title {
+    font-style: "Mulish", sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    font-family: "Mulish", sans-serif;
+}
+
+@media (min-width: 1200px) {
+    .sign-in .container .sign-in-section .sign-in-title {
+        font-size: 36px;
+    }
+}
+
+.sign-in .container .sign-in-section .sign-in-text {
+    font-style: "Mulish", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 35px;
+    font-family: "Mulish", sans-serif;
+}
+
+@media (min-width: 1200px) {
+    .sign-in .container .sign-in-section .sign-in-text {
+        font-size: 18px;
+    }
+}
+
+.sign-in .container .sign-in-section .input-grp {
+    margin-bottom: 20px;
+}
+
+@media (min-width: 1200px) {
+    .sign-in .container .sign-in-section .input-grp {
+        width: 600px;
+        margin-bottom: 45px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .sign-in .container .sign-in-section .input-grp input {
+        width: 100%;
+    }
+}
+
+.sign-in .container .sign-in-section .input-grp button {
+    background-color: transparent;
+    border: none;
+}
+
+    .sign-in .container .sign-in-section .input-grp button i {
+        position: absolute;
+        right: 30px;
+        top: 18px;
+        font-size: 1.1rem;
+    }
+
+.sign-in .container .sign-in-section .input-grp i {
+    position: absolute;
+    right: 30px;
+    top: 18px;
+    font-size: 1.1rem;
+}
+
+.sign-in .container .sign-in-section .remember-password {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+    .sign-in .container .sign-in-section .remember-password div #rememberMe {
+        cursor: pointer;
+    }
+
+    .sign-in .container .sign-in-section .remember-password div label {
+        color: #626262;
+        font-size: 16px;
+        font-weight: 400;
+        font-family: "Mulish", sans-serif;
+        padding-left: 12px;
+        padding-bottom: 5px;
+    }
+
+    .sign-in .container .sign-in-section .remember-password a {
+        color: #111111;
+        font-style: "Mulish", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        padding-bottom: 5px;
+    }
+
+.sign-in .container .sign-in-section .button-theme:hover {
+    background-color: #626262;
+    transition: ease-in-out 0.2s all;
+}
+
+@media (min-width: 1200px) {
+    .sign-in .container .sign-in-section .button-theme {
+        width: 100%;
+    }
+}
+
+.sign-in .container .sign-in-section .create-account {
+    margin-top: 18px;
+    margin-bottom: 35px;
+}
+
+    .sign-in .container .sign-in-section .create-account a:hover {
+        text-decoration: underline;
+        color: #111111;
+    }
+
+.sign-in .container .sign-in-section .sign-in-with {
+    display: flex;
+    align-items: center;
+}
+
+    .sign-in .container .sign-in-section .sign-in-with .facebook {
+        margin: 5px;
+        width: 60px;
+        height: 60px;
+        background-color: transparent;
+        border-radius: 50%;
+        border: 1px solid #DBE3F5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #3B5999;
+    }
+
+        .sign-in .container .sign-in-section .sign-in-with .facebook i {
+            font-size: 1.3rem;
+        }
+
+    .sign-in .container .sign-in-section .sign-in-with .twitter {
+        margin: 5px;
+        width: 60px;
+        height: 60px;
+        background-color: transparent;
+        border-radius: 50%;
+        border: 1px solid #DBE3F5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #55ACEE;
+    }
+
+        .sign-in .container .sign-in-section .sign-in-with .twitter i {
+            font-size: 1.3rem;
+        }
+
+    .sign-in .container .sign-in-section .sign-in-with .google {
+        margin: 5px;
+        width: 60px;
+        height: 60px;
+        background-color: transparent;
+        border-radius: 50%;
+        border: 1px solid #DBE3F5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #DD4B39;
+    }
+
+        .sign-in .container .sign-in-section .sign-in-with .google i {
+            font-size: 1.3rem;
+        }
