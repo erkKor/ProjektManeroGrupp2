@@ -210,6 +210,10 @@ body {
 
             .welcome-page .welcome-navigation .outer-ring .button-theme {
                 width: 255px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-decoration: none;
             }
 
             .welcome-page .welcome-navigation .outer-ring nav {
