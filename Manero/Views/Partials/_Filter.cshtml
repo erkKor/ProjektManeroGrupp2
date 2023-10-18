@@ -1,0 +1,30 @@
+﻿@functions {
+    public enum Size
+    {
+        XS, S, M, L, XL, XXL
+    }
+    class FilterFormTest
+    {
+        public Size size;
+    }
+}
+
+<section class="filter container w-100">
+
+    <div class="d-flex flex-row">
+        <button>&lt;</button>
+        <h1 class="text-center w-100">Filter</h1>
+    </div>
+
+    <h2>Size</h2>
+    <div class="btn-group" role="group" aria-label="Size selector">
+        @foreach (var size in Enum.GetNames<Size>())
+        {
+            <input type="radio" class="btn-check" name="size-toggle" id="@size" autocomplete="off" asp-for="@size" value="@size">
+            <label class="btn toggle-size rounded-circle m-1" for="@size">
+                <p class="m-auto">@size</p>
+            </label>
+        }
+    </div>
+
+</section>
