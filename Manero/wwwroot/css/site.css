@@ -496,3 +496,32 @@ a {
         width: 160px;
     }
 }
+
+.filter .toggle-size {
+    height: 50px;
+    width: 50px;
+    color: black !important;
+    display: flex;
+}
+
+.filter .btn-check + label {
+    border-color: #DBE3F5;
+}
+
+.filter .btn-check:hover + label {
+    border-color: #DBE3F5;
+}
+
+.filter .btn-check:checked + label {
+    background-color: #DBE3F5;
+    border-color: #DBE3F5;
+}
+
+.filter .tag-toggle {
+    display: flex;
+    border-radius: 50px;
+}
+
+.filter .legend > div::before {
+content: '$';
+}
