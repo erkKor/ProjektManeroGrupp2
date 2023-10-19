@@ -1,42 +1,45 @@
-﻿<!-- Sign in -->
-<section class="sign-in">
+﻿<!-- Sign up -->
+<section class="sign-up">
     <div class="container">
         <!-- Go back navbar -->
         <div class="go-back-navbar">
             <button class="first"><i class="fa-solid fa-chevron-left"></i></button>
-            <div class="middle">Sign in</div>
+            <div class="middle">Sign up</div>
             <div class="last">test</div>
         </div>
 
-        <div class="sign-in-section">
+        <div class="sign-up-section">
             <div class="vertical-line"></div>
-            <h1 class="sign-in-title">Welcome Back!</h1>
-            <p class="sign-in-text">Sign in to continue</p>
-            <!-- Sign in form -->
+            <h1 class="sign-up-title">Sign Up</h1>
+            <!-- Sign up form -->
             <form>
                 <div class="input-grp">
+                    <label>NAME</label>
+                    <input type="email">
+                    <i class="fa-solid fa-check"></i> <!-- <i class="fa-solid fa-xmark"></i> -->
+                </div>
+                <div class="input-grp">
                     <label>EMAIL</label>
-                    <input type="text">
+                    <input type="email">
                     <i class="fa-solid fa-check"></i> <!-- <i class="fa-solid fa-xmark"></i> -->
                 </div>
                 <div class="input-grp">
                     <label>PASSWORD</label>
-                    <input type="text">
+                    <input type="password">
                     <button><i class="fa-regular fa-eye-slash"></i></button> <!-- <i class="fa-regular fa-eye"></i>  -->
                 </div>
-                <div class="remember-password">
-                    <div>
-                        <input type="checkbox" id="rememberMe">
-                        <label for="rememberMe">Remember me</label>
-                    </div>
-                    <a href="#">Forgot password?</a>
+                <div class="input-grp">
+                    <label>CONFIRM PASSWORD</label>
+                    <input type="password">
+                    <button><i class="fa-regular fa-eye-slash"></i></button> <!-- <i class="fa-regular fa-eye"></i>  -->
                 </div>
-                <button class="button-theme">SIGN IN</button>
+
+                <button class="button-theme">SIGN UP</button>
             </form>
 
-            <p class="create-account">Don&apos;t have an account? <a href="#">Sign up.</a></p>
+            <div class="have-account">Already have an account? <a href="#">Sign in.</a></div>
 
-            <div class="sign-in-with">
+            <div class="sign-up-with">
                 <a href="#"><div class="facebook"><i class="fa-brands fa-facebook-f"></i></div></a>
                 <a href="#"><div class="twitter"><i class="fa-brands fa-twitter"></i></div></a>
                 <a href="#"><div class="google"><i class="fa-brands fa-google-plus-g"></i></div></a>

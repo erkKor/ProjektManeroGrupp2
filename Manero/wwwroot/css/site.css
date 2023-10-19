@@ -19,15 +19,24 @@ a {
     text-decoration: none;
 }
 
+.vertical-line {
+    background-color: #111111;
+    border-radius: 3px;
+    width: 1px;
+    height: 30px;
+    margin-bottom: 1rem;
+}
+
 .input-grp{
     position:relative;
 }
 
 .input-grp input {
     border: 1px solid #DBE3F5;
-    color: #fff;
+    color: #111111;
+    padding-left: 30px;
     font-family: "Mulish", sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     border-radius: 60px;
     width: 335px;
@@ -162,7 +171,6 @@ a {
 }
 
 .sign-in .container .sign-in-section .sign-in-title {
-    font-style: "Mulish", sans-serif;
     font-size: 32px;
     font-weight: 700;
     font-family: "Mulish", sans-serif;
@@ -175,7 +183,6 @@ a {
 }
 
 .sign-in .container .sign-in-section .sign-in-text {
-    font-style: "Mulish", sans-serif;
     font-size: 16px;
     font-weight: 400;
     margin-bottom: 35px;
@@ -525,3 +532,167 @@ a {
 .filter .legend > div::before {
 content: '$';
 }
+
+/* Sign up Design start */
+.sign-up .container .sign-up-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+@media (min-width: 1200px) {
+    .sign-up .container .sign-up-section {
+        border: 1px solid #DBE3F5;
+        padding: 80px;
+    }
+}
+
+.sign-up .container .sign-up-section .sign-up-title {
+    font-size: 32px;
+    font-weight: 700;
+    font-family: "Mulish", sans-serif;
+    margin-bottom: 25px;
+}
+
+@media (min-width: 1200px) {
+    .sign-up .container .sign-up-section .sign-up-title {
+        font-size: 36px;
+    }
+}
+
+.sign-up .container .sign-up-section .input-grp {
+    margin-bottom: 20px;
+}
+
+@media (min-width: 1200px) {
+    .sign-up .container .sign-up-section .input-grp {
+        width: 600px;
+        margin-bottom: 35px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .sign-up .container .sign-up-section .input-grp input {
+        width: 100%;
+    }
+}
+
+.sign-up .container .sign-up-section .input-grp button {
+    background-color: transparent;
+    border: none;
+}
+
+    .sign-up .container .sign-up-section .input-grp button i {
+        position: absolute;
+        right: 30px;
+        top: 18px;
+        font-size: 1.1rem;
+    }
+
+.sign-up .container .sign-up-section .input-grp i {
+    position: absolute;
+    right: 30px;
+    top: 18px;
+    font-size: 1.1rem;
+}
+
+.sign-up .container .sign-up-section .button-theme:hover {
+    background-color: #626262;
+    transition: ease-in-out 0.2s all;
+}
+
+@media (min-width: 1200px) {
+    .sign-up .container .sign-up-section .button-theme {
+        width: 100%;
+    }
+}
+
+.sign-up .container .sign-up-section .have-account {
+    margin-top: 18px;
+    margin-bottom: 35px;
+    width: 100%;
+    color: #626262;
+    padding-left: 20px;
+}
+
+@media (min-width: 1200px) {
+    .sign-up .container .sign-up-section .have-account {
+        width: auto;
+    }
+}
+
+@media (min-width: 992px) {
+    .sign-up .container .sign-up-section .have-account {
+        width: auto;
+    }
+}
+
+@media (min-width: 768px) {
+    .sign-up .container .sign-up-section .have-account {
+        width: auto;
+    }
+}
+
+.sign-up .container .sign-up-section .have-account a:hover {
+    text-decoration: underline;
+    color: #111111;
+}
+
+.sign-up .container .sign-up-section .sign-up-with {
+    display: flex;
+    align-items: center;
+    margin-bottom: 65px;
+}
+
+    .sign-up .container .sign-up-section .sign-up-with .facebook {
+        margin: 5px;
+        width: 60px;
+        height: 60px;
+        background-color: transparent;
+        border-radius: 50%;
+        border: 1px solid #DBE3F5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #3B5999;
+    }
+
+        .sign-up .container .sign-up-section .sign-up-with .facebook i {
+            font-size: 1.3rem;
+        }
+
+    .sign-up .container .sign-up-section .sign-up-with .twitter {
+        margin: 5px;
+        width: 60px;
+        height: 60px;
+        background-color: transparent;
+        border-radius: 50%;
+        border: 1px solid #DBE3F5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #55ACEE;
+    }
+
+        .sign-up .container .sign-up-section .sign-up-with .twitter i {
+            font-size: 1.3rem;
+        }
+
+    .sign-up .container .sign-up-section .sign-up-with .google {
+        margin: 5px;
+        width: 60px;
+        height: 60px;
+        background-color: transparent;
+        border-radius: 50%;
+        border: 1px solid #DBE3F5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #DD4B39;
+    }
+
+        .sign-up .container .sign-up-section .sign-up-with .google i {
+            font-size: 1.3rem;
+        }
