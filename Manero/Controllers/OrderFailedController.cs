@@ -2,7 +2,7 @@
 
 namespace Manero.Controllers
 {
-    public class OrderController : Controller
+    public class OrderFailedController : Controller
     {
         public IActionResult Index()
         {
