@@ -48,10 +48,6 @@ body {
     left: 40px;
 }
 
-.filter {
-    
-}
-
 .filter .toggle-size {
     height: 50px;
     width: 50px;
@@ -72,7 +68,11 @@ body {
     border-color: #DBE3F5;
 }
 
-.filter .toggle-size:hover {
+.filter .tag-toggle {
+    display: flex;
+    border-radius: 50px;
+}
 
-    
+.filter .legend > div::before {
+content: '$';
 }
