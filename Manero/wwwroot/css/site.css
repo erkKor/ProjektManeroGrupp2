@@ -1,14 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,700;0,9..40,900;0,9..40,1000;1,9..40,500&family=Mulish:wght@400;600;700&display=swap");
 
-body {
-    width: 375px;
-}
 
-.container {
-    width: 335px;
-    padding: 0;
-    margin-top: 1rem;
-}
 
 .button-theme {
     background-color: #111111;
@@ -22,8 +14,16 @@ body {
     height: 50px;
 }
 
+a {
+    color: #111111;
+    text-decoration: none;
+}
+
+.input-grp{
+    position:relative;
+}
+
 .input-grp input {
-    position: relative;
     border: 1px solid #DBE3F5;
     color: #fff;
     font-family: "Mulish", sans-serif;
@@ -44,8 +44,457 @@ body {
     color: #626262;
     background-color: #fff;
     z-index: 1;
-    top: 10px;
-    left: 40px;
+    top: -7px;
+    left: 20px;
+}
+
+/* Pagination*/
+.nav-pagination {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+    .nav-pagination .current {
+        width: 22px !important;
+        height: 8px !important;
+        border-radius: 4px !important;
+        border: 2px solid #111111 !important;
+        background-color: #fff !important;
+    }
+
+    .nav-pagination .dots {
+        width: 6px;
+        height: 6px;
+        background-color: #111111;
+        border-radius: 50%;
+        padding: 0;
+    }
+
+/* Grundstilar för navigationen */
+.navbar .navigation {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    position: fixed; /* Gör navigationen sticky */
+    left: 0;
+    bottom: 0;
+    background-color: white;
+    z-index: 100;
+}
+
+.nav-links {
+    color: black; /* Byt till root-färg när root är klar */
+    font-size: 18px;
+    padding: 5px;
+    border-radius: 50%;
+    text-align: center;    
+}
+
+.nav-links:active, .nav-links:hover {
+    background-color: #DBE3F5; /* Byt till root-färg när root är klar */
+ }
+
+
+/* Go back navbar */
+.go-back-navbar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding-top: 12px;
+}
+
+    /* first position, the back arrow */
+    .go-back-navbar .first {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        background-color: transparent;
+        border: none;
+        text-align: start;
+    }
+
+@media (min-width: 1200px) {
+    .go-back-navbar .first {
+        display: none;
+    }
+}
+
+.go-back-navbar .first i {
+    color: #111111;
+}
+
+/* second position, title */
+.go-back-navbar .middle {
+    grid-column-start: 2;
+    grid-column-end: 4;
+    font-size: 18px;
+    font-style: "Mulish", sans-serif;
+    font-weight: 600;
+    color: #111111;
+    text-align: center;
+}
+
+@media (min-width: 1200px) {
+    .go-back-navbar .middle {
+        font-size: 48px;
+    }
+}
+
+/* last position, the shopping cart etc. */
+.go-back-navbar .last {
+    grid-column-start: 4;
+    grid-column-end: -1;
+    text-align: end;
+    display: none;
+}
+
+.sign-in .container .sign-in-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+@media (min-width: 1200px) {
+    .sign-in .container .sign-in-section {
+        border: 1px solid #DBE3F5;
+        padding: 80px;
+    }
+}
+
+.sign-in .container .sign-in-section .sign-in-title {
+    font-style: "Mulish", sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    font-family: "Mulish", sans-serif;
+}
+
+@media (min-width: 1200px) {
+    .sign-in .container .sign-in-section .sign-in-title {
+        font-size: 36px;
+    }
+}
+
+.sign-in .container .sign-in-section .sign-in-text {
+    font-style: "Mulish", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 35px;
+    font-family: "Mulish", sans-serif;
+}
+
+@media (min-width: 1200px) {
+    .sign-in .container .sign-in-section .sign-in-text {
+        font-size: 18px;
+    }
+}
+
+.sign-in .container .sign-in-section .input-grp {
+    margin-bottom: 20px;
+}
+
+@media (min-width: 1200px) {
+    .sign-in .container .sign-in-section .input-grp {
+        width: 600px;
+        margin-bottom: 45px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .sign-in .container .sign-in-section .input-grp input {
+        width: 100%;
+    }
+}
+
+.sign-in .container .sign-in-section .input-grp button {
+    background-color: transparent;
+    border: none;
+}
+
+    .sign-in .container .sign-in-section .input-grp button i {
+        position: absolute;
+        right: 30px;
+        top: 18px;
+        font-size: 1.1rem;
+    }
+
+.sign-in .container .sign-in-section .input-grp i {
+    position: absolute;
+    right: 30px;
+    top: 18px;
+    font-size: 1.1rem;
+}
+
+.sign-in .container .sign-in-section .remember-password {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+    .sign-in .container .sign-in-section .remember-password div #rememberMe {
+        cursor: pointer;
+    }
+
+    .sign-in .container .sign-in-section .remember-password div label {
+        color: #626262;
+        font-size: 16px;
+        font-weight: 400;
+        font-family: "Mulish", sans-serif;
+        padding-left: 12px;
+        padding-bottom: 5px;
+    }
+
+    .sign-in .container .sign-in-section .remember-password a {
+        color: #111111;
+        font-style: "Mulish", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        padding-bottom: 5px;
+    }
+
+.sign-in .container .sign-in-section .button-theme:hover {
+    background-color: #626262;
+    transition: ease-in-out 0.2s all;
+}
+
+@media (min-width: 1200px) {
+    .sign-in .container .sign-in-section .button-theme {
+        width: 100%;
+    }
+}
+
+.sign-in .container .sign-in-section .create-account {
+    margin-top: 18px;
+    margin-bottom: 35px;
+}
+
+    .sign-in .container .sign-in-section .create-account a:hover {
+        text-decoration: underline;
+        color: #111111;
+    }
+
+.sign-in .container .sign-in-section .sign-in-with {
+    display: flex;
+    align-items: center;
+}
+
+    .sign-in .container .sign-in-section .sign-in-with .facebook {
+        margin: 5px;
+        width: 60px;
+        height: 60px;
+        background-color: transparent;
+        border-radius: 50%;
+        border: 1px solid #DBE3F5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #3B5999;
+    }
+
+        .sign-in .container .sign-in-section .sign-in-with .facebook i {
+            font-size: 1.3rem;
+        }
+
+    .sign-in .container .sign-in-section .sign-in-with .twitter {
+        margin: 5px;
+        width: 60px;
+        height: 60px;
+        background-color: transparent;
+        border-radius: 50%;
+        border: 1px solid #DBE3F5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #55ACEE;
+    }
+
+        .sign-in .container .sign-in-section .sign-in-with .twitter i {
+            font-size: 1.3rem;
+        }
+
+    .sign-in .container .sign-in-section .sign-in-with .google {
+        margin: 5px;
+        width: 60px;
+        height: 60px;
+        background-color: transparent;
+        border-radius: 50%;
+        border: 1px solid #DBE3F5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #DD4B39;
+    }
+
+        .sign-in .container .sign-in-section .sign-in-with .google i {
+            font-size: 1.3rem;
+        }
+.welcome-page {
+    background-color: #DBE3F5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+    .welcome-page .loader {
+        height: 140px;
+        width: 140px;
+    }
+
+        .welcome-page .loader .outer-ring {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            background-color: #DBE3F5;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: width 1s ease-in-out;
+        }
+
+            .welcome-page .loader .outer-ring::before {
+                content: "";
+                position: absolute;
+                border: 4px solid #fff;
+                width: 130px;
+                height: 130px;
+                border-radius: 50%;
+                animation: scale-ring 1s infinite alternate;
+            }
+
+            .welcome-page .loader .outer-ring span {
+                position: absolute;
+                border: 1px solid #111111;
+                border-radius: 3px;
+                width: 18px;
+                height: 5px;
+                top: 30px;
+            }
+
+            .welcome-page .loader .outer-ring h1 {
+                font-size: 38px;
+                font-weight: 600;
+                position: absolute;
+            }
+
+            .welcome-page .loader .outer-ring .middle-ring {
+                width: 95px;
+                height: 95px;
+                background-color: #fff;
+                border-radius: 50%;
+            }
+
+    .welcome-page .welcome-navigation {
+        display: none;
+        position: absolute;
+        bottom: -50px;
+    }
+
+        .welcome-page .welcome-navigation .outer-ring {
+            position: relative;
+            border: 4px solid #fff;
+            height: 475px;
+            width: 475px;
+            background-color: #DBE3F5;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+            .welcome-page .welcome-navigation .outer-ring .middle-ring {
+                position: relative;
+                width: 415px;
+                height: 415px;
+                background-color: #fff;
+                border-radius: 50%;
+                padding-top: 2.5rem;
+                padding-left: 3.5rem;
+                overflow: hidden;
+            }
+
+                .welcome-page .welcome-navigation .outer-ring .middle-ring .circles {
+                    display: flex;
+                    justify-content: flex-start;
+                    gap: 4.5rem;
+                    overflow-x: auto;
+                    scroll-snap-type: x mandatory;
+                }
+
+                    .welcome-page .welcome-navigation .outer-ring .middle-ring .circles::-webkit-scrollbar {
+                        height: 0;
+                    }
+
+                    .welcome-page .welcome-navigation .outer-ring .middle-ring .circles .content {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: flex-start;
+                        align-items: center;
+                        scroll-snap-align: start;
+                    }
+
+                        .welcome-page .welcome-navigation .outer-ring .middle-ring .circles .content:last-child {
+                            margin-right: 3.35rem;
+                        }
+
+            .welcome-page .welcome-navigation .outer-ring .vertical-line {
+                background-color: #111111;
+                border-radius: 3px;
+                width: 1px;
+                height: 30px;
+                margin-bottom: 1rem;
+            }
+
+            .welcome-page .welcome-navigation .outer-ring .horizontal-line {
+                background-color: #111111;
+                border-radius: 3px;
+                width: 134px;
+                height: 5px;
+                margin-top: 5rem;
+            }
+
+            .welcome-page .welcome-navigation .outer-ring h1 {
+                font-size: 32px;
+                font-weight: 700;
+                width: 250px;
+            }
+
+            .welcome-page .welcome-navigation .outer-ring p {
+                width: 305px;
+                margin: 0;
+                margin-bottom: 2rem;
+            }
+
+            .welcome-page .welcome-navigation .outer-ring .button-theme {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 255px;
+                text-decoration: none;
+            }
+
+            .welcome-page .welcome-navigation .outer-ring .nav-pagination {
+                position: absolute;
+                bottom: 70px;
+                left: 185px;
+                margin-top: 1.5rem;
+            }
+
+@keyframes scale-ring {
+    0% {
+        height: 130px;
+        width: 130px;
+    }
+
+    100% {
+        height: 160px;
+        width: 160px;
+    }
 }
 
 .filter .toggle-size {
