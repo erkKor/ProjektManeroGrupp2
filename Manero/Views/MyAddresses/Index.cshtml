@@ -1,0 +1,59 @@
+﻿@using Manero.Models.Entities
+
+@{
+
+    ViewData["Title"] = "My addresses";
+    var addresses = new[]
+    {
+        new AdressEntity() { AdressName = "Home", PostalCode = "8000", StreetName = "S Kirkland Ave", City = "Chicago" },
+        new AdressEntity() { AdressName = "Work", PostalCode = "8000", StreetName = "S Kirkland Ave", City = "Chicago" },
+        new AdressEntity() { AdressName = "Other", PostalCode = "8000", StreetName = "S Kirkland Ave", City = "Chicago" },
+    };
+
+    string GetIcon(AdressEntity address)
+    {
+        if (address.AdressName == "Home")
+            return "🏠";
+        else if (address.AdressName == "Work")
+            return "💼";
+        else
+            return "📍";
+    }
+
+}
+
+<section class="container">
+    
+    <div class="d-flex flex-row mt-4">
+        <button class="btn rounded-circle toggle-size d-flex p-0"><b class="m-auto">&lt;</b></button>
+        <h1 class="text-center w-100 m-auto">My addresses</h1>
+    </div>
+
+    <div class="d-flex flex-column mt-5">
+        <div class="mx-auto d-flex flex-column">
+
+            @foreach (var address in addresses)
+            {
+                <div class="d-flex flex-row border-bottom mt-3 pb-1">
+            
+                    <p class="my-auto">@GetIcon(address)</p>
+
+                    <div class="ms-4">
+                        <h5 class="m-0">@address.AdressName</h5>
+                        <p>@address.PostalCode @address.StreetName @address.City</p>
+                    </div>
+
+                    <button class="btn ms-auto">✎</button>
+
+                </div>
+            }
+
+            <button class="btn mt-4 mx-auto">
+                <h4>+</h4>
+                <p>Add a new address</p>
+            </button>
+
+        </div>
+    </div>
+
+</section>
