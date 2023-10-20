@@ -4,7 +4,7 @@ var welcomeCircle = document.querySelector('.welcome-navigation');
 setTimeout(function () {
     loader.style.display = 'none';
     welcomeCircle.style.display = 'block';
-}, 1000);
+}, 3000);
 
 //Pagination function and select current content
 $(document).ready(function () {
