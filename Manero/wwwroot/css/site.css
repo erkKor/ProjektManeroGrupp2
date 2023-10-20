@@ -588,7 +588,10 @@ a {
 }
 
 
-/* Section-order-failed */
+
+
+/* Section-order-failed-successful */
+
 .section-order-failed-successful .container {
     text-align: center;
 }
