@@ -988,3 +988,24 @@ content: '$';
         height: 80px;
     }
 
+.section-checkout-payment .container .payment-method {
+    margin-top: 50px;
+    display: flex;
+    position: relative;
+    justify-content: center;
+}
+
+    .section-checkout-payment .container .payment-method h1 {
+        font-family: "Mulish", sans-serif;
+        font-weight: 600;
+        font-size: 18px;
+        margin: 0;
+        position: absolute;
+    }
+
+    .section-checkout-payment .container .payment-method a {
+        margin-right: 320px;
+        text-decoration: none;
+        color: #111111;
+    }
+
