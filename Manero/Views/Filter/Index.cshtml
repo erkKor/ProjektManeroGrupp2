@@ -1,6 +1,11 @@
 ﻿@using System.Drawing;
+@{
+    ViewData["Title"] = "Filter";
+}
+
 @functions {
 
+    //Test stuff for design, should be removed when implementing functionality
     public enum Size
     {
         XS, S, M, L, XL, XXL
@@ -72,7 +77,7 @@
 
     <div class="my-4">
         <h2 class="mb-4">Price</h2>
-        @await Html.PartialAsync("_MinMaxRangeSlider.cshtml")
+        @await Html.PartialAsync("/Views/Partials/_MinMaxRangeSlider.cshtml")
     </div>
 
     <div class="my-4 d-flex">
@@ -90,7 +95,7 @@
     <h2>Tags</h2>
     <div class="my-4 d-flex flex-wrap">
         @foreach (var tag in tags)
-        {               
+        {
             <div class="">
                 <input type="radio" class="btn-check" class="" name="tag-toggle" id="tag-@tag" autocomplete="off" />
                 <label class="btn tag-toggle m-1 d-flex" for="tag-@tag">
