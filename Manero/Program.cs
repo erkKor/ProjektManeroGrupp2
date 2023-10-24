@@ -1,6 +1,8 @@
 using Manero.Contexts;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Manero.Helpers.Repositories;
+using Manero.Helpers.Services;
 using Microsoft.EntityFrameworkCore;
 using Manero.Helpers.Services;
 using Manero.Helpers.Repositories;
@@ -28,6 +30,9 @@ builder.Services.AddIdentity<User, IdentityRole>(x =>
 })
     .AddEntityFrameworkStores<DataContext>()
     .AddDefaultTokenProviders();
+
+builder.Services.AddScoped<ProductRepository>();
+builder.Services.AddScoped<ProductService>();
 
 var app = builder.Build();
 app.UseHsts();
