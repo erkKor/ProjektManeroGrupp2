@@ -1,10 +1,18 @@
-﻿using Manero.Models.ViewModels;
+﻿using Manero.Helpers.Services;
+using Manero.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Manero.Controllers
 {
     public class SignUpController : Controller
     {
+        private readonly SignUpService _signUpService;
+
+        public SignUpController(SignUpService signUpService)
+        {
+            _signUpService = signUpService;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -15,11 +23,18 @@ namespace Manero.Controllers
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("Index", "Home");
+                if(await _signUpService.ExistsAsync(x => x.Email == viewModel.Email))
+                {
+                    ModelState.AddModelError("", "User with the same Email already exists");
+                    return View(viewModel);
+                }
+
+                if (await _signUpService.SignUpAsync(viewModel))
+                    return RedirectToAction("Index", "Home");
             }
             if (!ModelState.IsValid)
             {
-                ModelState.AddModelError("", "User with the same Email already exists");
+                ModelState.AddModelError("", "All inputs are required");
             }
 
             return View(viewModel);
