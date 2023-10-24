@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Manero.Models.Identity;
+using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace Manero.Models.ViewModels
 {
@@ -30,5 +32,16 @@ namespace Manero.Models.ViewModels
         [Display(Name = "CONFIRM PASSWORD")]
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; } = null!;
+
+        public static implicit operator User(SignUpViewModel model)
+        {
+            return new User
+            {
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Email = model.Email,
+                UserName= model.Email
+            };
+        }
     }
 }
