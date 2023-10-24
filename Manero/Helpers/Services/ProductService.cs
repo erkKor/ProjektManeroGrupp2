@@ -28,6 +28,7 @@ namespace Manero.Helpers.Services
                 Name = p.Name,
                 Description = p.Description,
                 Price = p.Price,
+                Rating = p.Rating,
                 ImageUrl = p.ImageUrl!,
                 Category = p.Category.Select(pc => pc.Category.CategoryName).ToArray()
             });
@@ -41,6 +42,7 @@ namespace Manero.Helpers.Services
                 Id = p.Id,
                 Name = p.Name,
                 Description = p.Description,
+                Rating = p.Rating,
                 Price = p.Price,
                 ImageUrl = p.ImageUrl!,
                 Category = p.Category.Select(pc => pc.Category.CategoryName).ToArray()
