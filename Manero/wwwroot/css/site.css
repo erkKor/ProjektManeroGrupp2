@@ -19,6 +19,10 @@ a {
     text-decoration: none;
 }
 
+ul {
+    list-style: none;
+}
+
 .vertical-line {
     background-color: #111111;
     border-radius: 3px;
@@ -676,8 +680,24 @@ content: '$';
     }
 }
 
+.sign-up .container .sign-up-section .error-message {
+    text-align: center;
+    color: #fa3150;
+    font-size: .88rem
+}
+
+.sign-up .container .sign-up-section .error-message ul {
+    list-style: none;
+}
+
 .sign-up .container .sign-up-section .input-grp {
     margin-bottom: 20px;
+}
+
+.sign-up .container .sign-up-section .input-grp .validation-message {
+    color: #fa3150;
+    font-size: .88rem;
+    padding-left: 30px;
 }
 
 @media (min-width: 1200px) {
