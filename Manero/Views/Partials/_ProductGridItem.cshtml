@@ -1,0 +1,22 @@
+﻿@model ProductGridItemVM
+
+<div class="product-card">
+    <div class="product-image">
+        <button><i class="fa-light fa-heart"></i></button>
+        <button><i class="fa-light fa-bag-shopping"></i></button>
+    </div>
+    <div class="product-content">
+        <div class="stars">
+            @for (int i = 0; i < Model.Rating; i++)
+            {
+                <i class="fa-sharp fa-solid fa-star"></i>
+            }
+            <p>(@Model.Rating)</p>
+        </div>
+        <p>@Model.Name</p>
+        <div class="price">
+            <p class="original-price"></p>
+            <p class="discount-price">$@Model.Price.ToString("0.00")</p>
+        </div>
+    </div>
+</div>
