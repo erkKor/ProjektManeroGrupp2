@@ -1202,3 +1202,54 @@ content: '$';
         .product-categories .product-categories-grid .item3 {
             grid-column: 1/span 2;
         }
+
+
+.filters .container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.filters .filter-btn {
+    background-color: transparent;
+    border: none;
+}
+
+    .filters .filter-btn i {
+        padding-right: 5px;
+    }
+
+.filters .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+    .filters .dropdown .drop-btn {
+        background-color: transparent;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .filters .dropdown .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+        .filters .dropdown .dropdown-content a {
+            color: #111111;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+            .filters .dropdown .dropdown-content a:hover {
+                background-color: #DBE3F5;
+            }
+
+    .filters .dropdown .show {
+        display: block;
+    }

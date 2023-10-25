@@ -54,3 +54,8 @@ $(document).ready(function () {
         }
     });
 });
+
+//Toggle dropdown menu in selected-category controller
+function toggleDropdown() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
