@@ -1,4 +1,6 @@
-﻿<!-- Sign up -->
+﻿@model SignUpViewModel
+
+<!-- Sign up -->
 <section class="sign-up">
     <div class="container">
         <!-- Go back navbar -->
@@ -12,37 +14,52 @@
             <div class="vertical-line"></div>
             <h1 class="sign-up-title">Sign Up</h1>
             <!-- Sign up form -->
-            <form>
+            <form method="post" novalidate>
+
+                <div asp-validation-summary="ModelOnly" class="error-message"></div>
+
                 <div class="input-grp">
-                    <label>NAME</label>
-                    <input type="email">
+                    <label asp-for="FirstName"></label>
+                    <input asp-for="FirstName">
                     <i class="fa-solid fa-check"></i> <!-- <i class="fa-solid fa-xmark"></i> -->
-                </div>
-                <div class="input-grp">
-                    <label>EMAIL</label>
-                    <input type="email">
-                    <i class="fa-solid fa-check"></i> <!-- <i class="fa-solid fa-xmark"></i> -->
-                </div>
-                <div class="input-grp">
-                    <label>PASSWORD</label>
-                    <input type="password">
-                    <button><i class="fa-regular fa-eye-slash"></i></button> <!-- <i class="fa-regular fa-eye"></i>  -->
-                </div>
-                <div class="input-grp">
-                    <label>CONFIRM PASSWORD</label>
-                    <input type="password">
-                    <button><i class="fa-regular fa-eye-slash"></i></button> <!-- <i class="fa-regular fa-eye"></i>  -->
+                    <span class="validation-message" asp-validation-for="FirstName"></span>
                 </div>
 
-                <button class="button-theme">SIGN UP</button>
+                <div class="input-grp">
+                    <label asp-for="LastName"></label>
+                    <input asp-for="LastName">
+                    <i class="fa-solid fa-check"></i> <!-- <i class="fa-solid fa-xmark"></i> -->
+                    <span class="validation-message" asp-validation-for="LastName"></span>
+                </div>
+
+                <div class="input-grp">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email">
+                    <i class="fa-solid fa-check"></i> <!-- <i class="fa-solid fa-xmark"></i> -->
+                    <span class="validation-message" asp-validation-for="Email"></span>
+                </div>
+
+                <div class="input-grp">
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password">
+                    <span class="validation-message" asp-validation-for="Password"></span>
+                </div>
+
+                <div class="input-grp">
+                    <label asp-for="ConfirmPassword"></label>
+                    <input asp-for="ConfirmPassword">
+                    <span class="validation-message" asp-validation-for="ConfirmPassword"></span>
+                </div>
+
+                <button class="button-theme" type="submit">SIGN UP</button>
             </form>
 
-            <div class="have-account">Already have an account? <a href="#">Sign in.</a></div>
+            <div class="have-account">Already have an account? <a asp-controller="SignIn" asp-action="Index">Sign in.</a></div>
 
             <div class="sign-up-with">
-                <a href="#"><div class="facebook"><i class="fa-brands fa-facebook-f"></i></div></a>
-                <a href="#"><div class="twitter"><i class="fa-brands fa-twitter"></i></div></a>
-                <a href="#"><div class="google"><i class="fa-brands fa-google-plus-g"></i></div></a>
+                <a target="_blank" href="https://www.facebook.com/"><div class="facebook"><i class="fa-brands fa-facebook-f"></i></div></a>
+                <a target="_blank" href="https://twitter.com/"><div class="twitter"><i class="fa-brands fa-twitter"></i></div></a>
+                <a target="_blank" href="https://www.google.se/"><div class="google"><i class="fa-brands fa-google-plus-g"></i></div></a>
             </div>
         </div>
     </div>

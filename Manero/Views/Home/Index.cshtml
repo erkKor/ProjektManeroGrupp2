@@ -1,6 +1,4 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model HomeControllerVM
 
 <section class="top-bar">
         <div class="container">
@@ -53,7 +51,7 @@
                 <h3>Featured Products</h3>
                 <a>view all<i class="fa-regular fa-chevron-right"></i></a>
             </div>
-            <partial name="/Views/Partials/_ProductGrid.cshtml" />
+            <partial name="/Views/Partials/_ProductGrid.cshtml" model="@Model.FeaturedProducts"/>
         </div>
     </section>
 
@@ -63,74 +61,7 @@
                 <h3>Best Sellers</h3>
                 <a>view all<i class="fa-regular fa-chevron-right"></i></a>
             </div>
-            @*Replace with product grid partial later*@
-            <div class="product-grid">
-                <div class="product-card">
-                    <div class="product-image">
-                        <button><i class="fa-light fa-heart"></i></button>
-                        <button><i class="fa-light fa-bag-shopping"></i></button>
-
-                    </div>
-                    <div class="product-content">
-                        <div class="stars">
-                            <i class="fa-sharp fa-solid fa-star"></i>
-                            <i class="fa-sharp fa-solid fa-star"></i>
-                            <i class="fa-sharp fa-solid fa-star"></i>
-                            <i class="fa-sharp fa-light fa-star"></i>
-                            <i class="fa-sharp fa-light fa-star"></i>
-                            <p>(3)</p>
-                        </div>
-                        <p>Summer pants</p>
-                        <div class="price">
-                            <p class="original-price"></p>
-                            <p class="discount-price">$15.98</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <button><i class="fa-light fa-heart"></i></button>
-                        <button><i class="fa-light fa-bag-shopping"></i></button>
-                    </div>
-                    <div class="product-content">
-                        <div class="stars">
-                            <i class="fa-sharp fa-solid fa-star"></i>
-                            <i class="fa-sharp fa-solid fa-star"></i>
-                            <i class="fa-sharp fa-solid fa-star"></i>
-                            <i class="fa-sharp fa-light fa-star"></i>
-                            <i class="fa-sharp fa-light fa-star"></i>
-                            <p>(3)</p>
-                        </div>
-                        <p>Summer pants</p>
-                        <div class="price">
-                            <p class="original-price"></p>
-                            <p class="discount-price">$15.98</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <span>SALE</span>
-                        <button><i class="fa-light fa-heart"></i></button>
-                        <button><i class="fa-light fa-bag-shopping"></i></button>
-                    </div>
-                    <div class="product-content">
-                        <div class="stars">
-                            <i class="fa-sharp fa-solid fa-star"></i>
-                            <i class="fa-sharp fa-solid fa-star"></i>
-                            <i class="fa-sharp fa-solid fa-star"></i>
-                            <i class="fa-sharp fa-light fa-star"></i>
-                            <i class="fa-sharp fa-light fa-star"></i>
-                            <p>(3)</p>
-                        </div>
-                        <p>Summer pants</p>
-                        <div class="price">
-                            <p class="original-price">$25.00</p>
-                            <p class="discount-price discount">$15.98</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <partial name="/Views/Partials/_ProductGrid.cshtml" model="@Model.BestSellers" />
         </div>
     </section>
     

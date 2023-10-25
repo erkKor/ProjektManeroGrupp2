@@ -19,6 +19,10 @@ a {
     text-decoration: none;
 }
 
+ul {
+    list-style: none;
+}
+
 .vertical-line {
     background-color: #111111;
     border-radius: 3px;
@@ -676,8 +680,24 @@ content: '$';
     }
 }
 
+.sign-up .container .sign-up-section .error-message {
+    text-align: center;
+    color: #fa3150;
+    font-size: .88rem
+}
+
+.sign-up .container .sign-up-section .error-message ul {
+    list-style: none;
+}
+
 .sign-up .container .sign-up-section .input-grp {
     margin-bottom: 20px;
+}
+
+.sign-up .container .sign-up-section .input-grp .validation-message {
+    color: #fa3150;
+    font-size: .88rem;
+    padding-left: 30px;
 }
 
 @media (min-width: 1200px) {
@@ -988,6 +1008,7 @@ content: '$';
         height: 80px;
     }
 
+
 .section-checkout-payment {
     width: 375px;
 }
@@ -1057,3 +1078,138 @@ content: '$';
         .section-checkout-payment input[type=radio]:checked {
             background-color: #F4505C;
         }
+
+
+
+
+
+
+
+
+/* Profilepage-controller */
+
+.shoppingcart .container {
+    display: block;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+    .shoppingcart .container .empty-message {
+        margin-top: 6rem;
+        height: 29px;
+        font-size: 22px;
+        font-weight: bold;
+        text-align: center;
+        color: #111111;
+    }
+
+    .shoppingcart .container .check-order {
+        display: flex;
+        justify-content: center;
+        font-size: 16px;
+        color: #626262;
+    }
+
+        .shoppingcart .container .check-order .ordertest {
+            width: 60%;
+        }
+
+.account .container {
+    display: block;
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+    .account .container .account-info p {
+        margin: 0; /* Ta bort all marginal */
+    }
+
+    .account .container .account-name {
+        font-size: 20px;
+        font-weight: bold;
+        color: #111111;
+    }
+
+    .account .container .account-email {
+        font-size: 14px;
+        color: #626262;
+    }
+
+.account-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+}
+
+    .account-links a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+        text-decoration: none;
+        color: #333;
+        width: 100%; /* Ta upp hela bredden av föräldern */
+        box-sizing: border-box; /* Inkludera padding i bredden */
+    }
+
+    .account-links p {
+        padding-top: 1rem;
+    }
+
+    .account-links .icon {
+        width: 15px;
+        margin-right: 2.5rem; /* Avståndet mellan ikonerna och texten */
+    }
+
+    .account-links .chevron {
+        margin-left: auto; /* Placera chevron längst till höger */
+    }
+
+.wishlist .container .gridbox {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 10px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.wishlist .container .gridbox-small {
+    display: flex;
+    gap: 10px;
+}
+
+    .wishlist .container .gridbox-small .test-img {
+        height: 100px;
+        width: 100px;
+        background-color: #DBE3F5;
+    }
+
+        .wishlist .container .gridbox-small .test-img .img-sale {
+            background-color: #69864d;
+            width: 30%;
+        }
+
+            .wishlist .container .gridbox-small .test-img .img-sale p {
+                font-size: 8px;
+                color: white;
+                text-align: center;
+            }
+
+    .wishlist .container .gridbox-small .gridbox-body p {
+        font-size: 14px;
+    }
+
+.a-link-theme {
+    background-color: #111111;
+    border: none;
+    color: #fff;
+    font-family: "Mulish", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 60px;
+    padding: 15px 125px 15px 125px;
+}
+
