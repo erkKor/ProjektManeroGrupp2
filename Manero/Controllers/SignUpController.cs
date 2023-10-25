@@ -30,7 +30,7 @@ namespace Manero.Controllers
                 }
 
                 if (await _signUpService.SignUpAsync(viewModel))
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("AccountCreated", "SignUp");
             }
             if (!ModelState.IsValid)
             {
@@ -38,6 +38,11 @@ namespace Manero.Controllers
             }
 
             return View(viewModel);
+        }
+
+        public IActionResult AccountCreated()
+        {
+            return View();
         }
     }
 }
