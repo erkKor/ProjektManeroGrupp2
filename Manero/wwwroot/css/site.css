@@ -1130,3 +1130,14 @@ content: '$';
     .wishlist .container .gridbox-small .gridbox-body p {
         font-size: 14px;
     }
+
+.a-link-theme {
+    background-color: #111111;
+    border: none;
+    color: #fff;
+    font-family: "Mulish", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 60px;
+    padding: 15px 125px 15px 125px;
+}
