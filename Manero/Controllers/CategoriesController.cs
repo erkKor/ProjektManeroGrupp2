@@ -24,7 +24,8 @@ namespace Manero.Controllers
 
             var viewModel = new ProductGridVM
             {
-                GridItems = await _productService.GetProductsByCategoryAsync(category)
+                GridItems = await _productService.GetProductsByCategoryAsync(category),
+                SearchTitle = category
             };
 
             return View(viewModel);
