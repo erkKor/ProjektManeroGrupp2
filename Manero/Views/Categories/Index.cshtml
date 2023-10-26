@@ -1,0 +1,37 @@
+﻿
+<section class="top-bar">
+    <div class="container">
+        <button><i class="fa-solid fa-bars-staggered"></i></button>
+        <div class="searchbar">
+            <i class="fa-light fa-magnifying-glass"></i>
+            <form method="get" asp-controller="Categories" asp-action="SelectedCategory">
+                <input type="text" placeholder="Search" name="category">
+                <input type="submit" hidden value="Search"/>
+            </form>
+        </div>
+        <button>
+            <i class="fa-light fa-bag-shopping"></i>
+        </button>
+    </div>
+</section>
+
+<section class="browse-categories">
+    <div class="container">
+        <a asp-controller="Categories" asp-action="SelectedCategory" asp-route-category="Men" class="category">MEN</a>
+        <a asp-controller="Categories" asp-action="SelectedCategory" asp-route-category="Women" class="category">WOMEN</a>
+        <a asp-controller="Categories" asp-action="SelectedCategory" asp-route-category="Kids" class="category">KIDS</a>
+        <a asp-controller="Categories" asp-action="SelectedCategory" asp-route-category="Accessories" class="category">ACCESSORIES</a>
+    </div>
+</section>
+
+<section class="product-categories">
+    <div class="product-categories-grid">
+        <a asp-controller="Categories" asp-action="SelectedCategory" asp-route-category="Dresses" class="category item1">Dresses</a>
+        <a asp-controller="Categories" asp-action="SelectedCategory" asp-route-category="Pants" class="category item2">Pants</a>
+        <a asp-controller="Categories" asp-action="SelectedCategory" asp-route-category="Accessories" class="category item3">Accessories</a>
+        <a asp-controller="Categories" asp-action="SelectedCategory" asp-route-category="Shoes" class="category item4">Shoes</a>
+        <a asp-controller="Categories" asp-action="SelectedCategory" asp-route-category="T-shirts" class="category item5">T-shirts</a>
+    </div>
+</section>
+
+<partial name="/Views/Partials/_NavbarPartial.cshtml" />
