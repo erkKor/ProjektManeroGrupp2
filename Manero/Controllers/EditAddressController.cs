@@ -16,6 +16,7 @@ namespace Manero.Controllers
         public async Task<IActionResult> Index(int id)
         {
 
+            //TODO: This should be moved into a service
             var address = await _context.Adresses.FirstOrDefaultAsync(a => a.Id == id);
             if (address is not null)
                 return View(new EditAddressVM() { Id = address.Id, AdressName = address.AdressName, StreetName = address.StreetName, City = address.City, PostalCode = address.PostalCode });
@@ -28,7 +29,12 @@ namespace Manero.Controllers
         public async Task<IActionResult> Index(EditAddressVM view)
         {
 
-            return View(view);
+            if (!ModelState.IsValid)
+                return View(view);
+
+            //TODO: Add to database, once signin is fixed
+
+            return RedirectToAction("Index", "myaddresses");
 
         }
 
