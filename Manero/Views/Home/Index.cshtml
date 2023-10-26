@@ -31,10 +31,6 @@
                 <div class="circle"></div>
                 <p>Sport</p>
             </div>
-            <!-- <div class="category">
-                <div class="circle"></div>
-                <p>Decor</p>
-            </div> -->
         </div>
     </section>
     
@@ -45,11 +41,13 @@
         </div>
     </section>
 
+
+
     <section class="featured-products">
         <div class="container">
             <div class="section-title">
                 <h3>Featured Products</h3>
-                <a>view all<i class="fa-regular fa-chevron-right"></i></a>
+                <a asp-controller="categories" asp-action="SelectedCategory" asp-route-category="Featured">view all<i class="fa-regular fa-chevron-right"></i></a>
             </div>
             <partial name="/Views/Partials/_ProductGrid.cshtml" model="@Model.FeaturedProducts"/>
         </div>
@@ -59,7 +57,7 @@
         <div class="container">
             <div class="section-title">
                 <h3>Best Sellers</h3>
-                <a>view all<i class="fa-regular fa-chevron-right"></i></a>
+            <a asp-controller="categories" asp-action="SelectedCategory" asp-route-category="Best Seller">view all<i class="fa-regular fa-chevron-right"></i></a>
             </div>
         <partial name="/Views/Partials/_ProductGrid.cshtml" model="@Model.BestSellers" />
         </div>

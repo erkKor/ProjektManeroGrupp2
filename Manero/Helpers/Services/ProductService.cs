@@ -37,7 +37,7 @@ namespace Manero.Helpers.Services
         public async Task<IEnumerable<ProductGridItemVM>> GetProductsByCategoryAsync(string category)
         {
             var products = await _productRepo.GetAllWithCategoriesAsync();
-            return products.Where(p => p.Category.Any(pc => pc.Category.CategoryName == category)).Select(p => new ProductGridItemVM
+            return products.Where(p => p.Category.Any(pc => pc.Category.CategoryName.IndexOf(category, StringComparison.OrdinalIgnoreCase) >= 0)).Select(p => new ProductGridItemVM
             {
                 Id = p.Id,
                 Name = p.Name,
