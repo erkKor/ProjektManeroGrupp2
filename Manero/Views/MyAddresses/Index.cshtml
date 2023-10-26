@@ -1,14 +1,18 @@
-﻿@using Manero.Models.Entities
+﻿@model MyAddressesVM
+@using Manero.Models.Entities
 
 @{
 
     ViewData["Title"] = "My addresses";
-    var addresses = new[]
-    {
-        new AdressEntity() { AdressName = "Home", PostalCode = "8000", StreetName = "S Kirkland Ave", City = "Chicago" },
-        new AdressEntity() { AdressName = "Work", PostalCode = "8000", StreetName = "S Kirkland Ave", City = "Chicago" },
-        new AdressEntity() { AdressName = "Other", PostalCode = "8000", StreetName = "S Kirkland Ave", City = "Chicago" },
-    };
+
+    //TODO: Test data, remove when not needed anymore
+    if (!Model.Addresses.Any())
+        Model.Addresses = new[]
+        {
+            new AdressEntity() { Id = 0, AdressName = "Home", PostalCode = "8000", StreetName = "S Kirkland Ave", City = "Chicago", },
+            new AdressEntity() { Id = 1, AdressName = "Work", PostalCode = "8000", StreetName = "S Kirkland Ave", City = "Chicago" },
+            new AdressEntity() { Id = 2, AdressName = "Other", PostalCode = "8000", StreetName = "S Kirkland Ave", City = "Chicago" },
+        };
 
     string GetIcon(AdressEntity address)
     {
@@ -23,35 +27,49 @@
 }
 
 <section class="container">
-    
+
+    <style>
+        
+        .size-32px {
+            height: 32px;
+            width: 32px;
+        }
+
+        .size-64px {
+            height: 64px;
+            width: 64px;
+        }
+
+    </style>
+
     <div class="d-flex flex-row mt-4">
-        <button class="btn rounded-circle toggle-size d-flex p-0"><b class="m-auto">&lt;</b></button>
+        <a asp-controller="profilepage" class="btn rounded-circle border-none d-flex p-0 size-64px"><i class="m-auto fa-solid fa-chevron-left"></i></a>
         <h1 class="text-center w-100 m-auto">My addresses</h1>
     </div>
 
     <div class="d-flex flex-column mt-5">
         <div class="mx-auto d-flex flex-column">
 
-            @foreach (var address in addresses)
+            @foreach (var address in Model.Addresses)
             {
                 <div class="d-flex flex-row border-bottom mt-3 pb-1">
             
                     <p class="my-auto">@GetIcon(address)</p>
 
-                    <div class="ms-4">
+                    <div class="ms-4 me-4">
                         <h5 class="m-0">@address.AdressName</h5>
                         <p>@address.PostalCode @address.StreetName @address.City</p>
                     </div>
 
-                    <button class="btn ms-auto">✎</button>
+                    <a asp-controller="editaddress" asp-route-id="@address.Id" class="btn rounded-circle border-none d-flex size-32px p-0 m-auto"><i class="m-auto fa-regular fa-pen-to-square"></i></a>
 
                 </div>
             }
 
-            <button class="btn mt-4 mx-auto">
+            <a class="btn btn-theme mt-4 mx-auto" asp-controller="editaddress">
                 <h4>+</h4>
                 <p>Add a new address</p>
-            </button>
+            </a>
 
         </div>
     </div>
