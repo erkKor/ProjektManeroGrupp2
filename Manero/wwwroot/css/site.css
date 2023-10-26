@@ -1056,30 +1056,46 @@ content: '$';
     .section-checkout-payment h2 {
         font-family: "Mulish", sans-serif;
         font-weight: 600;
+        font-size: 18px;
+    }
+
+    .section-checkout-payment h3 {
+        font-family: "Mulish", sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+    .section-checkout-payment p {
+        font-family: "Mulish", sans-serif;
+        font-weight: 400;
         font-size: 16px;
     }
 
     .section-checkout-payment .payment-credit-border {
         border: 1px solid #DBE3F5;
         height: 67px;
+        align-items: center;
         border-bottom: none;
     }
 
     .section-checkout-payment .payment-apple {
         border: 1px solid #DBE3F5;
         height: 67px;
+        align-items: center;
         border-bottom: none;
     }
 
     .section-checkout-payment .payment-paypal {
         border: 1px solid #DBE3F5;
         height: 67px;
+        align-items: center;
         border-bottom: none;
     }
 
     .section-checkout-payment .payment-cash {
         border: 1px solid #DBE3F5;
         height: 67px;
+        align-items: center;
     }
 
     .section-checkout-payment input[type=radio] {
