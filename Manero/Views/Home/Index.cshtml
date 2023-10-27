@@ -1,3 +1,74 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model HomeControllerVM
+
+<section class="top-bar">
+        <div class="container">
+            <button><i class="fa-solid fa-bars-staggered"></i></button>
+            <div class="logo">
+                <span></span>
+                <h4>MANERO</h4>
+            </div>
+            <button>
+                <i class="fa-light fa-bag-shopping"></i>
+            </button>
+        </div>
+    </section>
+
+@if (signInManager.IsSignedIn(User))
+{
+    <h1>DU ÄR INLOGGAD!</h1>
+
 }
+    <section class="showcase-categories">
+        <div class="container">
+            <div class="category">
+                <div class="circle"></div>
+                <p>Men</p>
+            </div>
+            <div class="category">
+                <div class="circle"></div>
+                <p>Women</p>
+            </div>
+            <div class="category">
+                <div class="circle"></div>
+                <p>Kids</p>
+            </div>
+            <div class="category">
+                <div class="circle"></div>
+                <p>Sport</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="showcase">
+        <div class="container">
+            <h1>Take 50% off!</h1>
+            <a class="button-theme">SHOP NOW</a>
+        </div>
+    </section>
+
+
+
+    <section class="featured-products">
+        <div class="container">
+            <div class="section-title">
+                <h3>Featured Products</h3>
+                <a asp-controller="categories" asp-action="SelectedCategory" asp-route-category="Featured">view all<i class="fa-regular fa-chevron-right"></i></a>
+            </div>
+            <partial name="/Views/Partials/_ProductGrid.cshtml" model="@Model.FeaturedProducts"/>
+        </div>
+    </section>
+
+    <section class="best-sellers">
+        <div class="container">
+            <div class="section-title">
+                <h3>Best Sellers</h3>
+            <a asp-controller="categories" asp-action="SelectedCategory" asp-route-category="Best Seller">view all<i class="fa-regular fa-chevron-right"></i></a>
+            </div>
+        <partial name="/Views/Partials/_ProductGrid.cshtml" model="@Model.BestSellers" />
+        </div>
+    </section>
+    
+<section class="bar">
+    <div class="container"></div>
+</section>  
+<partial name="/Views/Partials/_NavbarPartial.cshtml" />

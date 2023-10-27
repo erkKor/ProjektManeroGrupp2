@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Forgot Password";
+}
+
+@model EmailModel
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <a asp-controller="Account" asp-action="SignIn" class="btn btn-sm btn-secondary">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <h2 class="text-center h4">Forgot Password</h2>
+            </div>
+            <p class="text-center text-muted">
+                Please enter your email address. You will receive a link to create a new password via email.
+            </p>
+            <form asp-controller="Email" asp-action="SendEmail" method="post" class="text-center">
+                <div class="form-group">
+                    <label asp-for="ToEmail" class="small">Email:</label>
+                    <input asp-for="ToEmail" class="form-control form-control-sm" />
+                    <span asp-validation-for="ToEmail" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary" style="background-color: black;">SEND</button>
+            </form>
+        </div>
+    </div>
+</div>
+

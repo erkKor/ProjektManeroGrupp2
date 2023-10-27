@@ -1,0 +1,110 @@
+﻿@using System.Drawing;
+@{
+    ViewData["Title"] = "Filter";
+}
+
+@functions {
+
+    //Test stuff for design, should be removed when implementing functionality
+    public enum Size
+    {
+        XS, S, M, L, XL, XXL
+    }
+
+    public Color[] colors = new[]
+    {
+        ColorTranslator.FromHtml("#FF6262"),
+        ColorTranslator.FromHtml("#63C7FF"),
+        ColorTranslator.FromHtml("#F8E7CD"),
+        ColorTranslator.FromHtml("#323858"),
+        ColorTranslator.FromHtml("#111111")
+    };
+
+    public (string name, Color color)[] specialTags = new[] {
+        ("sale", ColorTranslator.FromHtml("#69864D")),
+        ("new", ColorTranslator.FromHtml("#CFA93F")),
+        ("top", ColorTranslator.FromHtml("#864D7D"))
+    };
+
+    public string[] tags = new[]{
+        "kids",
+        "sport",
+        "dress",
+        "pants",
+        "t-shirt",
+        "hat",
+        "unisex",
+        "bag",
+        "accessories",
+        "shoes",
+        "polo"
+    };
+
+}
+
+<section class="filter container w-100">
+
+    <div class="d-flex flex-row">
+        <button class="btn rounded-circle toggle-size d-flex p-0"><b class="m-auto">&lt;</b></button>
+        <h1 class="text-center w-100 m-auto">Filter</h1>
+    </div>
+
+    <div class="my-4">
+        <h2>Size</h2>
+        <div class="btn-group" role="group" aria-label="Size selector">
+            @foreach (var size in Enum.GetNames<Size>())
+            {
+                <input type="radio" class="btn-check" name="size-toggle" id="@size" autocomplete="off" asp-for="@size" value="@size" />
+                <label class="btn toggle-size rounded-circle m-1" for="@size">
+                    <p class="m-auto">@size</p>
+                </label>
+            }
+        </div>
+    </div>
+
+    <div class="my-4 btn-group" role="group" aria-label="Size selector">
+        <h2 class="me-4 my-auto">Color</h2>
+        @foreach (var color in colors)
+        {
+            <div>
+                <input type="radio" class="btn-check" name="color-toggle" id="color-@color" autocomplete="off" value="@color" />
+                <label class="btn toggle-size rounded-circle m-1 p-1 border-0" for="color-@color">
+                    <div class="rounded-circle w-100 h-100 toggle-size" style="background-color: @ColorTranslator.ToHtml(color);"></div>
+                </label>
+            </div>
+        }
+    </div>
+
+    <div class="my-4">
+        <h2 class="mb-4">Price</h2>
+        @await Html.PartialAsync("/Views/Partials/_MinMaxRangeSlider.cshtml")
+    </div>
+
+    <div class="my-4 d-flex">
+        @foreach (var tag in specialTags)
+        {
+            <div>
+                <input type="checkbox" name="size-toggle" id="special-tag-@tag.name" autocomplete="off" />
+                <label class="btn m-1 p-1 border-0 rounded-0" style="background-color: @ColorTranslator.ToHtml(tag.color);" for="special-tag-@tag.name">
+                    @tag.name
+                </label>
+            </div>
+        }
+    </div>
+
+    <h2>Tags</h2>
+    <div class="my-4 d-flex flex-wrap">
+        @foreach (var tag in tags)
+        {
+            <div class="">
+                <input type="radio" class="btn-check" class="" name="tag-toggle" id="tag-@tag" autocomplete="off" />
+                <label class="btn tag-toggle m-1 d-flex" for="tag-@tag">
+                    <p class="my-auto mx-auto text-center">@tag</p>
+                </label>
+            </div>
+        }
+    </div>
+
+    <button class="btn button-theme w-100">apply filters</button>
+
+</section>

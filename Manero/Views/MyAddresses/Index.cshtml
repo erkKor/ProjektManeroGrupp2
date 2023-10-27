@@ -1,0 +1,77 @@
+﻿@model MyAddressesVM
+@using Manero.Models.Entities
+
+@{
+
+    ViewData["Title"] = "My addresses";
+
+    //TODO: Test data, remove when not needed anymore
+    if (!Model.Addresses.Any())
+        Model.Addresses = new[]
+        {
+            new AdressEntity() { Id = 0, AdressName = "Home", PostalCode = "8000", StreetName = "S Kirkland Ave", City = "Chicago", },
+            new AdressEntity() { Id = 1, AdressName = "Work", PostalCode = "8000", StreetName = "S Kirkland Ave", City = "Chicago" },
+            new AdressEntity() { Id = 2, AdressName = "Other", PostalCode = "8000", StreetName = "S Kirkland Ave", City = "Chicago" },
+        };
+
+    string GetIcon(AdressEntity address)
+    {
+        if (address.AdressName == "Home")
+            return "🏠";
+        else if (address.AdressName == "Work")
+            return "💼";
+        else
+            return "📍";
+    }
+
+}
+
+<section class="container">
+
+    <style>
+        
+        .size-32px {
+            height: 32px;
+            width: 32px;
+        }
+
+        .size-64px {
+            height: 64px;
+            width: 64px;
+        }
+
+    </style>
+
+    <div class="d-flex flex-row mt-4">
+        <a asp-controller="profilepage" class="btn rounded-circle border-none d-flex p-0 size-64px"><i class="m-auto fa-solid fa-chevron-left"></i></a>
+        <h1 class="text-center w-100 m-auto">My addresses</h1>
+    </div>
+
+    <div class="d-flex flex-column mt-5">
+        <div class="mx-auto d-flex flex-column">
+
+            @foreach (var address in Model.Addresses)
+            {
+                <div class="d-flex flex-row border-bottom mt-3 pb-1">
+            
+                    <p class="my-auto">@GetIcon(address)</p>
+
+                    <div class="ms-4 me-4">
+                        <h5 class="m-0">@address.AdressName</h5>
+                        <p>@address.PostalCode @address.StreetName @address.City</p>
+                    </div>
+
+                    <a asp-controller="editaddress" asp-route-id="@address.Id" class="btn rounded-circle border-none d-flex size-32px p-0 m-auto"><i class="m-auto fa-regular fa-pen-to-square"></i></a>
+
+                </div>
+            }
+
+            <a class="btn btn-theme mt-4 mx-auto" asp-controller="editaddress">
+                <h4>+</h4>
+                <p>Add a new address</p>
+            </a>
+
+        </div>
+    </div>
+
+</section>

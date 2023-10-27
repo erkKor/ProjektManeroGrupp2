@@ -1,0 +1,11 @@
+﻿@model ProductGridVM
+
+@if (Model.GridItems != null)
+{
+    <div class="product-grid">
+        @foreach (var item in Model.GridItems)
+        {
+            <partial name="/Views/Partials/_ProductGridItem.cshtml" model="item" />
+        }
+    </div>
+}

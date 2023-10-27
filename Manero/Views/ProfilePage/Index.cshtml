@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Profile Page";
+}
+
+<section class="top-bar">
+    <div class="container">
+        <button><i class="fa-solid fa-bars-staggered"></i></button>
+        <div class="logo">
+            <span></span>
+            <h4>My Profile</h4>
+        </div>
+        <button>
+            <i class="fa-light fa-bag-shopping"></i>
+        </button>
+    </div>
+</section>
+
+<section class="account">
+    <div class="container">
+        <img src="./images/Ellipse 30.svg">
+        <div class="account-info">
+            <p class="account-name">User.Name</p>
+            <p class="account-email">User.Email</p>
+        </div>
+    </div>
+</section>
+
+
+<div class="account-links">
+    <a href="#">
+        <i class="icon"><i class="fa-light fa-calendar"></i></i>
+        <p>Order History</p>
+        <span class="chevron"><i class="fa-regular fa-chevron-right"></i></span>
+    </a>
+    <a href="#">
+        <i class="icon"><i class="fa-light fa-credit-card"></i></i>
+        <p>Payment Method</p>
+        <span class="chevron"><i class="fa-regular fa-chevron-right"></i></span>
+    </a>
+    <a asp-controller="myaddresses">
+        <i class="icon"><i class="fa-light fa-location-dot"></i></i>
+        <p>My Address</p>
+        <span class="chevron"><i class="fa-regular fa-chevron-right"></i></span>
+    </a>
+    <a href="#">
+        <i class="icon"><i class="fa-light fa-gift"></i></i>
+        <p>My Promocodes</p>
+        <span class="chevron"><i class="fa-regular fa-chevron-right"></i></span>
+    </a>
+    <a href="#">
+        <i class="icon"><i class="fa-regular fa-arrow-right-from-bracket"></i></i>
+        <p>Sign Out</p>
+        <span class="chevron"><i class="fa-regular fa-chevron-right"></i></span>
+    </a>
+</div>
+
+<partial name="/Views/Partials/_NavbarPartial.cshtml" />

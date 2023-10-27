@@ -1,0 +1,52 @@
+﻿@model SignInViewModel
+
+<!-- Sign in -->
+<section class="sign-in">
+    <div class="container">
+        <!-- Go back navbar -->
+        <div class="go-back-navbar">
+            <button class="first"><i class="fa-solid fa-chevron-left"></i></button>
+            <div class="middle">Sign in</div>
+            <div class="last">test</div>
+        </div>
+
+        <div class="sign-in-section">
+            <div class="vertical-line"></div>
+            <h1 class="sign-in-title">Welcome Back!</h1>
+            <p class="sign-in-text">Sign in to continue</p>
+            <!-- Sign in form -->
+            <form method="post">
+
+                <div asp-validation-summary="ModelOnly" class="error-message"></div>
+
+                <div class="input-grp">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email">
+                    <i class="fa-solid fa-check"></i> <!-- <i class="fa-solid fa-xmark"></i> -->
+                    <span class="validation-message" asp-validation-for="Email"></span>
+                </div>
+                <div class="input-grp">
+                    <label asp-for="Password">PASSWORD</label>
+                    <input asp-for="Password">
+                    <button><i class="fa-regular fa-eye-slash"></i></button> <!-- <i class="fa-regular fa-eye"></i>  -->
+                </div>
+                <div class="remember-password">
+                    <div>
+                        <input asp-for="RememberMe" type="checkbox" id="rememberMe">
+                        <label for="rememberMe">Remember me</label>
+                    </div>
+                    <a href="#">Forgot password?</a>
+                </div>
+                <button class="button-theme" type="submit">SIGN IN</button>
+            </form>
+
+            <p class="create-account">Don&apos;t have an account? <a asp-controller="SignUp" asp-action="Index">Sign up.</a></p>
+
+            <div class="sign-in-with">
+                <a href="#"><div class="facebook"><i class="fa-brands fa-facebook-f"></i></div></a>
+                <a href="#"><div class="twitter"><i class="fa-brands fa-twitter"></i></div></a>
+                <a href="#"><div class="google"><i class="fa-brands fa-google-plus-g"></i></div></a>
+            </div>
+        </div>
+    </div>
+</section>

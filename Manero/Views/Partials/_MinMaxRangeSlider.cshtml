@@ -1,0 +1,131 @@
+@* Taken from https://w3collective.com/double-range-slider-html-css-js/ *@
+@* Modified a bit to also run callbacks on page load, to make sure everything looks as it should *@
+
+<div class="range">
+   <div class="range-slider">
+     <span class="range-selected"></span>
+   </div>
+   <div class="range-input">
+     <input type="range" class="min" min="0" max="2000" value="300" step="10">
+     <input type="range" class="max" min="0" max="2000" value="700" step="10">
+   </div>
+   <div class="range-price">  
+    <p></p>
+    <p></p>
+   </div>
+ </div>
+
+ <script>
+
+let rangeMin = 100;
+const range = document.querySelector(".range-selected");
+const rangeInput = document.querySelectorAll(".range-input input");
+const rangePrice = document.querySelectorAll(".range-price p");
+
+rangeInput.forEach((input) => {
+    onRangeInput({ target: input });
+    input.addEventListener("input", onRangeInput);
+});
+
+function onRangeInput(e) {
+
+    let minRange = parseInt(rangeInput[0].value);
+    let maxRange = parseInt(rangeInput[1].value) ;
+
+    if (maxRange - minRange < rangeMin) {
+
+        if (e.target.className === "min")
+            rangeInput[0].value = maxRange - rangeMin;
+        else
+            rangeInput[1].value = minRange + rangeMin;
+
+    } else {
+
+        rangePrice[0].textContent = "$" + minRange;
+        rangePrice[1].textContent = "$" + maxRange;
+        range.style.left = (minRange / rangeInput[0].max) * 100 + "%";
+        range.style.right = 100 - (maxRange / rangeInput[1].max) * 100 + "%";
+
+    }
+
+}
+
+ </script>
+
+ <style>
+
+.range-slider {
+    height: 5px;
+    position: relative;
+    background-color: #e1e9f6;
+    border-radius: 2px;
+}
+
+.range-selected {
+    height: 100%;
+    left: 30%;
+    right: 30%;
+    position: absolute;
+    border-radius: 5px;
+    background-color: black;
+}
+
+.range-input {
+    position: relative;
+}
+
+.range-input input {
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    top: -7px;
+    background: none;
+    pointer-events: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.range-input input::-webkit-slider-thumb {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 3px solid black;
+    background-color: #fff;
+    pointer-events: auto;
+    -webkit-appearance: none;
+}
+
+.range-input input::-moz-range-thumb {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    border: 3px solid black;
+    background-color: black;
+    pointer-events: auto;
+    -moz-appearance: none;
+}
+
+.range-price {
+    margin: 30px 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.range-price p {
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.range-price input {
+    width: 100%;
+    padding: 5px;
+    border: none;
+}
+
+.range-price input:first-of-type {
+    margin-right: 15px;
+}
+
+ </style>
