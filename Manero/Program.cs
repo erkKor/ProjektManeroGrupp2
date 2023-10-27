@@ -4,8 +4,6 @@ using Microsoft.AspNetCore.Identity;
 using Manero.Helpers.Repositories;
 using Manero.Helpers.Services;
 using Microsoft.EntityFrameworkCore;
-using Manero.Helpers.Services;
-using Manero.Helpers.Repositories;
 using Manero.Models.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,12 +14,13 @@ builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configura
 
 //Services
 builder.Services.AddScoped<SignUpService>();
+builder.Services.AddScoped<SignInService>();
 
 //Repositories
 builder.Services.AddScoped<SignUpRepo>();
 
 //Identity
-builder.Services.AddIdentity<User, IdentityRole>(x =>
+builder.Services.AddIdentity<AppUser, IdentityRole>(x =>
 {
     x.SignIn.RequireConfirmedAccount = false;
     x.Password.RequiredLength = 8;

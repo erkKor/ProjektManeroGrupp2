@@ -9,17 +9,15 @@ namespace Manero.Helpers.Services
 {
     public class SignUpService
     {
-        private readonly SignUpRepo _signUpRepo;
-        private readonly UserManager<User> _userManager;
+        private readonly UserManager<AppUser> _userManager;
 
-        public SignUpService(SignUpRepo signUpRepo, UserManager<User> userManager)
+        public SignUpService(SignUpRepo signUpRepo, UserManager<AppUser> userManager)
         {
-            _signUpRepo = signUpRepo;
             _userManager = userManager;
         }
 
         // Check if email already exists
-        public async Task<bool> ExistsAsync(Expression<Func<User, bool>> expression)
+        public async Task<bool> ExistsAsync(Expression<Func<AppUser, bool>> expression)
         {
             return await _userManager.Users.AnyAsync(expression);
         }

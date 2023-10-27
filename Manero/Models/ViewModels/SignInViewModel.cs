@@ -17,14 +17,5 @@ namespace Manero.Models.ViewModels
         public string Password { get; set; } = null!;
 
         public bool RememberMe { get; set; }
-
-
-        public static implicit operator User(SignInViewModel model)
-        {
-            return new User
-            {
-                Email = model.Email
-            };
-        }
     }
 }
