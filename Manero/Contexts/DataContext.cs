@@ -1,12 +1,14 @@
 ﻿using Manero.Models.Entities;
+using Manero.Models.Identity;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Manero.Contexts
 {
-    public class DataContext : DbContext
+    public class DataContext : IdentityDbContext<AppUser>
     {
-        public DataContext(DbContextOptions options) : base(options)
+        public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
         }
 
@@ -32,10 +34,6 @@ namespace Manero.Contexts
                 new CategoryEntity { Id = 7, CategoryName = "Accessories" },
                 new CategoryEntity { Id = 8, CategoryName = "Shoes" },
                 new CategoryEntity { Id = 9, CategoryName = "T-shirts" }
-            );
-            builder.Entity<IdentityRole>().HasData
-            (
-                new IdentityRole { Id = Guid.NewGuid().ToString(), Name = "User", NormalizedName = "USER" }
             );
         }
     }

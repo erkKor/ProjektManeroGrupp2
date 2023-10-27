@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Manero.Helpers.Repositories
 {
-    public class SignUpRepo : Repository<User>
+    public class SignUpRepo : Repository<AppUser>
     {
         public SignUpRepo(DataContext context) : base(context)
         {

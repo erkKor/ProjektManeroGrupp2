@@ -33,9 +33,9 @@ namespace Manero.Models.ViewModels
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; } = null!;
 
-        public static implicit operator User(SignUpViewModel model)
+        public static implicit operator AppUser(SignUpViewModel model)
         {
-            return new User
+            return new AppUser
             {
                 FirstName = model.FirstName,
                 LastName = model.LastName,
