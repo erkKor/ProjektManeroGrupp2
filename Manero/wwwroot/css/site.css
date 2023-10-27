@@ -1344,3 +1344,124 @@ content: '$';
     .filters .dropdown .show {
         display: block;
     }
+
+.section-checkout-shipping {
+    width: 375px;
+}
+
+    .section-checkout-shipping .shipping-details {
+        margin-top: 50px;
+        display: flex;
+        position: relative;
+        justify-content: center;
+    }
+
+        .section-checkout-shipping .shipping-details h1 {
+            font-family: "Mulish", sans-serif;
+            font-weight: 600;
+            font-size: 18px;
+            margin: 0;
+            position: absolute;
+        }
+
+        .section-checkout-shipping .shipping-details a {
+            margin-right: 320px;
+            text-decoration: none;
+            color: #111111;
+        }
+
+    .section-checkout-shipping .blue-box {
+        height: 337px;
+        background-color: #DBE3F5;
+    }
+
+    .section-checkout-shipping .shipping-border {
+        border-bottom: 1px solid #DBE3F5;
+        height: 74px;
+        display: flex;
+        align-items: center;
+    }
+
+        .section-checkout-shipping .shipping-border .container {
+            position: relative;
+        }
+
+            .section-checkout-shipping .shipping-border .container h2 {
+                font-family: "Mulish", sans-serif;
+                font-weight: 600;
+                font-size: 16px;
+            }
+
+            .section-checkout-shipping .shipping-border .container p {
+                position: absolute;
+                margin-top: 18px;
+                font-family: "Mulish", sans-serif;
+                font-weight: 400;
+                font-size: 14px;
+            }
+
+    .section-checkout-shipping .shipping-adress {
+        position: relative;
+    }
+
+        .section-checkout-shipping .shipping-adress h3 {
+            font-family: "Mulish", sans-serif;
+            font-weight: 400;
+            font-size: 12px;
+            padding-left: 25px;
+        }
+
+        .section-checkout-shipping .shipping-adress p {
+            font-family: "Mulish", sans-serif;
+            padding-left: 25px;
+            font-weight: 400;
+            font-size: 16px;
+        }
+
+        .section-checkout-shipping .shipping-adress span {
+            padding-left: 12px;
+        }
+
+    .section-checkout-shipping h2 {
+        font-family: "Mulish", sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+    .section-checkout-shipping input[type=radio] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #DBE3F5;
+        border-radius: 50%;
+        background-clip: content-box;
+        padding: 3px;
+    }
+
+        .section-checkout-shipping input[type=radio]:checked {
+            background-color: #F4505C;
+        }
+
+    .section-checkout-shipping input[type=checkbox] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        border: 2px solid #DBE3F5;
+        border-radius: 20%;
+        background-clip: content-box;
+        padding: 3px;
+    }
+
+        .section-checkout-shipping input[type=checkbox]:checked {
+            background-color: #F4505C;
+        }
+
+    .section-checkout-shipping .span {
+        font-family: "Mulish", sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+    }
