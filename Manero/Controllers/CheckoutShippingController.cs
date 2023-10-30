@@ -2,7 +2,7 @@
 
 namespace Manero.Controllers
 {
-    public class CheckoutShipping : Controller
+    public class CheckoutShippingController : Controller
     {
         public IActionResult Index()
         {
