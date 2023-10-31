@@ -15,6 +15,7 @@ builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configura
 //Services
 builder.Services.AddScoped<SignUpService>();
 builder.Services.AddScoped<SignInService>();
+builder.Services.AddScoped<ICookieService, CookieService>();
 
 //Repositories
 builder.Services.AddScoped<SignUpRepo>();

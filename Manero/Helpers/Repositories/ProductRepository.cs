@@ -28,4 +28,14 @@ namespace Manero.Helpers.Repositories
         {
         }
     }
+
+
+
+
+    public class MockProductRepository : ProductRepository
+    {
+        public MockProductRepository(DataContext context) : base(context)
+        {
+        }
+    }
 }
