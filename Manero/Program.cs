@@ -15,9 +15,11 @@ builder.Services.AddControllersWithViews().AddJsonOptions(options =>
 }); 
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseConnection")));
 builder.Services.AddSession();
+builder.Services.AddHttpContextAccessor();
 //Services
 builder.Services.AddScoped<SignUpService>();
 builder.Services.AddScoped<SignInService>();
+builder.Services.AddScoped<ShoppingCartService>();
 
 //Repositories
 builder.Services.AddScoped<SignUpRepo>();

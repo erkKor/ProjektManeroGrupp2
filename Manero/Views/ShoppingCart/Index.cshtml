@@ -63,10 +63,10 @@
         }
 
         <!-- Form to add items to the cart -->
-        <form action="@Url.Action("AddToCart", "ShoppingCart")" method="post">
-            <input type="hidden" name="id" value="1" />
-            <input type="hidden" name="name" value="Product 1" />
-            <input type="hidden" name="price" value="20,00" />
+        <form action="@Url.Action("Index", "ShoppingCart")" method="post">
+            <input type="number" name="id"  />
+            <input type="text" name="name" value="Product 1" />
+            <input type="number" name="price" value="20,00" />
             <input type="number" name="quantity" value="1" min="1" />
             <input type="submit" value="Add to Cart" />
         </form>
