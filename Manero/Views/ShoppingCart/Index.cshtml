@@ -17,12 +17,59 @@
 
 <section class="shoppingcart">
     <div class="container">
-        <img src="./images/Ellipse 30.svg">
+        @*<img src="./images/Ellipse 30.svg">
 
         <p class="empty-message">Your cart is empty!</p>
         <div class="check-order">
             <p class="ordertest">Looks like you haven't made your order yet.</p>
-        </div>
+        </div>*@
+
+        @model List<CartItem>
+
+        <h2>Shopping Cart</h2>
+
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+            </tr>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Price</td>
+                        <td>@item.Quantity</td>
+                        <td>@(item.Price * item.Quantity)</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4">Cart is empty</td>
+                </tr>
+            }
+        </table>
+
+        @if (Model != null)
+        {
+            <h3>Debugging Info:</h3>
+            <p>Number of items in cart: @Model.Count</p>
+            <p>Item IDs: @String.Join(", ", Model.Select(item => item.Id))</p>
+        }
+
+        <!-- Form to add items to the cart -->
+        <form action="@Url.Action("AddToCart", "ShoppingCart")" method="post">
+            <input type="hidden" name="id" value="1" />
+            <input type="hidden" name="name" value="Product 1" />
+            <input type="hidden" name="price" value="20,00" />
+            <input type="number" name="quantity" value="1" min="1" />
+            <input type="submit" value="Add to Cart" />
+        </form>
     </div>
 </section>
 

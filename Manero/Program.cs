@@ -9,9 +9,12 @@ using Manero.Models.Identity;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.PropertyNamingPolicy = null;
+}); 
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseConnection")));
-
+builder.Services.AddSession();
 //Services
 builder.Services.AddScoped<SignUpService>();
 builder.Services.AddScoped<SignInService>();
@@ -38,6 +41,7 @@ app.UseHsts();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseSession();
 app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
