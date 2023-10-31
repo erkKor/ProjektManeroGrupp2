@@ -3,8 +3,11 @@ using Manero.Controllers;
 using Manero.Helpers.Repositories;
 using Manero.Helpers.Services;
 using Manero.Models.Entities;
+using Manero.Models.Identity;
+using Manero.Models.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Moq;
@@ -45,11 +48,10 @@ namespace Manero.Tests
         }
 
         [Fact]
-        public async Task GetProductAsync_WithValidId_ReturnsProduct()
+        public async Task GetProductAsync_ByProductId_ReturnsSaidProduct()
         {
-            // Arrange - No need for mocking, as you're using the in-memory database
-
-            int productId = 1; // Consider this ID might exist in your seeded data
+            // Arrange
+            int productId = 1; 
 
             // Act
             var product = await _productService.GetProductAsync(productId);
@@ -63,7 +65,7 @@ namespace Manero.Tests
         public async Task GetAllProductsAsync_ReturnsAllProducts()
         {
             { 
-            // Arrange - No need for mocking, as you're using the in-memory database
+            // Arrange
 
             // Act
             var products = await _productService.GetAllProductsAsync();
@@ -81,7 +83,7 @@ namespace Manero.Tests
 
 
         [Fact]
-        public void CookieTest()
+        public void WelcomeController_TestIfUserGetsCookie()
         {
             // Arrange
             var controller = new WelcomeController();
@@ -105,6 +107,36 @@ namespace Manero.Tests
             var setCookieString = Assert.Single(setCookieHeader);
             Assert.Contains(expectedCookieName, setCookieString);
             Assert.Contains(expectedCookieValue, setCookieString);
+        }
+
+        [Fact]
+        public async Task LoginAsync_ValidUser_ReturnsTrue()
+        {
+            // Arrange
+            var userManagerMock = new Mock<UserManager<AppUser>>(MockBehavior.Strict);
+            var signInManagerMock = new Mock<SignInManager<AppUser>>(userManagerMock.Object);
+
+            var signInService = new SignInService(userManagerMock.Object, signInManagerMock.Object);
+
+            var testUser = new AppUser { Email = "test@example.com" };
+            var signInViewModel = new SignInViewModel
+            {
+                Email = "test@example.com",
+                Password = "testPassword",
+                RememberMe = false
+            };
+
+            userManagerMock.Setup(x => x.FindByEmailAsync(signInViewModel.Email))
+                .ReturnsAsync(testUser);
+
+            signInManagerMock.Setup(x => x.PasswordSignInAsync(testUser, signInViewModel.Password, signInViewModel.RememberMe, false))
+                .ReturnsAsync(Microsoft.AspNetCore.Identity.SignInResult.Success);
+
+            // Act
+            var result = await signInService.LoginAsync(signInViewModel);
+
+            // Assert
+            Assert.True(result);
         }
     }
 }
