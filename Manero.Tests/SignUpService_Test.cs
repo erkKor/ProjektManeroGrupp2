@@ -1,10 +1,7 @@
-﻿using Manero.Contexts;
-using Manero.Helpers.Services;
+﻿using Manero.Helpers.Services;
 using Manero.Models.Identity;
 using Manero.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
 using Moq;
 
 namespace Manero.Tests;
