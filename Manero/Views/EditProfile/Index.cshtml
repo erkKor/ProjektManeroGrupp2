@@ -1,0 +1,60 @@
+﻿@model EditProfileVM
+
+@{
+
+    ViewData["Title"] = "Edit Profile";
+
+}
+<section class="top-bar">
+    <div class="container">
+        <button><i class="fa-solid fa-bars-staggered"></i></button>
+        <div class="logo">
+            <span></span>
+            <h4>Edit Profile</h4>
+        </div>
+        <button>
+            <i class="fa-light fa-bag-shopping"></i>
+        </button>
+    </div>
+</section>
+
+<section class="account">
+    <div class="container">
+        <div class="account-image">           
+            <img src="./images/page10-account-created.svg">
+            <form method="post" asp-action="UploadProfileImage" enctype="multipart/form-data">
+                <label for="UploadProfileImage" style="display: none;">
+                    Välj fil
+                </label>
+                <i class="fa-light fa-camera profile-icon" style="cursor: pointer;" onclick="document.getElementById('UploadProfileImage').click();"></i>
+                <input asp-for="UploadProfileImage" type="file" id="UploadProfileImage" style="display: none;" />
+            </form>
+        </div>     
+
+    </div>
+</section>
+
+<section class="edit-profile">
+    <div class="container">
+        <form>
+            <div class="input-grp">
+                <label>Name</label>
+                <input type="text">
+            </div>
+            <div class="input-grp">
+                <label>Email</label>
+                <input type="text">
+            </div>
+            <div class="input-grp">
+                <label>Phone Number</label>
+                <input type="text">
+            </div>
+            <div class="input-grp">
+                <label>Location</label>
+                <input type="text">
+            </div>
+            <button class="button-theme">Save Changes</button>
+
+        </form>
+    </div>
+</section>
