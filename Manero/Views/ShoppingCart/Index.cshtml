@@ -15,20 +15,83 @@
     </div>
 </section>
 
+
+ @model List<CartItem>
+
 <section class="shoppingcart">
     <div class="container">
-        @*<img src="./images/Ellipse 30.svg">
+        <div class="product-grid">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <div class="product-card">
+                        <div class="wrapper">
+                            <div class="product-image">
+                                <span>SALE</span>
+                            </div>
+                            <div class="product-content">
+                                <p>@item.Name</p>
+                                <div class="price">
+                                    <p class="original-price discount"></p>
+                                    <p class="discount-price">$@item.Price.ToString("0.00")</p>
 
-        <p class="empty-message">Your cart is empty!</p>
-        <div class="check-order">
-            <p class="ordertest">Looks like you haven't made your order yet.</p>
-        </div>*@
+                                </div>
+                                <p class="size">Size: -</p>
+                                <p class="color">Color: Red</p>
+                            </div>
+                        </div>
 
-        @model List<CartItem>
+                        <div class="buttons">
+                            <button><i class="fa-light fa-plus"></i></button>
+                            <span>@item.Quantity</span>
+                            <button><i class="fa-light fa-minus"></i></button>
 
-        <h2>Shopping Cart</h2>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <img src="./images/Ellipse 30.svg">
 
-        <table id="cartTable">
+                <p class="empty-message">Your cart is empty!</p>
+                <div class="check-order">
+                    <p class="ordertest">Looks like you haven't made your order yet.</p>
+                </div>
+            }
+            
+        </div>
+    </div>
+</section>
+
+
+    @*    <div class="product-grid">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <div class="product-card">
+                        <div class="product-image">
+
+                        </div>
+                        <div class="product-content">
+                            <p>@item.Name</p>
+                            <div class="price">
+                                <p class="original-price"></p>
+                                <p class="discount-price">$@item.Price.ToString("0.00")</p>
+                            </div>
+                        </div>
+                    </div>
+                   @* <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Price</td>
+                        <td>@item.Quantity</td>
+                        <td>@(item.Price * item.Quantity)</td>
+                    </tr>*@
+
+
+        @*<table id="cartTable">
             <thead>
                 <tr>
                     <th>Item</th>
@@ -73,8 +136,6 @@
             <input type="number" name="price" value="20,00" />
             <input type="number" name="quantity" value="1" min="1" />
             <input type="submit" value="Add to Cart" />
-        </form>
-    </div>
-</section>
+        </form>*@
 
 <partial name="/Views/Partials/_NavbarPartial.cshtml" />

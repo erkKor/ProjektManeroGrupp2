@@ -1360,3 +1360,69 @@ content: '$';
     .filters .dropdown .show {
         display: block;
     }
+
+.shoppingcart .product-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+    .shoppingcart .product-grid .product-card {
+        position: relative;
+        width: 330px;
+        height: 100px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+        .shoppingcart .product-grid .product-card .wrapper {
+            display: flex;
+        }
+
+            .shoppingcart .product-grid .product-card .wrapper .product-image {
+                height: 100px;
+                width: 100px;
+            }
+
+                .shoppingcart .product-grid .product-card .wrapper .product-image button {
+                    position: absolute;
+                    top: 0;
+                    right: -230px;
+                    margin: 0;
+                }
+
+                    .shoppingcart .product-grid .product-card .wrapper .product-image button:last-child {
+                        margin-top: 2rem;
+                    }
+
+            .shoppingcart .product-grid .product-card .wrapper .product-content {
+                margin: 0;
+                margin-left: 10px;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: space-between;
+                font-size: 14px;
+            }
+
+        .shoppingcart .product-grid .product-card .buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+            .shoppingcart .product-grid .product-card .buttons button {
+                border: none;
+                background-color: transparent;
+                padding: 0;
+            }
+
+                .shoppingcart .product-grid .product-card .buttons button i {
+                    color: #111111;
+                    font-size: 12px;
+                }
+
+            .shoppingcart .product-grid .product-card .buttons span {
+                text-align: center;
+                font-size: 12px;
+                margin: 0.5rem 0;
+            }
