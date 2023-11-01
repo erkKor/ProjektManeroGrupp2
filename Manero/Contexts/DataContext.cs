@@ -1,12 +1,28 @@
 ﻿using Manero.Models.Entities;
 using Manero.Models.Identity;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Manero.Contexts
 {
-    public class DataContext : IdentityDbContext<AppUser>
+
+    public interface IDataContext
+    {
+
+        DbSet<T> Set<T>() where T : class;
+        EntityEntry<T> Entry<T>(T entity) where T : class;
+        int SaveChanges();
+
+        public DbSet<AdressEntity> Adresses { get; set; }
+        public DbSet<UserAdressEntity> UserAdresses { get; set; }
+        public DbSet<CategoryEntity> Categories { get; set; }
+        public DbSet<ProductEntity> Products { get; set; }
+        public DbSet<ProductCategoryEntity> ProductCategories { get; set; }
+
+    }
+
+    public class DataContext : IdentityDbContext<AppUser>, IDataContext
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {

@@ -9,25 +9,25 @@ namespace Manero.Helpers.Services;
 public class AddressService
 {
 
-    private readonly DataContext _context;
+    private readonly IDataContext _context;
 
-    public AddressService(DataContext context) =>
+    public AddressService(IDataContext context) =>
         _context = context;
 
-    public async Task<bool> AddAsync(EditAddressVM view, AppUser user)
+    public bool Add(EditAddressVM view, AppUser user)
     {
 
         if (user is not null)
         {
 
             var entity = (AdressEntity)view;
-            entity = (await _context.Adresses.AddAsync(entity)).Entity;
-            await _context.SaveChangesAsync();
+            _context.Adresses.Add(entity);
+            _context.SaveChanges();
 
-            var proxy = new UserAdressEntity() { UserId = user!.Id, AdressId = entity.Id };
-            await _context.UserAdresses.AddAsync(proxy);
+            var proxy = new UserAdressEntity() { UserId = user.Id, AdressId = entity.Id };
+            _context.UserAdresses.Add(proxy);
+            _context.SaveChanges();
 
-            await _context.SaveChangesAsync();
             return true;
 
         }
