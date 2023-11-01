@@ -1481,3 +1481,83 @@ content: '$';
         font-weight: 400;
         font-size: 14px;
     }
+
+.account-relative {
+    position: relative;
+}
+
+    .account-relative .account-background-dark {
+        position: absolute;
+        background-color: rgba(17, 17, 17, 0.2745098039);
+        width: 100%;
+        height: 1000px;
+        display: flex;
+        justify-content: center;
+    }
+
+        .account-relative .account-background-dark .signout-popup-position {
+            position: absolute;
+            top: 15%;
+        }
+
+            .account-relative .account-background-dark .signout-popup-position .signout-popup {
+                border: 3px solid white;
+                width: 335px;
+                height: 335px;
+                border-radius: 50%;
+                display: grid;
+                justify-content: center;
+                align-items: center;
+            }
+
+                .account-relative .account-background-dark .signout-popup-position .signout-popup .signout-popup-white {
+                    width: 290px;
+                    height: 290px;
+                    background-color: white;
+                    border-radius: 50%;
+                    display: grid;
+                    justify-content: center;
+                }
+
+                    .account-relative .account-background-dark .signout-popup-position .signout-popup .signout-popup-white h3 {
+                        font-family: "Mulish", sans-serif;
+                        font-weight: 700;
+                        font-size: 20px;
+                        text-align: center;
+                        margin-bottom: 0;
+                    }
+
+                    .account-relative .account-background-dark .signout-popup-position .signout-popup .signout-popup-white a {
+                        background-color: #111111;
+                        border: none;
+                        color: #fff;
+                        border-radius: 60px;
+                        width: 140px;
+                        height: 50px;
+                        margin-left: 35px;
+                        margin-bottom: 10px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        text-decoration: none;
+                    }
+
+                        .account-relative .account-background-dark .signout-popup-position .signout-popup .signout-popup-white a span {
+                            font-family: "Mulish", sans-serif;
+                            font-size: 14px;
+                            font-weight: 600;
+                        }
+
+                    .account-relative .account-background-dark .signout-popup-position .signout-popup .signout-popup-white .a-white {
+                        background-color: #ffffff;
+                        color: #111111;
+                    }
+
+                    .account-relative .account-background-dark .signout-popup-position .signout-popup .signout-popup-white .order-line {
+                        height: 25px;
+                        color: #111111;
+                        border-left: 1.5px solid #111111;
+                        margin-left: 50%;
+                        margin-top: 20%;
+                    }
+

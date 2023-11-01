@@ -1,0 +1,24 @@
+﻿@{
+}
+<section class="account-relative">
+    <div class="account-background-dark">
+        <div class="signout-popup-position">
+            <div class="signout-popup">
+                <div class="signout-popup-white">
+                    <div class="order-line"></div>
+                    <h3 class="mt-2">Are you sure you want</h3>
+                    <h3 class="mb-2 pb-2">to sign out ?</h3>
+                    <a asp-controller="signout">
+                        <i><span>SURE</span></i>
+                    </a>                   
+                    <a class="a-white mb-5" asp-controller="profilepage">
+                        <i class="a-white"><span>CANCEL</span></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <partial name="/Views/ProfilePage/Index.cshtml" />
+    <partial name="/Views/Partials/_NavbarPartial.cshtml" />
+</section>
+
