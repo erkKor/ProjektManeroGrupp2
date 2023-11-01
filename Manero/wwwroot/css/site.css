@@ -1002,9 +1002,9 @@ content: '$';
                 margin: 0;
             }
 
-                .best-sellers .product-grid .product-card .product-image button:last-child {
-                    margin-top: 2rem;
-                }
+            .best-sellers .product-grid .product-card .product-image form button {
+                margin-top: 2rem;
+            }
 
         .best-sellers .product-grid .product-card .product-content {
             position: relative;

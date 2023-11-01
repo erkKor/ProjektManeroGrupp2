@@ -45,7 +45,7 @@ namespace Manero.Helpers.Services
         {
             List<CartItem> cartItems = GetCartFromLocal();
 
-            CartItem existingItem = cartItems.FirstOrDefault(i => i.Id == item.Id);
+            CartItem existingItem = GetItemFromCart(cartItems, item.Id);
 
             if (existingItem != null)
             {
@@ -64,6 +64,50 @@ namespace Manero.Helpers.Services
 
             SaveCartToLocal(cartItems);
             return cartItems;
+        }
+
+        public CartItem GetItemFromCart(List<CartItem> cart, int itemId)
+        {
+            return cart.FirstOrDefault(i => i.Id == itemId);
+        }
+
+        //private CartItem GetItemFromCart(CartItem item)
+        //{
+        //    List<CartItem> cartItems = GetCartFromLocal();
+        //    CartItem existingItem = cartItems.FirstOrDefault(i => i.Id == item.Id);
+
+        //    if (existingItem != null)
+        //    {
+        //        existingItem.Quantity += item.Quantity;
+
+        //    }
+
+        //    return cartItems;
+        //}
+
+
+        public void IncrementItemQuantity(int item)
+        {
+            List<CartItem> cartItems = GetCartFromLocal();
+            CartItem existingItem = GetItemFromCart(cartItems, item);
+
+            if (existingItem != null)
+            {
+                existingItem.Quantity += existingItem.Quantity;
+                SaveCartToLocal(cartItems); // Save the updated cart
+            }
+        }
+
+        public void DecrementItemQuantity(int item)
+        {
+            List<CartItem> cartItems = GetCartFromLocal();
+            CartItem existingItem = GetItemFromCart(cartItems, item);
+
+            if (existingItem != null && existingItem.Quantity > 0)
+            {
+                existingItem.Quantity -= existingItem.Quantity;
+                SaveCartToLocal(cartItems); // Save the updated cart
+            }
         }
     }
 }

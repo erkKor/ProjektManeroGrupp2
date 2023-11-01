@@ -41,13 +41,11 @@
                                 <p class="color">Color: Red</p>
                             </div>
                         </div>
-
-                        <div class="buttons">
-                            <button><i class="fa-light fa-plus"></i></button>
-                            <span>@item.Quantity</span>
-                            <button><i class="fa-light fa-minus"></i></button>
-
-                        </div>
+                        <form class="buttons" method="post">
+                            <button class="increment-btn" data-item-id="@item.Id"><i class="fa-light fa-plus"></i></button>
+                            <span data-item-id="@item.Id">@item.Quantity</span>
+                            <button class="decrement-btn" data-item-id="@item.Id"><i class="fa-light fa-minus"></i></button>
+                        </form>
                     </div>
                 }
             }

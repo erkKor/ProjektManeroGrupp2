@@ -61,64 +61,34 @@ function toggleDropdown() {
 }
 
 
-//$(document).ready(function () {
-//    $('#addToCartForm').submit(function (e) {
-//        e.preventDefault(); // Prevent the default form submission
-//        $.ajax({
-//            url: this.action,
-//            type: this.method,
-//            data: $(this).serialize(),
-//            success: function (data) {
-//                $('#cartTable tbody').html(data); // Update the cart items section
-//            }
-//        });
-//    });
-//});
 
+$(document).ready(function () {
+    $(".increment-btn").click(function (event) {
+        event.preventDefault();
+        var itemId = $(this).data('item-id');
+        updateQuantity(itemId, 'increment');
+    });
 
-//$(document).ready(function () {
-//    $('#addToCartForm').submit(function (e) {
-//        e.preventDefault(); // Prevent default form submission
+    $(".decrement-btn").click(function (event) {
+        event.preventDefault();
+        var itemId = $(this).data('item-id');
+        updateQuantity(itemId, 'decrement');
+    });
 
-//        // Collect product details
-//        var productId = $('#productId').val(); // Get product ID
-
-//        // You can fetch other details similarly or by other methods
-
-//        // Create a JavaScript object to represent the CartItem
-//        var cartItem = {
-//            id: productId,
-//            // Add other properties here: name, price, quantity, etc.
-//            // Fetch these values from the form or from your model
-//        };
-
-//        // Send the CartItem to the server using AJAX
-//        $.ajax({
-//            url: this.action,
-//            type: this.method,
-//            contentType: 'application/json',
-//            data: JSON.stringify(cartItem),
-//            success: function (response) {
-//                // Handle success if needed
-//            }
-//        });
-//    });
-//});
-
-//$(document).ready(function () {
-//    $('#addToCartForm').submit(function (e) {
-//        e.preventDefault(); // Prevent default form submission
-
-//        var formData = @Html.Raw(Json.Serialize(Model)); // Serialize the model to JSON
-
-//        $.ajax({
-//            url: this.action,
-//            type: this.method,
-//            contentType: 'application/json',
-//            data: JSON.stringify(formData), // Send serialized model as JSON
-//            success: function (response) {
-//                // Handle success if needed
-//            }
-//        });
-//    });
-//});
+    function updateQuantity(itemId, action) {
+        $.ajax({
+            type: 'POST',
+            url: '/ShoppingCart/UpdateQuantity',
+            data: { itemId: itemId, action: action },
+            success: function (data) {
+                // Update the displayed quantity after successful update
+                // You may update the quantity on the page without a full reload
+                // Example: $("span[data-item-id='" + itemId + "']").text(data.newQuantity);
+                $("span[data-item-id='" + itemId + "']").text(data.newQuantity);
+            },
+            error: function () {
+                alert('Failed to update quantity.');
+            }
+        });
+    }
+});
