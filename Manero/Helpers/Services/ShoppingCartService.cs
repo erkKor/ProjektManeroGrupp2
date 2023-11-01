@@ -2,11 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 
+
 namespace Manero.Helpers.Services
 {
     public class ShoppingCartService
     {
         private const string SessionKey = "CartItems";
+        private const string LocalStorageKey = "LocalCartItems";
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         public ShoppingCartService(IHttpContextAccessor httpContextAccessor)
@@ -14,47 +16,76 @@ namespace Manero.Helpers.Services
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public void SaveCartToSession(List<CartItem> cartItems)
+
+
+        public void SaveCartToLocal(List<CartItem> cartItems)
         {
-            if(cartItems != null)
+            if (cartItems != null)
             {
                 string jsonCart = JsonSerializer.Serialize(cartItems);
-                _httpContextAccessor.HttpContext!.Session.SetString(SessionKey, jsonCart);
+                _httpContextAccessor.HttpContext!.Response.Cookies.Append("LocalStorageKey", jsonCart, new CookieOptions
+                {
+                    IsEssential = true, // Ensures the cookie will be stored even if the user denies cookies
+                    Expires = DateTimeOffset.UtcNow.AddMinutes(30) // Set expiration time as desired
+                });
             }
         }
 
-        public List<CartItem> GetCartFromSession()
+        public List<CartItem> GetCartFromLocal()
         {
-            var jsonCart = _httpContextAccessor.HttpContext!.Session.GetString(SessionKey);
-            if (jsonCart != null)
+            var localCartJson = _httpContextAccessor.HttpContext!.Request.Cookies["LocalStorageKey"];
+            if (localCartJson != null)
             {
-                return JsonSerializer.Deserialize<List<CartItem>>(jsonCart);
+                return JsonSerializer.Deserialize<List<CartItem>>(localCartJson);
             }
             return new List<CartItem>();
         }
 
-        public void AddToCart(int id, string name, decimal price, int quantity)
+        public List<CartItem> AddToCart(CartItem item)
         {
-            List<CartItem> cartItems = GetCartFromSession();
+            List<CartItem> cartItems = GetCartFromLocal();
 
-            CartItem existingItem = cartItems.FirstOrDefault(item => item.Id == id);
+            CartItem existingItem = cartItems.FirstOrDefault(i => i.Id == item.Id);
 
             if (existingItem != null)
             {
-                existingItem.Quantity += quantity;
+                existingItem.Quantity += item.Quantity;
             }
             else
             {
                 cartItems.Add(new CartItem
                 {
-                    Id = id,
-                    Name = name,
-                    Price = price,
-                    Quantity = quantity
+                    Id = item.Id,
+                    Name = item.Name,
+                    Price = item.Price,
+                    Quantity = item.Quantity
                 });
             }
 
-            SaveCartToSession(cartItems);
+            SaveCartToLocal(cartItems);
+            return cartItems;
         }
     }
 }
+
+
+
+
+//public void SaveCartToSession(List<CartItem> cartItems)
+//{
+//    if(cartItems != null)
+//    {
+//        string jsonCart = JsonSerializer.Serialize(cartItems);
+//        _httpContextAccessor.HttpContext!.Session.SetString(SessionKey, jsonCart);
+//    }
+//}
+
+//public List<CartItem> GetCartFromSession()
+//{
+//    var jsonCart = _httpContextAccessor.HttpContext!.Session.GetString(SessionKey);
+//    if (jsonCart != null)
+//    {
+//        return JsonSerializer.Deserialize<List<CartItem>>(jsonCart);
+//    }
+//    return new List<CartItem>();
+//}

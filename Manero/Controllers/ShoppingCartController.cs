@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System.Text.Json;
 using Manero.Helpers.Services;
+using Manero.Models.ViewModels;
+using Newtonsoft.Json;
 
 namespace Manero.Controllers
 {
@@ -17,19 +19,49 @@ namespace Manero.Controllers
 
         public IActionResult Index()
         {
-            List<CartItem> cart = _cartService.GetCartFromSession();
+            List<CartItem> cart = _cartService.GetCartFromLocal();
   
 
             return View(cart);
         }
 
+
         [HttpPost]
-        public IActionResult Index(CartItem item)
+        public IActionResult Index(string modelData)
         {
-            var cart = new List<CartItem>{item};
-            _cartService.SaveCartToSession(cart);
-            return View(cart);
+            // Perform the necessary logic to convert ProductGridItemVM to CartItem or directly handle it
+            ProductGridItemVM model = JsonConvert.DeserializeObject<ProductGridItemVM>(modelData);
+            // Example: Convert the received ProductGridItemVM to CartItem
+            CartItem cartItem = new CartItem
+            {
+                Id = model.Id,
+                Name = model.Name,
+                Price = model.Price,
+                Quantity = 1 // You can set a default quantity or leave it for the client to provide
+            };
+
+            // Add the converted CartItem to the cart using your service method
+            var updatedCart = _cartService.AddToCart(cartItem);
+
+            return View(updatedCart);
         }
+
+        //[HttpPost]
+        //public IActionResult Index(CartItem item)
+        //{
+        //    //var cart = _cartService.GetCartFromLocal();
+        //    //cart.Add(item);
+
+        //    //_cartService.SaveCartToLocal(cart);
+
+        //    var updatedCart = _cartService.AddToCart(item);
+
+        //    return View(updatedCart);
+
+        //    //var cart = new List<CartItem>{item};
+        //    //_cartService.SaveCartToLocal(cart);
+        //    //return View(cart);
+        //}
 
     }
 }
