@@ -1,4 +1,6 @@
-﻿using Manero.Models.ViewModels;
+﻿using Manero.Models.Identity;
+using Manero.Models.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Manero.Controllers
@@ -6,10 +8,12 @@ namespace Manero.Controllers
     public class EditProfileController : Controller
     {
         private readonly IWebHostEnvironment _hostingEnvironment;
+        private readonly UserManager<AppUser> _userManager;
 
-        public EditProfileController(IWebHostEnvironment hostingEnvironment)
+        public EditProfileController(IWebHostEnvironment hostingEnvironment, UserManager<AppUser> userManager) 
         {
             _hostingEnvironment = hostingEnvironment;
+            _userManager = userManager; 
         }
 
         public IActionResult Index()
@@ -23,11 +27,11 @@ namespace Manero.Controllers
         {
             if (model.UploadProfileImage != null && model.UploadProfileImage.Length > 0)
             {
-                var uniqueFileName = Guid.NewGuid().ToString() + "_" + model.UploadProfileImage.FileName;
+                // Validera den uppladdade filen här (t.ex. filtyp, storlek, etc.)
 
+                var uniqueFileName = Guid.NewGuid().ToString() + "_" + model.UploadProfileImage.FileName;
                 var uploadFolder = Path.Combine(_hostingEnvironment.WebRootPath, "profileimages");
 
-                // Kontrollera om katalogen "profileimages" finns, annars skapa den.
                 if (!Directory.Exists(uploadFolder))
                 {
                     Directory.CreateDirectory(uploadFolder);
@@ -40,17 +44,17 @@ namespace Manero.Controllers
                     await model.UploadProfileImage.CopyToAsync(stream);
                 }
 
-                // Spara filvägen i användarens profil i databasen.
-                // Exempel: User.UploadProfileImage = "/profileimages/" + uniqueFileName;
-                // Här behövs det implementera hur du kopplar bilden till användaren.
+                // Uppdatera egenskapen i din modell med den nya filvägen
+                model.ProfileImagePath = "/profileimages/" + uniqueFileName;
 
-                return RedirectToAction("Index");
+                // Använd RedirectToAction för att omdirigera till Index-åtgärden
+                return RedirectToAction("Index", "EditProfile");
             }
 
             // Åtgärden om ingen bild valdes.
             // Du kan hantera det som passar dina behov.
 
-            return View();
+            return View(model);
         }
 
     }

@@ -22,12 +22,14 @@
     <div class="container">
         <div class="account-image">           
             <img src="./images/page10-account-created.svg">
-            <form method="post" asp-action="UploadProfileImage" enctype="multipart/form-data">
-                <label for="UploadProfileImage" style="display: none;">
-                    Välj fil
-                </label>
-                <i class="fa-light fa-camera profile-icon" style="cursor: pointer;" onclick="document.getElementById('UploadProfileImage').click();"></i>
-                <input asp-for="UploadProfileImage" type="file" id="UploadProfileImage" style="display: none;" />
+            <form method="post" asp-action="UploadProfileImage">
+                <div class="account-image">
+                    <img src="@Model.ProfileImagePath"> <!-- Visa den aktuella bilden -->
+                    <label for="UploadProfileImage" style="display: none;">Välj fil</label>
+                    <i class="fa-light fa-camera profile-icon" style="cursor: pointer;" onclick="document.getElementById('UploadProfileImage').click();"></i>
+                    <input asp-for="UploadProfileImage" type="file" id="UploadProfileImage" style="display: none;" />
+                </div>
+                <button type="submit" class="button-theme">Save Changes</button>
             </form>
         </div>     
 
