@@ -1,6 +1,5 @@
 ﻿using Manero.Models.Entities;
 using Manero.Models.Identity;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,11 +11,11 @@ namespace Manero.Contexts
         {
         }
 
-        public DbSet<AdressEntity> Adresses { get; set; }
-        public DbSet<UserAdressEntity> UserAdresses { get; set; }
-        public DbSet<CategoryEntity> Categories { get; set; }
-        public DbSet<ProductEntity> Products { get; set; }
-        public DbSet<ProductCategoryEntity> ProductCategories { get; set; }
+        public virtual DbSet<AdressEntity> Adresses { get; set; }
+        public virtual DbSet<UserAdressEntity> UserAdresses { get; set; }
+        public virtual DbSet<CategoryEntity> Categories { get; set; }
+        public virtual DbSet<ProductEntity> Products { get; set; }
+        public virtual DbSet<ProductCategoryEntity> ProductCategories { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)

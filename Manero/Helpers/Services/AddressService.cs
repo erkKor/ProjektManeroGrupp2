@@ -21,13 +21,13 @@ public class AddressService
         {
 
             var entity = (AdressEntity)view;
-            entity = (await _context.Adresses.AddAsync(entity)).Entity;
+            await _context.Adresses.AddAsync(entity);
             await _context.SaveChangesAsync();
 
-            var proxy = new UserAdressEntity() { UserId = user!.Id, AdressId = entity.Id };
+            var proxy = new UserAdressEntity() { UserId = user.Id, AdressId = entity.Id };
             await _context.UserAdresses.AddAsync(proxy);
-
             await _context.SaveChangesAsync();
+
             return true;
 
         }

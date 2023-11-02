@@ -5,6 +5,6 @@ namespace Manero.Models.ViewModels;
 public class MyAddressesVM
 {
 
-    public IEnumerable<AdressEntity> Addresses { get; set; }
+    public IEnumerable<AdressEntity> Addresses { get; set; } = Enumerable.Empty<AdressEntity>();
 
 }
