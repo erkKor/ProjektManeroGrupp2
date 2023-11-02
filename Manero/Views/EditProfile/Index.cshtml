@@ -18,43 +18,51 @@
     </div>
 </section>
 
+
+
 <section class="account">
     <div class="container">
-        <div class="account-image">           
-            
-            <form method="post" asp-action="UploadProfileImage" enctype="multipart/form-data">
-                <div class="account-image">
-                    @if (Model.ImageData != null)
-                    {
-                        <img src="data:image/png;base64,@Convert.ToBase64String(Model.ImageData)" />
-                    }
-                    <label for="UploadProfileImage" style="display: none;">Välj fil</label>
-                    <i class="fa-light fa-camera profile-icon"></i>
-                    <input asp-for="UploadProfileImage" type="file" id="UploadProfileImage" />
-                </div>
-        </div>     
+        <div class="account-image">
+            <img src="~/profileimages/1e38d6fa-318c-4917-bf61-0d456d465e53_page39-order-successful.svg" alt="">
 
-<section class="edit-profile">
-    <div class="container">
-        <form>
-            <div class="input-grp">
-                <label>Name</label>
-                <input type="text">
-            </div>
-            <div class="input-grp">
-                <label>Email</label>
-                <input type="text">
-            </div>
-            <div class="input-grp">
-                <label>Phone Number</label>
-                <input type="text">
-            </div>
-            <div class="input-grp">
-                <label>Location</label>
-                <input type="text">
-            </div>
-            <button class="button-theme">Save Changes</button>
+            <label for="" style="display: none;">
+                Välj fil
+            </label>
+            <i class="fa-light fa-camera profile-icon"></i>
+        </div>
+    </div>   
 
-        </form>
-    </div>
 </section>
+
+<section class="edit-profile">    
+        <div class="container">
+            
+            @using (Html.BeginForm("UpdateUser", "EditProfile", FormMethod.Post))
+            {
+                <div class="input-grp">
+                    @Html.LabelFor(m => m.FirstName)
+                    @Html.EditorFor(m => m.FirstName)
+                </div>
+                <div class="input-grp">
+                    @Html.LabelFor(m => m.LastName)
+                    @Html.EditorFor(m => m.LastName)
+                </div>
+                <div class="input-grp">
+                    @Html.LabelFor(m => m.Email)
+                    @Html.EditorFor(m => m.Email)
+                </div>
+                <div class="input-grp">
+                    @Html.LabelFor(m => m.PhoneNumber)
+                    @Html.EditorFor(m => m.PhoneNumber)
+                </div>
+                <div class="input-grp">
+                    @Html.LabelFor(m => m.Location)
+                    @Html.EditorFor(m => m.Location)
+                </div>
+                <button type="submit" class="button-theme">Save Changes</button>
+            }
+        </div>
+</section>
+
+   
+<partial name="/Views/Partials/_NavbarPartial.cshtml" />

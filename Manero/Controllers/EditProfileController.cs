@@ -8,45 +8,59 @@ namespace Manero.Controllers
     public class EditProfileController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
 
-        public EditProfileController(UserManager<AppUser> userManager)
+        public EditProfileController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
+            _signInManager = signInManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            
-            return View(); 
+            var user = await _userManager.GetUserAsync(User);
+            var model = new EditProfileVM
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                
+            };
+
+            return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> UploadProfileImage(EditProfileVM model)
+        public async Task<IActionResult> UpdateUser(EditProfileVM model)
         {
-            if (model.UploadProfileImage != null && model.UploadProfileImage.Length > 0)
+            if (ModelState.IsValid)
             {
-                using (var stream = new MemoryStream())
+                var user = await _userManager.GetUserAsync(User);
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                user.Email = model.Email;
+                user.PhoneNumber = model.PhoneNumber;
+                
+
+                var result = await _userManager.UpdateAsync(user);
+
+                if (result.Succeeded)
                 {
-                    await model.UploadProfileImage.CopyToAsync(stream);
-                    var image = new EditProfileVM
-                    {
-                        FileName = model.UploadProfileImage.FileName,
-                        ImageData = stream.ToArray()
-                    };
+                    // Om uppdateringen lyckades, logga ut användaren och logga in igen för att uppdatera identiteten.
+                    await _signInManager.SignOutAsync();
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    return RedirectToAction("Index", "Home");
+                }
 
-                    // Lägg till bilden i databasen och koppla den till användaren
-                    var user = await _userManager.GetUserAsync(User);
-                    user.EditProfileVM = image;
-                    await _userManager.UpdateAsync(user);
-
-                    // Alternativt kan du använda din Repository-klass istället för userManager
-                    // var user = await userManager.GetUserAsync(User);
-                    // await repository.UpdateAsync(user);
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
                 }
             }
 
-            return RedirectToAction("Index");
+            return View(model);
         }
-
     }
+
 }
