@@ -15,20 +15,19 @@
             <h1 class="sign-in-title">Welcome Back!</h1>
             <p class="sign-in-text">Sign in to continue</p>
             <!-- Sign in form -->
-            <form method="post">
+            <form method="post" novalidate>
 
                 <div asp-validation-summary="ModelOnly" class="error-message"></div>
 
                 <div class="input-grp">
                     <label asp-for="Email"></label>
-                    <input asp-for="Email">
-                    <i class="fa-solid fa-check"></i> <!-- <i class="fa-solid fa-xmark"></i> -->
+                    <input asp-for="Email" onkeyup="validateEmail(event)">
+                    <i id="check-mark" class="i-shown i-hide fa-solid fa-check"></i> <i id="x-mark" class="i-shown i-hide fa-solid fa-xmark"></i>
                     <span class="validation-message" asp-validation-for="Email"></span>
                 </div>
                 <div class="input-grp">
                     <label asp-for="Password">PASSWORD</label>
                     <input asp-for="Password">
-                    <button><i class="fa-regular fa-eye-slash"></i></button> <!-- <i class="fa-regular fa-eye"></i>  -->
                 </div>
                 <div class="remember-password">
                     <div>

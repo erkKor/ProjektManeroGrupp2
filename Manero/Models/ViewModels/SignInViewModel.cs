@@ -5,6 +5,7 @@ namespace Manero.Models.ViewModels
 {
     public class SignInViewModel
     {
+        [RegularExpression("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$", ErrorMessage = "It must be a valid email, e.g. test@domain.com")]
         [Required(ErrorMessage = "Email Address is required")]
         [Display(Name = "EMAIL")]
         [DataType(DataType.EmailAddress)]

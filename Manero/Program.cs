@@ -1,10 +1,9 @@
 using Manero.Contexts;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
 using Manero.Helpers.Repositories;
 using Manero.Helpers.Services;
-using Microsoft.EntityFrameworkCore;
 using Manero.Models.Identity;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +14,7 @@ builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configura
 //Services
 builder.Services.AddScoped<SignUpService>();
 builder.Services.AddScoped<SignInService>();
+builder.Services.AddScoped<AddressService>();
 
 //Repositories
 builder.Services.AddScoped<SignUpRepo>();

@@ -40,6 +40,7 @@ ul {
     border: 1px solid #DBE3F5;
     color: #111111;
     padding-left: 30px;
+    padding-right: 20px;
     font-family: "Mulish", sans-serif;
     font-size: 16px;
     font-weight: 600;
@@ -312,7 +313,16 @@ ul {
         font-size: 1.1rem;
     }
 
-.sign-in .container .sign-in-section .input-grp i {
+.sign-in .container .sign-in-section .input-grp .i-shown {
+    display: inline;
+    position: absolute;
+    right: 30px;
+    top: 18px;
+    font-size: 1.1rem;
+}
+
+.sign-in .container .sign-in-section .input-grp .i-hide {
+    display: none;
     position: absolute;
     right: 30px;
     top: 18px;
@@ -726,7 +736,16 @@ content: '$';
         font-size: 1.1rem;
     }
 
-.sign-up .container .sign-up-section .input-grp i {
+.sign-up .container .sign-up-section .input-grp .i-shown {
+    display: inline;
+    position: absolute;
+    right: 30px;
+    top: 18px;
+    font-size: 1.1rem;
+}
+
+.sign-up .container .sign-up-section .input-grp .i-hide {
+    display: none;
     position: absolute;
     right: 30px;
     top: 18px;
@@ -1171,6 +1190,33 @@ content: '$';
         color: #626262;
     }
 
+    .account-image {
+        position: relative;
+        
+    }
+
+    .profile-icon {
+        position: absolute;
+        bottom: 0;
+        right: 100px;
+        color: black;
+        padding-top: 10px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50px;
+        background: #dbe3f5
+    }
+
+.edit-profile .container {
+    display: flex;
+    justify-content: center;
+}
+    .input-grp{
+    margin-bottom: 2rem;
+
+    }
+
+
 .account-links {
     display: flex;
     flex-direction: column;
@@ -1482,6 +1528,7 @@ content: '$';
         font-size: 14px;
     }
 
+
 .account-relative {
     position: relative;
 }
@@ -1560,4 +1607,17 @@ content: '$';
                         margin-left: 50%;
                         margin-top: 20%;
                     }
+
+
+.validation-message {
+    color: #fa3150;
+    font-size: 0.88rem;
+    padding-left: 30px;
+}
+
+.error-message {
+    text-align: center;
+    color: #fa3150;
+    font-size: .88rem
+}
 
