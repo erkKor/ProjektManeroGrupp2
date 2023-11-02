@@ -1,4 +1,7 @@
-﻿using Manero.Models;
+﻿using Manero.Helpers.Repositories;
+using Manero.Models;
+using Manero.Models.Entities;
+using Manero.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 
@@ -10,10 +13,12 @@ namespace Manero.Helpers.Services
         private const string SessionKey = "CartItems";
         private const string LocalStorageKey = "LocalCartItems";
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ShoppingCartRepository _shoppingCartRepo;
 
-        public ShoppingCartService(IHttpContextAccessor httpContextAccessor)
+        public ShoppingCartService(IHttpContextAccessor httpContextAccessor, ShoppingCartRepository shoppingCartRepo)
         {
             _httpContextAccessor = httpContextAccessor;
+            _shoppingCartRepo = shoppingCartRepo;
         }
 
 
@@ -26,7 +31,7 @@ namespace Manero.Helpers.Services
                 _httpContextAccessor.HttpContext!.Response.Cookies.Append("LocalStorageKey", jsonCart, new CookieOptions
                 {
                     IsEssential = true, // Ensures the cookie will be stored even if the user denies cookies
-                    Expires = DateTimeOffset.UtcNow.AddMinutes(30) // Set expiration time as desired
+                    Expires = DateTimeOffset.UtcNow.AddMinutes(30) 
                 });
             }
         }
@@ -69,6 +74,30 @@ namespace Manero.Helpers.Services
         public CartItem GetItemFromCart(List<CartItem> cart, int itemId)
         {
             return cart.FirstOrDefault(i => i.Id == itemId);
+        }
+
+        public void SaveCartToDB(Guid id)
+        {
+            
+            
+           var cartItems = GetCartFromLocal();
+            cartItems = (List<CartItem>)cartItems.Select(p => new CartItemEntity
+            {
+                CartItemId = p.Id,
+                Name = p.Name,
+                Color = p.Color,
+                Size = p.Size,
+                Price = p.Price,
+                Quantity = p.Quantity,
+            });
+
+
+            var shoppingCart = new ShoppingCartEntity
+            {
+                Items = (ICollection<CartItemEntity>)cartItems,
+                UserId = id
+            };
+            _shoppingCartRepo.AddAsync(shoppingCart);
         }
     }
 }

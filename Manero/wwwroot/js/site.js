@@ -61,7 +61,7 @@ function toggleDropdown() {
 }
 
 
-
+//Update quantity in ShoppingCart without reload
 $(document).ready(function () {
     $(".increment-btn").click(function (event) {
         event.preventDefault();
@@ -81,9 +81,6 @@ $(document).ready(function () {
             url: '/ShoppingCart/UpdateQuantity',
             data: { itemId: itemId, action: action },
             success: function (data) {
-                // Update the displayed quantity after successful update
-                // You may update the quantity on the page without a full reload
-                // Example: $("span[data-item-id='" + itemId + "']").text(data.newQuantity);
                 $("span[data-item-id='" + itemId + "']").text(data.newQuantity);
             },
             error: function () {

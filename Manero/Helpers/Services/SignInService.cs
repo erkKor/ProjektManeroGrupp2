@@ -10,6 +10,7 @@ namespace Manero.Helpers.Services
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly ShoppingCartService _cartService;
 
         public SignInService(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {

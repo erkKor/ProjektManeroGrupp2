@@ -63,8 +63,8 @@ namespace Manero.Controllers
                 int index = cart.FindIndex(i => i.Id == itemId);
                 cart[index] = item;
 
-                _cartService.SaveCartToLocal(cart); // Save the updated cart back to local storage
-
+                _cartService.SaveCartToLocal(cart); 
+                //Return JSON so the webpage updates quantity with AJAX and does not need to reload page
                 return Json(new { newQuantity = item.Quantity });
             }
 

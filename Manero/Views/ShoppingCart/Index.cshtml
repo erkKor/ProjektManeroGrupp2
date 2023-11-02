@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Shoppingcart";
 }
+@model List<CartItem>
 
 <section class="top-bar">
     <div class="container">
@@ -14,9 +15,6 @@
         </button>
     </div>
 </section>
-
-
- @model List<CartItem>
 
 <section class="shoppingcart">
     <div class="container">
@@ -62,78 +60,5 @@
         </div>
     </div>
 </section>
-
-
-    @*    <div class="product-grid">
-            @if (Model != null && Model.Any())
-            {
-                foreach (var item in Model)
-                {
-                    <div class="product-card">
-                        <div class="product-image">
-
-                        </div>
-                        <div class="product-content">
-                            <p>@item.Name</p>
-                            <div class="price">
-                                <p class="original-price"></p>
-                                <p class="discount-price">$@item.Price.ToString("0.00")</p>
-                            </div>
-                        </div>
-                    </div>
-                   @* <tr>
-                        <td>@item.Name</td>
-                        <td>@item.Price</td>
-                        <td>@item.Quantity</td>
-                        <td>@(item.Price * item.Quantity)</td>
-                    </tr>*@
-
-
-        @*<table id="cartTable">
-            <thead>
-                <tr>
-                    <th>Item</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (Model != null && Model.Any())
-                {
-                    foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>@item.Name</td>
-                            <td>@item.Price</td>
-                            <td>@item.Quantity</td>
-                            <td>@(item.Price * item.Quantity)</td>
-                        </tr>
-                    }
-                }
-                else
-                {
-                    <tr>
-                        <td colspan="4">Cart is empty</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-
-        @if (Model != null)
-        {
-            <h3>Debugging Info:</h3>
-            <p>Number of items in cart: @Model.Count</p>
-            <p>Item IDs: @String.Join(", ", Model.Select(item => item.Id))</p>
-        }
-
-        <!-- Form to add items to the cart -->
-        <form id="addToCartForm" action="@Url.Action("Index", "ShoppingCart")" method="post">
-            <input type="number" name="id"  />
-            <input type="text" name="name" value="Product 1" />
-            <input type="number" name="price" value="20,00" />
-            <input type="number" name="quantity" value="1" min="1" />
-            <input type="submit" value="Add to Cart" />
-        </form>*@
 
 <partial name="/Views/Partials/_NavbarPartial.cshtml" />
