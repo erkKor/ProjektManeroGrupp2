@@ -20,22 +20,22 @@
 
                 <div class="input-grp">
                     <label asp-for="FirstName"></label>
-                    <input asp-for="FirstName">
-                    <i class="fa-solid fa-check"></i> <!-- <i class="fa-solid fa-xmark"></i> -->
+                    <input asp-for="FirstName" onkeyup="validateFirstName(event)">
+                    <i id="check-mark-FirstName" class="i-shown i-hide fa-solid fa-check"></i> <i id="x-mark-FirstName" class="i-shown i-hide fa-solid fa-xmark"></i>
                     <span class="validation-message" asp-validation-for="FirstName"></span>
                 </div>
 
                 <div class="input-grp">
                     <label asp-for="LastName"></label>
-                    <input asp-for="LastName">
-                    <i class="fa-solid fa-check"></i> <!-- <i class="fa-solid fa-xmark"></i> -->
+                    <input asp-for="LastName" onkeyup="validateLastName(event)">
+                    <i id="check-mark-LastName" class="i-shown i-hide fa-solid fa-check"></i> <i id="x-mark-LastName" class="i-shown i-hide fa-solid fa-xmark"></i>
                     <span class="validation-message" asp-validation-for="LastName"></span>
                 </div>
 
                 <div class="input-grp">
                     <label asp-for="Email"></label>
-                    <input asp-for="Email">
-                    <i class="fa-solid fa-check"></i> <!-- <i class="fa-solid fa-xmark"></i> -->
+                    <input asp-for="Email" id="email-input" onkeyup="validateEmail(event)">
+                    <i id="check-mark" class="i-shown i-hide fa-solid fa-check"></i> <i id="x-mark" class="i-shown i-hide fa-solid fa-xmark"></i>
                     <span class="validation-message" asp-validation-for="Email"></span>
                 </div>
 

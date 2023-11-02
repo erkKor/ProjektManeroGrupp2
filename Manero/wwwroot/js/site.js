@@ -59,3 +59,53 @@ $(document).ready(function () {
 function toggleDropdown() {
     document.getElementById("myDropdown").classList.toggle("show");
 }
+
+
+// Validation of Forms 
+const validateEmail = (event) => {
+    const regExEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const xMark = document.getElementById("x-mark")
+    const checkMark = document.getElementById("check-mark")
+
+    if (regExEmail.test(event.target.value)) {
+        checkMark.classList.remove("i-hide")
+        xMark.classList.add("i-hide")
+
+    }
+    else {
+        xMark.classList.remove("i-hide")
+        checkMark.classList.add("i-hide")
+    }
+}
+
+const validateFirstName = (event) => {
+    const regExName = /^[A-Z][a-zA-Z]*$/
+    const xMark = document.getElementById("x-mark-FirstName")
+    const checkMark = document.getElementById("check-mark-FirstName")
+
+    if (regExName.test(event.target.value)) {
+        checkMark.classList.remove("i-hide")
+        xMark.classList.add("i-hide")
+
+    }
+    else {
+        xMark.classList.remove("i-hide")
+        checkMark.classList.add("i-hide")
+    }
+}
+
+const validateLastName = (event) => {
+    const regExName = /^[A-Z][a-zA-Z]*$/
+    const xMark = document.getElementById("x-mark-LastName")
+    const checkMark = document.getElementById("check-mark-LastName")
+
+    if (regExName.test(event.target.value)) {
+        checkMark.classList.remove("i-hide")
+        xMark.classList.add("i-hide")
+
+    }
+    else {
+        xMark.classList.remove("i-hide")
+        checkMark.classList.add("i-hide")
+    }
+}
