@@ -45,7 +45,7 @@ namespace Manero.Controllers
 
             if ((view.Id.HasValue
                 ? await _addressService.UpdateAsync(view)
-                : _addressService.Add(view, user)))
+                : await _addressService.AddAsync(view, user)))
                 return RedirectToAction("Index", "myaddresses");
             else
             {

@@ -2,37 +2,20 @@
 using Manero.Models.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Manero.Contexts
 {
-
-    public interface IDataContext
-    {
-
-        DbSet<T> Set<T>() where T : class;
-        EntityEntry<T> Entry<T>(T entity) where T : class;
-        int SaveChanges();
-
-        public DbSet<AdressEntity> Adresses { get; set; }
-        public DbSet<UserAdressEntity> UserAdresses { get; set; }
-        public DbSet<CategoryEntity> Categories { get; set; }
-        public DbSet<ProductEntity> Products { get; set; }
-        public DbSet<ProductCategoryEntity> ProductCategories { get; set; }
-
-    }
-
-    public class DataContext : IdentityDbContext<AppUser>, IDataContext
+    public class DataContext : IdentityDbContext<AppUser>
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
         }
 
-        public DbSet<AdressEntity> Adresses { get; set; }
-        public DbSet<UserAdressEntity> UserAdresses { get; set; }
-        public DbSet<CategoryEntity> Categories { get; set; }
-        public DbSet<ProductEntity> Products { get; set; }
-        public DbSet<ProductCategoryEntity> ProductCategories { get; set; }
+        public virtual DbSet<AdressEntity> Adresses { get; set; }
+        public virtual DbSet<UserAdressEntity> UserAdresses { get; set; }
+        public virtual DbSet<CategoryEntity> Categories { get; set; }
+        public virtual DbSet<ProductEntity> Products { get; set; }
+        public virtual DbSet<ProductCategoryEntity> ProductCategories { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
