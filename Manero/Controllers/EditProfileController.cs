@@ -47,14 +47,20 @@ namespace Manero.Controllers
                 // Uppdatera egenskapen i din modell med den nya filvägen
                 model.ProfileImagePath = "/profileimages/" + uniqueFileName;
 
-                // Använd RedirectToAction för att omdirigera till Index-åtgärden
-                return RedirectToAction("Index", "EditProfile");
+                // Här kan du lägga till kod för att spara ändringarna i användarens profil i databasen
+                // Till exempel, om du vill uppdatera användarens profilbildsfilsökväg i databasen:
+                // var user = await _userManager.GetUserAsync(User);
+                // user.UploadProfileImage = model.ProfileImagePath;
+                // await _userManager.UpdateAsync(user);
+
+                // Omdirigera tillbaka till EditProfile/Index efter uppladdningen
+                return RedirectToAction("Index");
             }
 
             // Åtgärden om ingen bild valdes.
             // Du kan hantera det som passar dina behov.
 
-            return View(model);
+            return View("Index", model); // Omdirigera tillbaka till EditProfile/Index om inget uppladdades
         }
 
     }
