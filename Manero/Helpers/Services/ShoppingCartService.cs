@@ -70,45 +70,6 @@ namespace Manero.Helpers.Services
         {
             return cart.FirstOrDefault(i => i.Id == itemId);
         }
-
-        //private CartItem GetItemFromCart(CartItem item)
-        //{
-        //    List<CartItem> cartItems = GetCartFromLocal();
-        //    CartItem existingItem = cartItems.FirstOrDefault(i => i.Id == item.Id);
-
-        //    if (existingItem != null)
-        //    {
-        //        existingItem.Quantity += item.Quantity;
-
-        //    }
-
-        //    return cartItems;
-        //}
-
-
-        public void IncrementItemQuantity(int item)
-        {
-            List<CartItem> cartItems = GetCartFromLocal();
-            CartItem existingItem = GetItemFromCart(cartItems, item);
-
-            if (existingItem != null)
-            {
-                existingItem.Quantity += existingItem.Quantity;
-                SaveCartToLocal(cartItems); // Save the updated cart
-            }
-        }
-
-        public void DecrementItemQuantity(int item)
-        {
-            List<CartItem> cartItems = GetCartFromLocal();
-            CartItem existingItem = GetItemFromCart(cartItems, item);
-
-            if (existingItem != null && existingItem.Quantity > 0)
-            {
-                existingItem.Quantity -= existingItem.Quantity;
-                SaveCartToLocal(cartItems); // Save the updated cart
-            }
-        }
     }
 }
 
@@ -132,4 +93,38 @@ namespace Manero.Helpers.Services
 //        return JsonSerializer.Deserialize<List<CartItem>>(jsonCart);
 //    }
 //    return new List<CartItem>();
+//}
+
+
+
+
+
+
+
+
+
+
+
+//public void IncrementItemQuantity(int item)
+//{
+//    List<CartItem> cartItems = GetCartFromLocal();
+//    CartItem existingItem = GetItemFromCart(cartItems, item);
+
+//    if (existingItem != null)
+//    {
+//        existingItem.Quantity += existingItem.Quantity;
+//        SaveCartToLocal(cartItems); // Save the updated cart
+//    }
+//}
+
+//public void DecrementItemQuantity(int item)
+//{
+//    List<CartItem> cartItems = GetCartFromLocal();
+//    CartItem existingItem = GetItemFromCart(cartItems, item);
+
+//    if (existingItem != null && existingItem.Quantity > 0)
+//    {
+//        existingItem.Quantity -= existingItem.Quantity;
+//        SaveCartToLocal(cartItems); // Save the updated cart
+//    }
 //}

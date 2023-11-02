@@ -20,8 +20,6 @@ namespace Manero.Controllers
         public IActionResult Index()
         {
             List<CartItem> cart = _cartService.GetCartFromLocal();
-  
-
             return View(cart);
         }
 
@@ -36,25 +34,18 @@ namespace Manero.Controllers
                     Id = model.Id,
                     Name = model.Name,
                     Price = model.Price,
-                    Quantity = 1 // You can set a default quantity or leave it for the client to provide
+                    Quantity = 1 
                 };
                 var updatedCart = _cartService.AddToCart(cartItem);
                 return View(updatedCart);
             }
-
             return View();
-
-
-            // Perform the necessary logic to convert ProductGridItemVM to CartItem or directly handle it
-
-
         }
 
         [HttpPost]
         public IActionResult UpdateQuantity(int itemId, string action)
         {
-            List<CartItem> cart = _cartService.GetCartFromLocal(); // Retrieve the cart from local storage
-
+            List<CartItem> cart = _cartService.GetCartFromLocal();
             CartItem item = cart.FirstOrDefault(i => i.Id == itemId);
 
             if (item != null)
@@ -79,52 +70,6 @@ namespace Manero.Controllers
 
             return Json(new { error = "Item not found" });
         }
-
-        //[HttpPost]
-        //public IActionResult IncrementQuantity(int item)
-        //{
-        //    _cartService.IncrementItemQuantity(item);
-        //    // You can redirect or return any response as needed
-        //    return RedirectToAction("Index");
-        //}
-
-        //// Action method for decrementing the quantity
-        //[HttpPost]
-        //public IActionResult DecrementQuantity(int item)
-        //{
-        //    _cartService.DecrementItemQuantity(item);
-        //    // You can redirect or return any response as needed
-        //    return RedirectToAction("Index");
-        //}
-
-        //[HttpPost]
-        //public IActionResult UpdateQuantity(int itemId, string action)
-        //{
-        //    CartItem item = _cartService.GetItemFromCart(_cartService.GetCartFromLocal(), itemId); // You should define how to retrieve the cart item
-
-        //    if (item != null)
-        //    {
-        //        if (action == "increment")
-        //        {
-        //            item.Quantity++; // Increment the item's quantity
-        //            _cartService.IncrementItemQuantity(item.Id);
-        //        }
-        //        else if (action == "decrement" && item.Quantity > 0)
-        //        {
-        //            item.Quantity--; // Decrement the item's quantity, ensuring it doesn't go below zero
-        //            _cartService.DecrementItemQuantity(item.Id);
-        //        }
-
-        //        // Here, you might want to update the cart in the storage/session/database
-        //        // Save the cart changes
-
-        //        // Return the updated quantity in JSON format
-        //        return Json(new { newQuantity = item.Quantity });
-        //    }
-
-        //    // Return an error if the item is not found or other appropriate handling
-        //    return Json(new { error = "Item not found" });
-        //}
     }
 }
 
@@ -143,6 +88,22 @@ namespace Manero.Controllers
 
 
 
+//[HttpPost]
+//public IActionResult IncrementQuantity(int item)
+//{
+//    _cartService.IncrementItemQuantity(item);
+//    // You can redirect or return any response as needed
+//    return RedirectToAction("Index");
+//}
+
+//// Action method for decrementing the quantity
+//[HttpPost]
+//public IActionResult DecrementQuantity(int item)
+//{
+//    _cartService.DecrementItemQuantity(item);
+//    // You can redirect or return any response as needed
+//    return RedirectToAction("Index");
+//}
 
 
 
