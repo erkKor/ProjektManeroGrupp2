@@ -7,7 +7,7 @@ namespace Manero.Tests
     public class ConnectionString_test
     {
         [Fact]
-        public void VerifyConnectionString()
+        public void Checking_ConnectionString_DatabaseConnection_is_Equal_ConnectionString_AzureSqlDatabase()
         {
             // Arrange
             var configuration = new ConfigurationBuilder()
