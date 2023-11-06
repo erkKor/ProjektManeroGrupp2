@@ -1621,3 +1621,94 @@ content: '$';
     font-size: .88rem
 }
 
+.section-mypromocodes {
+    width: 375px;
+}
+
+    .section-mypromocodes .header-mypromocodes {
+        margin-top: 50px;
+        display: flex;
+        position: relative;
+        justify-content: center;
+    }
+
+        .section-mypromocodes .header-mypromocodes h1 {
+            font-family: "Mulish", sans-serif;
+            font-weight: 600;
+            font-size: 18px;
+            margin: 0;
+            position: absolute;
+        }
+
+        .section-mypromocodes .header-mypromocodes a {
+            margin-right: 320px;
+            text-decoration: none;
+            color: #111111;
+        }
+
+    .section-mypromocodes .header-btg {
+        display: flex;
+        justify-content: center;
+    }
+
+        .section-mypromocodes .header-btg .promocodes-btg-black {
+            border-radius: 60px;
+            background-color: #111111;
+            color: #fff;
+            width: 89px;
+            height: 28px;
+            border: none;
+        }
+
+        .section-mypromocodes .header-btg .promocodes-btg-blue {
+            border-radius: 60px;
+            background-color: #DBE3F5;
+            color: #111111;
+            width: 74px;
+            height: 28px;
+            border: none;
+        }
+
+    .section-mypromocodes .promocodes-discount {
+        border-top: 1px solid #DBE3F5;
+        height: 125px;
+    }
+
+        .section-mypromocodes .promocodes-discount .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 125px;
+        }
+
+            .section-mypromocodes .promocodes-discount .container .promcodes-blue-square {
+                width: 73px;
+                height: 84px;
+                background-color: #DBE3F5;
+            }
+
+            .section-mypromocodes .promocodes-discount .container .discount-first-text {
+                font-family: "Mulish", sans-serif;
+                font-weight: 600;
+                font-size: 18px;
+                margin: 0;
+            }
+
+            .section-mypromocodes .promocodes-discount .container .discount-second-text {
+                font-family: "Mulish", sans-serif;
+                font-weight: 600;
+                font-size: 21px;
+                margin: 0;
+            }
+
+            .section-mypromocodes .promocodes-discount .container discount-thrid-text {
+                font-family: "Mulish", sans-serif;
+                font-weight: 400;
+                font-size: 14px;
+                color: #626262;
+                margin: 0;
+            }
+
+    .section-mypromocodes .promcodes-border {
+        border-bottom: 1px solid #DBE3F5;
+    }
