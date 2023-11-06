@@ -1678,6 +1678,7 @@ content: '$';
             display: flex;
             align-items: center;
             justify-content: space-between;
+            height: 125px;
         }
 
             .section-mypromocodes .promocodes-discount .container .promcodes-blue-square {
