@@ -61,6 +61,36 @@ function toggleDropdown() {
 }
 
 
+
+//Update quantity in ShoppingCart without reload
+$(document).ready(function () {
+    $(".increment-btn").click(function (event) {
+        event.preventDefault();
+        var itemId = $(this).data('item-id');
+        updateQuantity(itemId, 'increment');
+    });
+
+    $(".decrement-btn").click(function (event) {
+        event.preventDefault();
+        var itemId = $(this).data('item-id');
+        updateQuantity(itemId, 'decrement');
+    });
+
+    function updateQuantity(itemId, action) {
+        $.ajax({
+            type: 'POST',
+            url: '/ShoppingCart/UpdateQuantity',
+            data: { itemId: itemId, action: action },
+            success: function (data) {
+                $("span[data-item-id='" + itemId + "']").text(data.newQuantity);
+            },
+            error: function () {
+                alert('Failed to update quantity.');
+            }
+        });
+    }
+});
+
 // Validation of Forms 
 const validateEmail = (event) => {
     const regExEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -110,6 +140,7 @@ const validateLastName = (event) => {
     }
 }
 
+
 //Toggle menu
 document.addEventListener("DOMContentLoaded", function () {
     const toggleBtn = document.getElementById("toggle-btn");
@@ -129,3 +160,4 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 })
+

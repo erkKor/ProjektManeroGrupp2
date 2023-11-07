@@ -11,11 +11,13 @@ namespace Manero.Contexts
         {
         }
 
-        public virtual DbSet<AdressEntity> Adresses { get; set; }
-        public virtual DbSet<UserAdressEntity> UserAdresses { get; set; }
-        public virtual DbSet<CategoryEntity> Categories { get; set; }
-        public virtual DbSet<ProductEntity> Products { get; set; }
-        public virtual DbSet<ProductCategoryEntity> ProductCategories { get; set; }
+        public DbSet<AdressEntity> Adresses { get; set; }
+        public DbSet<UserAdressEntity> UserAdresses { get; set; }
+        public DbSet<CategoryEntity> Categories { get; set; }
+        public DbSet<ProductEntity> Products { get; set; }
+        public DbSet<ProductCategoryEntity> ProductCategories { get; set; }
+        public DbSet<CartItemEntity> CartItems { get; set; }
+        public DbSet<ShoppingCartEntity> ShoppingCarts { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -36,4 +38,13 @@ namespace Manero.Contexts
             );
         }
     }
+
+    public class MockDataContext : DataContext
+    {
+        public MockDataContext(DbContextOptions<DataContext> options) : base(options)
+        {
+            // If you need to pass DbContextOptions, include them here
+        }
+    }
+
 }

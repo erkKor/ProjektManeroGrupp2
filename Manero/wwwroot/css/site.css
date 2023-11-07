@@ -1155,9 +1155,9 @@ content: '$';
                 margin: 0;
             }
 
-                .best-sellers .product-grid .product-card .product-image button:last-child {
-                    margin-top: 2rem;
-                }
+            .best-sellers .product-grid .product-card .product-image form button {
+                margin-top: 2rem;
+            }
 
         .best-sellers .product-grid .product-card .product-content {
             position: relative;
@@ -1541,6 +1541,73 @@ content: '$';
         display: block;
     }
 
+
+.shoppingcart .product-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+    .shoppingcart .product-grid .product-card {
+        position: relative;
+        width: 330px;
+        height: 100px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+        .shoppingcart .product-grid .product-card .wrapper {
+            display: flex;
+        }
+
+            .shoppingcart .product-grid .product-card .wrapper .product-image {
+                height: 100px;
+                width: 100px;
+            }
+
+                .shoppingcart .product-grid .product-card .wrapper .product-image button {
+                    position: absolute;
+                    top: 0;
+                    right: -230px;
+                    margin: 0;
+                }
+
+                    .shoppingcart .product-grid .product-card .wrapper .product-image button:last-child {
+                        margin-top: 2rem;
+                    }
+
+            .shoppingcart .product-grid .product-card .wrapper .product-content {
+                margin: 0;
+                margin-left: 10px;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: space-between;
+                font-size: 14px;
+            }
+
+        .shoppingcart .product-grid .product-card .buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+            .shoppingcart .product-grid .product-card .buttons button {
+                border: none;
+                background-color: transparent;
+                padding: 0;
+            }
+
+                .shoppingcart .product-grid .product-card .buttons button i {
+                    color: #111111;
+                    font-size: 12px;
+                }
+
+            .shoppingcart .product-grid .product-card .buttons span {
+                text-align: center;
+                font-size: 12px;
+                margin: 0.5rem 0;
+            }
+
 .section-checkout-shipping {
     width: 375px;
 }
@@ -1754,4 +1821,96 @@ content: '$';
     color: #fa3150;
     font-size: .88rem
 }
+
+.section-mypromocodes {
+    width: 375px;
+}
+
+    .section-mypromocodes .header-mypromocodes {
+        margin-top: 50px;
+        display: flex;
+        position: relative;
+        justify-content: center;
+    }
+
+        .section-mypromocodes .header-mypromocodes h1 {
+            font-family: "Mulish", sans-serif;
+            font-weight: 600;
+            font-size: 18px;
+            margin: 0;
+            position: absolute;
+        }
+
+        .section-mypromocodes .header-mypromocodes a {
+            margin-right: 320px;
+            text-decoration: none;
+            color: #111111;
+        }
+
+    .section-mypromocodes .header-btg {
+        display: flex;
+        justify-content: center;
+    }
+
+        .section-mypromocodes .header-btg .promocodes-btg-black {
+            border-radius: 60px;
+            background-color: #111111;
+            color: #fff;
+            width: 89px;
+            height: 28px;
+            border: none;
+        }
+
+        .section-mypromocodes .header-btg .promocodes-btg-blue {
+            border-radius: 60px;
+            background-color: #DBE3F5;
+            color: #111111;
+            width: 74px;
+            height: 28px;
+            border: none;
+        }
+
+    .section-mypromocodes .promocodes-discount {
+        border-top: 1px solid #DBE3F5;
+        height: 125px;
+    }
+
+        .section-mypromocodes .promocodes-discount .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 125px;
+        }
+
+            .section-mypromocodes .promocodes-discount .container .promcodes-blue-square {
+                width: 73px;
+                height: 84px;
+                background-color: #DBE3F5;
+            }
+
+            .section-mypromocodes .promocodes-discount .container .discount-first-text {
+                font-family: "Mulish", sans-serif;
+                font-weight: 600;
+                font-size: 18px;
+                margin: 0;
+            }
+
+            .section-mypromocodes .promocodes-discount .container .discount-second-text {
+                font-family: "Mulish", sans-serif;
+                font-weight: 600;
+                font-size: 21px;
+                margin: 0;
+            }
+
+            .section-mypromocodes .promocodes-discount .container discount-thrid-text {
+                font-family: "Mulish", sans-serif;
+                font-weight: 400;
+                font-size: 14px;
+                color: #626262;
+                margin: 0;
+            }
+
+    .section-mypromocodes .promcodes-border {
+        border-bottom: 1px solid #DBE3F5;
+    }
 
