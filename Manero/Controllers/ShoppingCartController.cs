@@ -78,24 +78,6 @@ namespace Manero.Controllers
 
             return Json(new { error = "Item not found" });
         }
-
-
-        //[HttpPost]
-        //public IActionResult Index(CartItem item)
-        //{
-        //    //var cart = _cartService.GetCartFromLocal();
-        //    //cart.Add(item);
-
-        //    //_cartService.SaveCartToLocal(cart);
-
-        //    var updatedCart = _cartService.AddToCart(item);
-
-        //    return View(updatedCart);
-
-        //    //var cart = new List<CartItem>{item};
-        //    //_cartService.SaveCartToLocal(cart);
-        //    //return View(cart);
-        //}
     }
 }
 

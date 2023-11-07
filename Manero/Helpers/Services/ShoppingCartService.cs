@@ -24,7 +24,6 @@ namespace Manero.Helpers.Services
         }
 
 
-
         public void SaveCartToLocal(List<CartItem> cartItems)
         {
             if (cartItems != null)
@@ -114,6 +113,7 @@ namespace Manero.Helpers.Services
 
             var cartItems = GetCartFromLocal();
             if(cartItems.Count == 0) 
+                // If there are no items in local cart, get from Database
                 cartItems = await GetCartItemsFromDBAsync();
 
             if(cartItems != null)
@@ -121,7 +121,6 @@ namespace Manero.Helpers.Services
                 foreach (var item in cartItems)
                 {
                     var existingCartItem = shoppingCart.Items.FirstOrDefault(x => x.Name == item.Name && x.Color == item.Color && x.Size == item.Size);
-
                     if (existingCartItem != null)
                     {
                         // Update existing cart item if found
@@ -144,74 +143,13 @@ namespace Manero.Helpers.Services
                     }
                 }
             }
-            
 
             // Save the updated/created shoppingCart to the database using your repository
             if (shoppingCart.ShoppingCartId != 0)
-            {
                 await _shoppingCartRepo.UpdateShoppingCartWithItemsAsync(shoppingCart); // Update existing cart
-            }
-            else
-            {
+            else        
                 await _shoppingCartRepo.AddShoppingCartWithItemsAsync(shoppingCart); // Add new cart
-            }
         }
 
     }
 }
-
-
-
-
-//public void SaveCartToSession(List<CartItem> cartItems)
-//{
-//    if(cartItems != null)
-//    {
-//        string jsonCart = JsonSerializer.Serialize(cartItems);
-//        _httpContextAccessor.HttpContext!.Session.SetString(SessionKey, jsonCart);
-//    }
-//}
-
-//public List<CartItem> GetCartFromSession()
-//{
-//    var jsonCart = _httpContextAccessor.HttpContext!.Session.GetString(SessionKey);
-//    if (jsonCart != null)
-//    {
-//        return JsonSerializer.Deserialize<List<CartItem>>(jsonCart);
-//    }
-//    return new List<CartItem>();
-//}
-
-
-
-
-
-
-
-
-
-
-
-//public void IncrementItemQuantity(int item)
-//{
-//    List<CartItem> cartItems = GetCartFromLocal();
-//    CartItem existingItem = GetItemFromCart(cartItems, item);
-
-//    if (existingItem != null)
-//    {
-//        existingItem.Quantity += existingItem.Quantity;
-//        SaveCartToLocal(cartItems); // Save the updated cart
-//    }
-//}
-
-//public void DecrementItemQuantity(int item)
-//{
-//    List<CartItem> cartItems = GetCartFromLocal();
-//    CartItem existingItem = GetItemFromCart(cartItems, item);
-
-//    if (existingItem != null && existingItem.Quantity > 0)
-//    {
-//        existingItem.Quantity -= existingItem.Quantity;
-//        SaveCartToLocal(cartItems); // Save the updated cart
-//    }
-//}

@@ -26,9 +26,7 @@ namespace Manero.Helpers.Services
             {
                 var result = await _signInManager.PasswordSignInAsync(appUpser, model.Password, model.RememberMe, false);
                 if(result.Succeeded)
-                {
                     await _cartService.SaveCartToDB(appUpser.Id);
-                }
                 return result.Succeeded;
             }
 
