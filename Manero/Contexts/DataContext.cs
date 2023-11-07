@@ -1,6 +1,5 @@
 ﻿using Manero.Models.Entities;
 using Manero.Models.Identity;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,6 +18,7 @@ namespace Manero.Contexts
         public DbSet<ProductCategoryEntity> ProductCategories { get; set; }
         public DbSet<CartItemEntity> CartItems { get; set; }
         public DbSet<ShoppingCartEntity> ShoppingCarts { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

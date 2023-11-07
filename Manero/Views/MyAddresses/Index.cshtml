@@ -5,15 +5,6 @@
 
     ViewData["Title"] = "My addresses";
 
-    //TODO: Test data, remove when not needed anymore
-    if (!Model.Addresses.Any())
-        Model.Addresses = new[]
-        {
-            new AdressEntity() { Id = 0, AdressName = "Home", PostalCode = "8000", StreetName = "S Kirkland Ave", City = "Chicago", },
-            new AdressEntity() { Id = 1, AdressName = "Work", PostalCode = "8000", StreetName = "S Kirkland Ave", City = "Chicago" },
-            new AdressEntity() { Id = 2, AdressName = "Other", PostalCode = "8000", StreetName = "S Kirkland Ave", City = "Chicago" },
-        };
-
     string GetIcon(AdressEntity address)
     {
         if (address.AdressName == "Home")
@@ -64,6 +55,11 @@
                     <a asp-controller="editaddress" asp-route-id="@address.Id" class="btn rounded-circle border-none d-flex size-32px p-0 m-auto"><i class="m-auto fa-regular fa-pen-to-square"></i></a>
 
                 </div>
+            }
+
+            @if (!Model.Addresses.Any())
+            {
+                <p>No addresses added.</p>
             }
 
             <a class="btn btn-theme mt-4 mx-auto" asp-controller="editaddress">
