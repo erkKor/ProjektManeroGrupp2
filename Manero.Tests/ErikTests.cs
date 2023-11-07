@@ -116,7 +116,8 @@ namespace Manero.Tests
             var userManagerMock = new Mock<UserManager<AppUser>>(MockBehavior.Strict);
             var signInManagerMock = new Mock<SignInManager<AppUser>>(userManagerMock.Object);
 
-            var signInService = new SignInService(userManagerMock.Object, signInManagerMock.Object);
+
+            var signInService = new SignInService(userManagerMock.Object, signInManagerMock.Object, null!);
 
             var testUser = new AppUser { Email = "test@example.com" };
             var signInViewModel = new SignInViewModel

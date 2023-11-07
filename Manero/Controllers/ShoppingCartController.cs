@@ -7,27 +7,40 @@ using Manero.Models.ViewModels;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Identity;
 using Manero.Models.Identity;
+using Manero.Helpers.Repositories;
 
 namespace Manero.Controllers
 {
     public class ShoppingCartController : Controller
     {
         private readonly ShoppingCartService _cartService;
+        private readonly ShoppingCartRepository _shoppingCartRepo;
         private readonly SignInManager<AppUser> _signInManager;
-        public ShoppingCartController(ShoppingCartService cartService, SignInManager<AppUser> signInManager)
+        private readonly UserManager<AppUser> _userManager;
+        public ShoppingCartController(ShoppingCartService cartService, SignInManager<AppUser> signInManager, UserManager<AppUser> userManager, ShoppingCartRepository shoppingCartRepo)
         {
             _cartService = cartService;
             _signInManager = signInManager;
+            _userManager = userManager;
+            _shoppingCartRepo = shoppingCartRepo;
         }
 
         public async Task<IActionResult> Index()
         {
             var cart = new List<CartItem>();
             if (_signInManager.IsSignedIn(User))
-               cart = await _cartService.GetCartItemsFromDBAsync();
+            {
+                var signedInUserId = _userManager.GetUserId(User);
+                if (signedInUserId != null)
+                {
+                    var shoppingCartId = await _shoppingCartRepo.GetAsync(x => x.UserId == signedInUserId);
+                    if (shoppingCartId.ShoppingCartId != 0)
+                        cart = await _cartService.GetCartItemsFromDBAsync(shoppingCartId.ShoppingCartId);
+
+                }
+            }
             else 
                 cart = _cartService.GetCartFromLocal();
-
             return View(cart);
         }
 
