@@ -77,9 +77,9 @@ namespace Manero.Helpers.Services
             return cart.FirstOrDefault(i => i.Id == itemId);
         }
 
-        public async Task<List<CartItem>> GetCartItemsFromDBAsync()
+        public async Task<List<CartItem>> GetCartItemsFromDBAsync(int id)
         {
-            var cartItemsEntities = await _cartItemRepo.GetAllAsync();
+            var cartItemsEntities = await _cartItemRepo.GetAllByShoppingCartIdAsync(id);
             List<CartItem> cartItems = new List<CartItem>();
             foreach (var entity in cartItemsEntities)
             {
@@ -98,7 +98,8 @@ namespace Manero.Helpers.Services
             }
             return cartItems;
         }
-            public async Task SaveCartToDB(string id)
+
+        public async Task SaveCartToDB(string id)
         {
 
             var shoppingCart = await _shoppingCartRepo.GetAsync(x => x.UserId == id);
@@ -112,9 +113,9 @@ namespace Manero.Helpers.Services
             }
 
             var cartItems = GetCartFromLocal();
-            if(cartItems.Count == 0) 
+            if(cartItems.Count == 0 && shoppingCart.ShoppingCartId != 0) 
                 // If there are no items in local cart, get from Database
-                cartItems = await GetCartItemsFromDBAsync();
+                cartItems = await GetCartItemsFromDBAsync(shoppingCart.ShoppingCartId);
 
             if(cartItems != null)
             {
