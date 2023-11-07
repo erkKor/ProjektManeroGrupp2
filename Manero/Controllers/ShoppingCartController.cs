@@ -5,26 +5,34 @@ using System.Text.Json;
 using Manero.Helpers.Services;
 using Manero.Models.ViewModels;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Identity;
+using Manero.Models.Identity;
 
 namespace Manero.Controllers
 {
     public class ShoppingCartController : Controller
     {
         private readonly ShoppingCartService _cartService;
-
-        public ShoppingCartController(ShoppingCartService cartService)
+        private readonly SignInManager<AppUser> _signInManager;
+        public ShoppingCartController(ShoppingCartService cartService, SignInManager<AppUser> signInManager)
         {
             _cartService = cartService;
+            _signInManager = signInManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            List<CartItem> cart = _cartService.GetCartFromLocal();
+            var cart = new List<CartItem>();
+            if (_signInManager.IsSignedIn(User))
+               cart = await _cartService.GetCartItemsFromDBAsync();
+            else 
+                cart = _cartService.GetCartFromLocal();
+
             return View(cart);
         }
 
         [HttpPost]
-        public IActionResult AddToCart(string modelData)
+        public IActionResult Index(string modelData)
         {
             var model = JsonConvert.DeserializeObject<ProductGridItemVM>(modelData);
             if (model != null)
@@ -70,6 +78,24 @@ namespace Manero.Controllers
 
             return Json(new { error = "Item not found" });
         }
+
+
+        //[HttpPost]
+        //public IActionResult Index(CartItem item)
+        //{
+        //    //var cart = _cartService.GetCartFromLocal();
+        //    //cart.Add(item);
+
+        //    //_cartService.SaveCartToLocal(cart);
+
+        //    var updatedCart = _cartService.AddToCart(item);
+
+        //    return View(updatedCart);
+
+        //    //var cart = new List<CartItem>{item};
+        //    //_cartService.SaveCartToLocal(cart);
+        //    //return View(cart);
+        //}
     }
 }
 
@@ -111,22 +137,6 @@ namespace Manero.Controllers
 
 
 
-//[HttpPost]
-//public IActionResult Index(CartItem item)
-//{
-//    //var cart = _cartService.GetCartFromLocal();
-//    //cart.Add(item);
-
-//    //_cartService.SaveCartToLocal(cart);
-
-//    var updatedCart = _cartService.AddToCart(item);
-
-//    return View(updatedCart);
-
-//    //var cart = new List<CartItem>{item};
-//    //_cartService.SaveCartToLocal(cart);
-//    //return View(cart);
-//}
 
 //private List<CartItem> GetCartFromSession()
 //{

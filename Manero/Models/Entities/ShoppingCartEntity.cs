@@ -8,10 +8,10 @@ namespace Manero.Models.Entities
     {
         [Key]
         public int ShoppingCartId { get; set; }
-        public virtual ICollection<CartItemEntity> Items { get; set; } = null!;
-        public Guid UserId { get; set; }
+        public virtual ICollection<CartItemEntity> Items { get; set; } = new List<CartItemEntity>();
+        public string UserId { get; set; }
 
-        [ForeignKey("Id")]
-        public AppUser User { get; set; } = null!;
+        [ForeignKey("UserId")]
+        public AppUser AppUser { get; set; } 
     }
 }

@@ -14,11 +14,13 @@ namespace Manero.Helpers.Services
         private const string LocalStorageKey = "LocalCartItems";
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ShoppingCartRepository _shoppingCartRepo;
+        private readonly CartItemRepository _cartItemRepo;
 
-        public ShoppingCartService(IHttpContextAccessor httpContextAccessor, ShoppingCartRepository shoppingCartRepo)
+        public ShoppingCartService(IHttpContextAccessor httpContextAccessor, ShoppingCartRepository shoppingCartRepo, CartItemRepository cartItemRepo)
         {
             _httpContextAccessor = httpContextAccessor;
             _shoppingCartRepo = shoppingCartRepo;
+            _cartItemRepo = cartItemRepo;
         }
 
 
@@ -76,29 +78,85 @@ namespace Manero.Helpers.Services
             return cart.FirstOrDefault(i => i.Id == itemId);
         }
 
-        public void SaveCartToDB(Guid id)
+        public async Task<List<CartItem>> GetCartItemsFromDBAsync()
         {
-            
-            
-           var cartItems = GetCartFromLocal();
-            cartItems = (List<CartItem>)cartItems.Select(p => new CartItemEntity
+            var cartItemsEntities = await _cartItemRepo.GetAllAsync();
+            List<CartItem> cartItems = new List<CartItem>();
+            foreach (var entity in cartItemsEntities)
             {
-                CartItemId = p.Id,
-                Name = p.Name,
-                Color = p.Color,
-                Size = p.Size,
-                Price = p.Price,
-                Quantity = p.Quantity,
-            });
+                // Convert CartItemEntity to CartItem
+                CartItem cartItem = new CartItem
+                {
+                    Id = entity.ProductId,
+                    Name = entity.Name,
+                    Color = entity.Color,
+                    Price = entity.Price,
+                    Quantity = entity.Quantity,
+                    Size = entity.Size,
+                };
 
-
-            var shoppingCart = new ShoppingCartEntity
-            {
-                Items = (ICollection<CartItemEntity>)cartItems,
-                UserId = id
-            };
-            _shoppingCartRepo.AddAsync(shoppingCart);
+                cartItems.Add(cartItem);
+            }
+            return cartItems;
         }
+            public async Task SaveCartToDB(string id)
+        {
+
+            var shoppingCart = await _shoppingCartRepo.GetAsync(x => x.UserId == id);
+            // If Cart doesn't exist, create a new cart
+            if (shoppingCart == null)
+            {
+                shoppingCart = new ShoppingCartEntity
+                {
+                    UserId = id
+                };
+            }
+
+            var cartItems = GetCartFromLocal();
+            if(cartItems.Count == 0) 
+                cartItems = await GetCartItemsFromDBAsync();
+
+            if(cartItems != null)
+            {
+                foreach (var item in cartItems)
+                {
+                    var existingCartItem = shoppingCart.Items.FirstOrDefault(x => x.Name == item.Name && x.Color == item.Color && x.Size == item.Size);
+
+                    if (existingCartItem != null)
+                    {
+                        // Update existing cart item if found
+                        existingCartItem.Price = item.Price;
+                        existingCartItem.Quantity = item.Quantity;
+                    }
+                    else
+                    {
+                        // Create a new cart item and add it to the shopping cart
+                        var cartItemEntity = new CartItemEntity
+                        {
+                            Name = item.Name,
+                            Color = item.Color,
+                            Size = item.Size,
+                            Price = item.Price,
+                            Quantity = item.Quantity
+                        };
+
+                        shoppingCart.Items.Add(cartItemEntity); // Add new cart item to the shopping cart
+                    }
+                }
+            }
+            
+
+            // Save the updated/created shoppingCart to the database using your repository
+            if (shoppingCart.ShoppingCartId != 0)
+            {
+                await _shoppingCartRepo.UpdateShoppingCartWithItemsAsync(shoppingCart); // Update existing cart
+            }
+            else
+            {
+                await _shoppingCartRepo.AddShoppingCartWithItemsAsync(shoppingCart); // Add new cart
+            }
+        }
+
     }
 }
 
