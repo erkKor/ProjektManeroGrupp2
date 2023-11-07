@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Shoppingcart";
 }
+@model List<CartItem>
 
 <section class="top-bar">
     <div class="container">
@@ -17,11 +18,45 @@
 
 <section class="shoppingcart">
     <div class="container">
-        <img src="./images/Ellipse 30.svg">
+        <div class="product-grid">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <div class="product-card">
+                        <div class="wrapper">
+                            <div class="product-image">
+                                <span>SALE</span>
+                            </div>
+                            <div class="product-content">
+                                <p>@item.Name</p>
+                                <div class="price">
+                                    <p class="original-price discount"></p>
+                                    <p class="discount-price">$@item.Price.ToString("0.00")</p>
 
-        <p class="empty-message">Your cart is empty!</p>
-        <div class="check-order">
-            <p class="ordertest">Looks like you haven't made your order yet.</p>
+                                </div>
+                                <p class="size">Size: -</p>
+                                <p class="color">Color: Red</p>
+                            </div>
+                        </div>
+                        <form class="buttons" method="post">
+                            <button class="increment-btn" data-item-id="@item.Id"><i class="fa-light fa-plus"></i></button>
+                            <span data-item-id="@item.Id">@item.Quantity</span>
+                            <button class="decrement-btn" data-item-id="@item.Id"><i class="fa-light fa-minus"></i></button>
+                        </form>
+                    </div>
+                }
+            }
+            else
+            {
+                <img src="./images/Ellipse 30.svg">
+
+                <p class="empty-message">Your cart is empty!</p>
+                <div class="check-order">
+                    <p class="ordertest">Looks like you haven't made your order yet.</p>
+                </div>
+            }
+            
         </div>
     </div>
 </section>

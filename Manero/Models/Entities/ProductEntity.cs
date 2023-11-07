@@ -6,7 +6,9 @@ namespace Manero.Models.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; } = null!;
-        public string Description { get; set; } = null!;
+        public string? Size { get; set; } 
+        public string? Color { get; set; }
+        public string? Description { get; set; }
         public int Rating { get; set; }
         [Column(TypeName = "money")]
         public decimal Price { get; set; }
