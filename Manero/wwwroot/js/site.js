@@ -59,3 +59,84 @@ $(document).ready(function () {
 function toggleDropdown() {
     document.getElementById("myDropdown").classList.toggle("show");
 }
+
+
+
+//Update quantity in ShoppingCart without reload
+$(document).ready(function () {
+    $(".increment-btn").click(function (event) {
+        event.preventDefault();
+        var itemId = $(this).data('item-id');
+        updateQuantity(itemId, 'increment');
+    });
+
+    $(".decrement-btn").click(function (event) {
+        event.preventDefault();
+        var itemId = $(this).data('item-id');
+        updateQuantity(itemId, 'decrement');
+    });
+
+    function updateQuantity(itemId, action) {
+        $.ajax({
+            type: 'POST',
+            url: '/ShoppingCart/UpdateQuantity',
+            data: { itemId: itemId, action: action },
+            success: function (data) {
+                $("span[data-item-id='" + itemId + "']").text(data.newQuantity);
+            },
+            error: function () {
+                alert('Failed to update quantity.');
+            }
+        });
+    }
+});
+
+// Validation of Forms 
+const validateEmail = (event) => {
+    const regExEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const xMark = document.getElementById("x-mark")
+    const checkMark = document.getElementById("check-mark")
+
+    if (regExEmail.test(event.target.value)) {
+        checkMark.classList.remove("i-hide")
+        xMark.classList.add("i-hide")
+
+    }
+    else {
+        xMark.classList.remove("i-hide")
+        checkMark.classList.add("i-hide")
+    }
+}
+
+const validateFirstName = (event) => {
+    const regExName = /^[A-Z][a-zA-Z]*$/
+    const xMark = document.getElementById("x-mark-FirstName")
+    const checkMark = document.getElementById("check-mark-FirstName")
+
+    if (regExName.test(event.target.value)) {
+        checkMark.classList.remove("i-hide")
+        xMark.classList.add("i-hide")
+
+    }
+    else {
+        xMark.classList.remove("i-hide")
+        checkMark.classList.add("i-hide")
+    }
+}
+
+const validateLastName = (event) => {
+    const regExName = /^[A-Z][a-zA-Z]*$/
+    const xMark = document.getElementById("x-mark-LastName")
+    const checkMark = document.getElementById("check-mark-LastName")
+
+    if (regExName.test(event.target.value)) {
+        checkMark.classList.remove("i-hide")
+        xMark.classList.add("i-hide")
+
+    }
+    else {
+        xMark.classList.remove("i-hide")
+        checkMark.classList.add("i-hide")
+    }
+}
+

@@ -6,16 +6,17 @@ namespace Manero.Models.ViewModels
 {
     public class SignUpViewModel
     {
+        [RegularExpression("^[A-Z][a-zA-Z]*$", ErrorMessage = "First name must start with a capital letter and no special characters allowed, e.g. Test")]
         [Required(ErrorMessage = "First Name is required")]
         [Display(Name = "FIRST NAME")]
         public string FirstName { get; set; } = null!;
 
-
+        [RegularExpression("^[A-Z][a-zA-Z]*$", ErrorMessage = "Last name must start with a capital letter and no special characters allowed, e.g. Test")]
         [Required(ErrorMessage = "Last Name is required")]
         [Display(Name = "LAST NAME")]
         public string LastName { get; set; } = null!;
 
-
+        [RegularExpression("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$", ErrorMessage = "It must be a valid email, e.g. test@domain.com")]
         [Required(ErrorMessage = "Email Address is required")]
         [Display(Name = "EMAIL ADDRESS")]
         [DataType(DataType.EmailAddress)]

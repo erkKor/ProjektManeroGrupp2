@@ -1,0 +1,68 @@
+﻿@model EditProfileVM
+
+@{
+
+    ViewData["Title"] = "Edit Profile";
+
+}
+<section class="top-bar">
+    <div class="container">
+        <button><i class="fa-solid fa-bars-staggered"></i></button>
+        <div class="logo">
+            <span></span>
+            <h4>Edit Profile</h4>
+        </div>
+        <button>
+            <i class="fa-light fa-bag-shopping"></i>
+        </button>
+    </div>
+</section>
+
+
+
+<section class="account">
+    <div class="container">
+        <div class="account-image">
+            <img src="~/profileimages/1e38d6fa-318c-4917-bf61-0d456d465e53_page39-order-successful.svg" alt="">
+
+            <label for="" style="display: none;">
+                Välj fil
+            </label>
+            <i class="fa-light fa-camera profile-icon"></i>
+        </div>
+    </div>   
+
+</section>
+
+<section class="edit-profile">    
+        <div class="container">
+            
+            @using (Html.BeginForm("UpdateUser", "EditProfile", FormMethod.Post))
+            {
+                <div class="input-grp">
+                    @Html.LabelFor(m => m.FirstName)
+                    @Html.EditorFor(m => m.FirstName)
+                </div>
+                <div class="input-grp">
+                    @Html.LabelFor(m => m.LastName)
+                    @Html.EditorFor(m => m.LastName)
+                </div>
+                <div class="input-grp">
+                    @Html.LabelFor(m => m.Email)
+                    @Html.EditorFor(m => m.Email)
+                </div>
+                <div class="input-grp">
+                    @Html.LabelFor(m => m.PhoneNumber)
+                    @Html.EditorFor(m => m.PhoneNumber)
+                </div>
+                <div class="input-grp">
+                    @Html.LabelFor(m => m.Location)
+                    @Html.EditorFor(m => m.Location)
+                </div>
+                <button type="submit" class="button-theme">Save Changes</button>
+            }
+        </div>
+</section>
+
+   
+<partial name="/Views/Partials/_NavbarPartial.cshtml" />
