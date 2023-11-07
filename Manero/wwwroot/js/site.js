@@ -140,3 +140,24 @@ const validateLastName = (event) => {
     }
 }
 
+
+//Toggle menu
+document.addEventListener("DOMContentLoaded", function () {
+    const toggleBtn = document.getElementById("toggle-btn");
+    const toggleMenuBody = document.getElementById("toggle-menu-body");
+    toggleBtn.addEventListener("click", function () {
+
+        if (toggleMenuBody.classList.contains("toggle-invisible")) {
+            toggleMenuBody.classList.add("toggle-visible")
+            toggleMenuBody.classList.remove("toggle-invisible")
+        }
+    })
+
+    document.addEventListener("click", function (event) {
+        if (toggleMenuBody.classList.contains("toggle-visible") && event.target !== toggleBtn && !toggleMenuBody.contains(event.target)) {
+            toggleMenuBody.classList.remove("toggle-visible")
+            toggleMenuBody.classList.add("toggle-invisible")
+        }
+    });
+})
+

@@ -854,13 +854,147 @@ content: '$';
 .top-bar {
     padding-bottom: 0.5rem;
     border-bottom: 1px solid #DBE3F5;
+    position: relative;
 }
 
-    .top-bar .container {
-        display: flex;
-        justify-content: space-between;
-        margin-top:1rem;
+.top-bar .container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+    .top-bar .container .toggle-menu .toggle-invisible {
+        display: none;
     }
+
+    .top-bar .container .toggle-menu .toggle-visible {
+        display: block;
+        z-index: 1;
+    }
+
+.top-bar .container .toggle-menu #toggle-menu-body {
+    background-color: #111111;
+    color: white;
+    height: 100vh;
+    width: 30vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+}
+
+.top-bar .container .toggle-menu #toggle-menu-body .toggle-menu-grid {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    height: 100%;
+}
+
+.top-bar .container .toggle-menu #toggle-menu-body .toggle-menu-grid .toggle-menu-top {
+    grid-area: 1/1;
+    margin-top: 60px;
+}
+
+.top-bar .container .toggle-menu #toggle-menu-body .toggle-menu-grid .toggle-menu-top .vertical-line {
+    background-color: white;
+    margin-left: 20px;
+}
+
+.top-bar .container .toggle-menu #toggle-menu-body .toggle-menu-grid .toggle-menu-top .toggle-menu-title {
+    padding-left: 20px;
+    font-size: 22px;
+    font-weight: 700;
+    font-family: "Mulish", sans-serif;
+}
+
+.top-bar .container .toggle-menu #toggle-menu-body .toggle-menu-grid .toggle-menu-top .toggle-menu-card {
+    border-bottom: 1px solid #4E5156;
+    display: flex;
+    justify-content: flex-start;
+    align-items: start;
+    gap: 10px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.top-bar .container .toggle-menu #toggle-menu-body .toggle-menu-grid .toggle-menu-top .toggle-menu-card .circle {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #4E5156;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+    color: white;
+}
+
+.top-bar .container .toggle-menu #toggle-menu-body .toggle-menu-grid .toggle-menu-top .toggle-menu-card div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #B3B9C7;
+}
+
+.top-bar .container .toggle-menu #toggle-menu-body .toggle-menu-grid .toggle-menu-bottom {
+    grid-area: 3/1;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.top-bar .container .toggle-menu #toggle-menu-body .toggle-menu-grid .toggle-menu-bottom .track-order-title {
+    margin-bottom: 20px;
+    color: #B3B9C7;
+}
+
+.top-bar .container .toggle-menu #toggle-menu-body .toggle-menu-grid .toggle-menu-bottom .input-grp label {
+    background-color: black;
+    color: #B3B9C7;
+}
+
+.top-bar .container .toggle-menu #toggle-menu-body .toggle-menu-grid .toggle-menu-bottom .input-grp input {
+    background-color: transparent;
+    color: white;
+    width: auto;
+    margin-bottom: 30px;
+    border: 1px solid #424448;
+}
+
+.top-bar .container .toggle-menu #toggle-menu-body .toggle-menu-grid .toggle-menu-bottom .input-grp button {
+    background-color: #424448;
+    border: 1px solid wheat;
+    width: 43px;
+    height: 43px;
+    border: 1px solid #4E5156;
+    border-radius: 50%;
+    position: absolute;
+    right: 20px;
+    top: 3px;
+}
+
+@media (min-width: 1200px) {
+    .top-bar .container .toggle-menu #toggle-menu-body .toggle-menu-grid .toggle-menu-bottom .input-grp button {
+        right: 35px;
+        top: 3px;
+    }
+}
+
+@media (min-width: 992px) {
+    .top-bar .container .toggle-menu #toggle-menu-body .toggle-menu-grid .toggle-menu-bottom .input-grp button {
+        right: 35px;
+        top: 3px;
+    }
+}
+
+@media (min-width: 768px) {
+    .top-bar .container .toggle-menu #toggle-menu-body .toggle-menu-grid .toggle-menu-bottom .input-grp button {
+        right: 35px;
+        top: 3px;
+    }
+}
+
+.top-bar .container .toggle-menu #toggle-menu-body .toggle-menu-grid .toggle-menu-bottom .input-grp button i {
+    color: #111111;
+    font-size: 1.2rem;
+}
 
     .top-bar button {
         border: none;
