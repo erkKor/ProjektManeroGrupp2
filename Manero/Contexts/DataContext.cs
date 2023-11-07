@@ -38,4 +38,13 @@ namespace Manero.Contexts
             );
         }
     }
+
+    public class MockDataContext : DataContext
+    {
+        public MockDataContext(DbContextOptions<DataContext> options) : base(options)
+        {
+            // If you need to pass DbContextOptions, include them here
+        }
+    }
+
 }
