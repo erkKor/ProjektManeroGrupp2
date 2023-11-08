@@ -36,7 +36,6 @@ namespace Manero.Controllers
                     var shoppingCartId = await _shoppingCartRepo.GetAsync(x => x.UserId == signedInUserId);
                     if (shoppingCartId.ShoppingCartId != 0)
                         cart = await _cartService.GetCartItemsFromDBAsync(shoppingCartId.ShoppingCartId);
-
                 }
             }
             else 

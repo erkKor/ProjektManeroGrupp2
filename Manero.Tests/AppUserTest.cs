@@ -25,4 +25,6 @@ public class AppUserTest
         Assert.Equal(viewModel.LastName, user.LastName);
         Assert.Equal(viewModel.Email, user.Email);
     }
+
+
 }
