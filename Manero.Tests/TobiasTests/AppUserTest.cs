@@ -1,7 +1,7 @@
 ﻿using Manero.Models.Identity;
 using Manero.Models.ViewModels;
 
-namespace Manero.Tests;
+namespace Manero.Tests.TobiasTests;
 
 public class AppUserTest
 {
