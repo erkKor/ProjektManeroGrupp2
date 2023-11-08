@@ -1,27 +1,17 @@
-﻿using Manero.Controllers;
-using Manero.Helpers.Services;
+﻿using Manero.Helpers.Services;
 using Manero.Models.Identity;
 using Manero.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Moq;
-using NSubstitute;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Manero.Tests
+namespace Manero.Tests.TobiasTests
 {
-    public class LoginTest
+    public class SignUpServiceTest
     {
         private readonly SignUpService _signUpService;
         private readonly Mock<UserManager<AppUser>> _userManagerMock;
 
-        public LoginTest()
+        public SignUpServiceTest()
         {
             _userManagerMock = new Mock<UserManager<AppUser>>(
                 new Mock<IUserStore<AppUser>>().Object,
