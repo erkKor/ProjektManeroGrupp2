@@ -4,7 +4,7 @@ using Manero.Helpers.Services;
 using Manero.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Manero.Tests
+namespace Manero.Tests.ErikTests
 {
     public class ProductService_Test : IDisposable
     {
@@ -19,8 +19,6 @@ namespace Manero.Tests
                 .Options;
 
             _context = new DataContext(_options);
-
-            // Seed the in-memory database with test data
             SeedData(_context);
 
             _productService = new ProductService(new ProductRepository(_context));
@@ -28,10 +26,8 @@ namespace Manero.Tests
 
         private void SeedData(DataContext context)
         {
-            // Add seed data to the in-memory database for testing purposes
             context.Products.Add(new ProductEntity { Id = 1, Name = "Test Product 1", Description = " ", Rating = 3 });
             context.Products.Add(new ProductEntity { Id = 2, Name = "Test Product 2", Description = " ", Rating = 3 });
-
             context.SaveChanges();
         }
 

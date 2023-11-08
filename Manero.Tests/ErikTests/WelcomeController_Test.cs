@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Manero.Tests
+namespace Manero.Tests.ErikTests
 {
     public class WelcomeController_Test
     {
