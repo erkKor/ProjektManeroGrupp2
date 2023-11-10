@@ -1,14 +1,16 @@
 using Manero.Contexts;
 using Manero.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Manero.Controllers
 {
+    [Authorize]
     public class MyAddressesController : Controller
     {
 
-        DataContext _context;
+        readonly DataContext _context;
 
         public MyAddressesController(DataContext context) =>
             _context = context;
@@ -16,9 +18,8 @@ namespace Manero.Controllers
         public async Task<IActionResult> Index()
         {
 
-            //TODO: User should not be able to modify all addresses on server, fix this once login is fixed
-
-            var addresses = await _context.Adresses.ToArrayAsync();
+            var user = await _context.Users.Include(u => u.Adresses).ThenInclude(a => a.Adress).FirstOrDefaultAsync(u => u.Email == User.Identity!.Name);
+            var addresses = user!.Adresses.Select(a => a.Adress).ToArray();
             return View(new MyAddressesVM() { Addresses = addresses });
 
         }
