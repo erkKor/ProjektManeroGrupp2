@@ -1,8 +1,7 @@
-using Manero.Contexts;
+using Manero.Helpers.Services;
 using Manero.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Manero.Controllers
 {
@@ -10,18 +9,15 @@ namespace Manero.Controllers
     public class MyAddressesController : Controller
     {
 
-        readonly DataContext _context;
+        readonly AddressService _service;
 
-        public MyAddressesController(DataContext context) =>
-            _context = context;
+        public MyAddressesController(AddressService service) =>
+            _service = service;
 
         public async Task<IActionResult> Index()
         {
-
-            var user = await _context.Users.Include(u => u.Adresses).ThenInclude(a => a.Adress).FirstOrDefaultAsync(u => u.Email == User.Identity!.Name);
-            var addresses = user!.Adresses.Select(a => a.Adress).ToArray();
+            var addresses = await _service.FindAddressesForUserWithEmail(User.Identity!.Name!);
             return View(new MyAddressesVM() { Addresses = addresses });
-
         }
 
     }

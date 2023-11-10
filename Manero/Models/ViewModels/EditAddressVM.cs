@@ -26,9 +26,9 @@ namespace Manero.Models.ViewModels
 
             var entity = new AdressEntity
             {
+                AdressName = view.AdressName,
                 City = view.City,
                 PostalCode = view.PostalCode,
-                AdressName = view.AdressName,
                 StreetName = view.StreetName
             };
 
@@ -38,6 +38,16 @@ namespace Manero.Models.ViewModels
             return entity;
 
         }
+
+        public static implicit operator EditAddressVM(AdressEntity entity) =>
+            new()
+            {
+                Id = entity.Id,
+                AdressName = entity.AdressName,
+                City = entity.City,
+                PostalCode = entity.PostalCode,
+                StreetName = entity.StreetName,
+            };
 
     }
 }

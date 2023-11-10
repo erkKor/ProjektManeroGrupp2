@@ -14,6 +14,11 @@ public class AddressService
     public AddressService(DataContext context) =>
         _context = context;
 
+    public async Task<AdressEntity?> FindAsync(int? id) =>
+        id is not null
+        ? await _context.Adresses.FirstOrDefaultAsync(a => a.Id == id)
+        : null;
+
     public async Task<bool> AddAsync(EditAddressVM view, AppUser user)
     {
 
@@ -39,7 +44,7 @@ public class AddressService
     public async Task<bool> UpdateAsync(EditAddressVM view)
     {
 
-        if (await _context.Adresses.FirstOrDefaultAsync(a => a.Id == view.Id) is AdressEntity address)
+        if (await FindAsync(view.Id) is AdressEntity address)
         {
             address.StreetName = view.StreetName;
             address.City = view.City;
@@ -56,7 +61,7 @@ public class AddressService
     public async Task<bool> RemoveAsync(int id)
     {
 
-        if (await _context.Adresses.FirstOrDefaultAsync(a => a.Id == id) is AdressEntity address)
+        if (await FindAsync(id) is AdressEntity address)
         {
             _context.Adresses.Remove(address);
             await _context.SaveChangesAsync();
@@ -65,6 +70,13 @@ public class AddressService
         else
             return false;
 
+    }
+
+    public async Task<IEnumerable<AdressEntity>> FindAddressesForUserWithEmail(string email)
+    {
+        var user = await _context.Users.Include(u => u.Adresses).ThenInclude(a => a.Adress).FirstOrDefaultAsync(u => u.Email == email);
+        var addresses = user!.Adresses.Select(a => a.Adress).ToArray();
+        return addresses;
     }
 
 }
