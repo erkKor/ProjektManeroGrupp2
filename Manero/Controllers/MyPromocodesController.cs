@@ -1,12 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Manero.Models.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Manero.Controllers
 {
     public class MyPromocodesController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(MyPromoViewModel model)
         {
-            return View();
+
+            // Generate new promocode temporary
+
+            model.GenerateRandomCompanyName();
+            model.GenerateRandomDiscountPercentage();
+            model.GenerateRandomValidYearAndMonth();
+            return View(model);
         }
     }
 }
