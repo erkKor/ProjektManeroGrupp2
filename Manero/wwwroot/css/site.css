@@ -1871,6 +1871,8 @@ content: '$';
         }
 
     .section-mypromocodes .promocodes-discount {
+        display: flex;
+        align-items: center;
         border-top: 1px solid #DBE3F5;
         height: 125px;
     }
@@ -1909,7 +1911,7 @@ content: '$';
                 margin: 0;
             }
 
-    .section-mypromocodes .promcodes-border {
+    .section-mypromocodes .promocodes-border {
         border-bottom: 1px solid #DBE3F5;
     }
 
