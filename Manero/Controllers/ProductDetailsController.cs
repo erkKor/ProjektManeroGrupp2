@@ -5,12 +5,13 @@ namespace Manero.Controllers
 {
     public class ProductDetailsController : Controller
     {
-        private readonly ProductService _productService;
+        private readonly ProductDetailsService _productService;
 
-        public ProductDetailsController(ProductService productService)
+        public ProductDetailsController(ProductDetailsService productDetailsService)
         {
-            _productService = productService;
+            _productService = productDetailsService;
         }
+
 
         public async Task<IActionResult> Product(int id)
         {

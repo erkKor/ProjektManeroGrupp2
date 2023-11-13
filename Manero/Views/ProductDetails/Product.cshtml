@@ -1,0 +1,173 @@
+﻿@model Manero.Models.Entities.ProductDetailsEntity
+@inject ProductDetailsService productService
+@inject ReviewService reviewService
+
+
+@{
+    var product = await productService.GetAsync(x => x.ProductId == Model.ProductId);
+    var reviews = await reviewService.GetReviewsByProductIdAsync(product.ProductId);
+    var latestReviews = await reviewService.GetLatestReviewsByProductIdAsync(product.ProductId, 3);
+}
+
+<div class="productDetails">
+    <div class="container">
+        <div class="product-details-image">
+            <img src="" alt="">
+
+            <nav class="nav-pagination">
+                <button class="current dots  first "></button>
+                <button class="dots second"></button>
+                <button class="dots third"></button>
+            </nav>
+
+        </div>
+        <hr>
+
+        <div class="info">
+            <h3>@product.Name</h3>
+
+
+            @* @{
+            // Assuming reviews is a list of ReviewViewModel objects with a Rating property
+            var ratings = reviews.Select(r => r.Rating).ToList();
+
+            // Method to calculate the median from a list of integers
+            double CalculateMedian(List<int> values)
+            {
+            if (values.Count == 0) return 0;
+
+            values.Sort();
+            int count = values.Count;
+            int mid = count / 2;
+
+            return count % 2 != 0 ? values[mid] : (values[mid - 1] + values[mid]) / 2.0;
+            }
+
+            // Call the method with the list of ratings to get the median value
+            var medianRating = CalculateMedian(ratings);
+            }
+
+            <div id="stars" class="star-rating">
+            <span class="star" data-value="1">@((medianRating >= 1 ? "&#9733;" : "&#9734;"))</span>
+            <span class="star" data-value="2">@((medianRating >= 2 ? "&#9733;" : "&#9734;"))</span>
+            <span class="star" data-value="3">@((medianRating >= 3 ? "&#9733;" : "&#9734;"))</span>
+            <span class="star" data-value="4">@((medianRating >= 4 ? "&#9733;" : "&#9734;"))</span>
+            <span class="star" data-value="5">@((medianRating >= 5 ? "&#9733;" : "&#9734;"))</span>
+            </div> *@
+
+            <div class="price">
+                @product.Price
+            </div>
+
+
+            <div id="quantity-selector">
+                <span onclick="decrementQuantity()">-</span>
+                <span id="quantity-display">1</span>
+                <span onclick="incrementQuantity()">+</span>
+            </div>
+
+            <div class="product-selection">
+                <form asp-action="ShoppingCart" method="post" novalidate>
+                    <input type="hidden" asp-for="Size" id="size-value" />
+                    <input type="hidden" asp-for="ProductColors" id="color-value" />
+                    <input type="hidden" asp-for="Quantity" id="quantity-value" />
+
+                    <div id="sizes">
+                        <span class="size" data-value="XS" onclick="setSize('XS')">XS</span>
+                        <span class="size" data-value="S" onclick="setSize('S')">S</span>
+                        <span class="size" data-value="M" onclick="setSize('M')">M</span>
+                        <span class="size" data-value="L" onclick="setSize('L')">L</span>
+                        <span class="size" data-value="XL" onclick="setSize('XL')">XL</span>
+                        <span class="size" data-value="XXL" onclick="setSize('XXL')">XXL</span>
+                    </div>
+
+                    <div id="colors">
+                        <span class="color" data-value="Red" onclick="setColor('Red')" style="color: red;">&#11044;</span>
+                        <span class="color" data-value="Blue" onclick="setColor('Blue')" style="color: blue;">&#11044;</span>
+                        <span class="color" data-value="Black" onclick="setColor('Black')" style="color: black;">&#11044;</span>
+                        <span class="color" data-value="White" onclick="setColor('White')" style="color: white;">&#11044;</span>
+                    </div>
+
+                    <div class="product-details-description">
+                        <h5>Description</h5>
+                        <p>@product.Description</p>
+                    </div>
+
+                    <button type="submit" class="btn-theme">Add to Cart</button>
+                </form>
+
+            </div>
+
+
+
+            <div class="reviews">
+                <h3>Reviews</h3><a asp-controller="Review" asp-action="AllReviews" asp-route-productId="@product.ProductId">View All<i class="fa-solid fa-arrow-right"></i></a>
+                @foreach (var review in latestReviews)
+                {
+                    <div>
+                        <p>@review.CreatedAt.ToShortDateString()</p>
+                        <p>@review.Text</p>
+                        <p>Rating: @review.Rating</p>
+                    </div>
+                }
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function setSize(size) {
+        document.getElementById('size-value').value = size;
+        const sizes = document.querySelectorAll('.size');
+        sizes.forEach(s => {
+            if (s.getAttribute('data-value') === size) {
+                s.style.fontWeight = 'bold';
+            } else {
+                s.style.fontWeight = 'normal';
+            }
+        });
+    }
+
+    function setColor(color) {
+        document.getElementById('color-value').value = color;
+        const colors = document.querySelectorAll('.color');
+        colors.forEach(c => {
+            c.innerHTML = '&#11044;';
+        });
+        const selectedColor = document.querySelector('.color[data-value="' + color + '"]');
+        selectedColor.innerHTML = '&#10004;';
+    }
+
+    function incrementQuantity() {
+        const quantityDisplay = document.getElementById('quantity-display');
+        const currentQuantity = parseInt(quantityDisplay.innerText);
+        quantityDisplay.innerText = (currentQuantity + 1).toString();
+        updateQuantityField();
+    }
+
+    function decrementQuantity() {
+        const quantityDisplay = document.getElementById('quantity-display');
+        const currentQuantity = parseInt(quantityDisplay.innerText);
+        if (currentQuantity > 1) {
+            quantityDisplay.innerText = (currentQuantity - 1).toString();
+            updateQuantityField();
+        }
+    }
+
+    function updateQuantityField() {
+        const quantityField = document.getElementById('quantity-value');
+        const quantityDisplay = document.getElementById('quantity-display');
+        quantityField.value = quantityDisplay.innerText;
+    }
+</script>
+
+<style>
+    .size, .color {
+        margin-right: 10px;
+        cursor: pointer;
+    }
+</style>
