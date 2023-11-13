@@ -1,0 +1,60 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers;
+
+@model Manero.Models.ViewModels.ReviewViewModel
+
+<div class="chat-bubble"><i class="fa-regular fa-comments"></i></div>
+<div class="review-product"><h1>Please rate the quality of service for the order!</h1></div>
+
+<form asp-action="Index" method="post" novalidate>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <input type="hidden" asp-for="ProductId" />
+
+    <div id="stars" class="star-rating">
+        <span class="star" data-value="1">&#9734;</span>
+        <span class="star" data-value="2">&#9734;</span>
+        <span class="star" data-value="3">&#9734;</span>
+        <span class="star" data-value="4">&#9734;</span>
+        <span class="star" data-value="5">&#9734;</span>
+    </div>
+    <style>
+        .star-rating {
+            font-size: 30px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const stars = document.querySelectorAll('.star');
+            const ratingValue = document.getElementById('rating-value');
+
+            stars.forEach(star => {
+                star.addEventListener('click', function () {
+                    const value = this.getAttribute('data-value');
+                    ratingValue.value = value;
+
+                    stars.forEach(s => {
+                        if (s.getAttribute('data-value') <= value) {
+                            s.innerHTML = '&#9733;';
+                        } else {
+                            s.innerHTML = '&#9734;';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+    <label asp-for="Rating" name="Rating" class="form-label"></label>
+    <input asp-for="Rating" name="Rating" class="form-control" type="hidden" id="rating-value" value="0" />
+    <span asp-validation-for="Rating" class="text-danger"></span>
+
+    <h3>Your comments and suggestions help us improve the service quality better!</h3>
+
+    <label asp-for="Text" name="Text" class="form-label"></label>
+    <textarea asp-for="Text" name="Text" class="form-control" rows="3"></textarea>
+    <span asp-validation-for="Text" class="text-danger"></span>
+
+
+    <button type="submit" class="button-theme">Submit</button>
+</form>

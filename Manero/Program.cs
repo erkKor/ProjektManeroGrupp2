@@ -21,12 +21,15 @@ builder.Services.AddScoped<SignInService>();
 builder.Services.AddScoped<ShoppingCartService>();
 builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<AddressService>();
+builder.Services.AddScoped<ReviewService>();
 
 //Repositories
 builder.Services.AddScoped<SignUpRepo>();
 builder.Services.AddScoped<ShoppingCartRepository>();
 builder.Services.AddScoped<ProductRepository>();
 builder.Services.AddScoped<CartItemRepository>();
+
+builder.Services.AddScoped<ProductDetailsRepo>();
 
 //Identity
 builder.Services.AddIdentity<AppUser, IdentityRole>(x =>

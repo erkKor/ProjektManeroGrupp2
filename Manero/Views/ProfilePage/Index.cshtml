@@ -25,7 +25,7 @@
         <div class="account-image">
             @if (User.Identity.IsAuthenticated)
             {
-                @if (Model != null && !string.IsNullOrEmpty(Model.UploadProfileImage))
+                if (Model != null && !string.IsNullOrEmpty(Model.UploadProfileImage))
                 {
                     <img src="@Model.UploadProfileImage">
                 }

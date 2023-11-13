@@ -1,15 +1,21 @@
-﻿using Manero.Helpers.Repositories;
+﻿using Manero.Contexts;
+using Manero.Helpers.Repositories;
 using Manero.Models.Entities;
 using Manero.Models.ViewModels;
+using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace Manero.Helpers.Services
 {
     public class ProductService
     {
         private readonly ProductRepository _productRepo;
-        public ProductService( ProductRepository productRepo)
+        private readonly DataContext _context;
+
+        public ProductService( ProductRepository productRepo, DataContext context)
         {
             _productRepo = productRepo;
+            _context = context;
         }
 
         public async Task<ProductGridItemVM> GetProductAsync(int id)
@@ -59,5 +65,26 @@ namespace Manero.Helpers.Services
         //    var categories = await _categoryService.GetCategoriesAsync();
         //    return categories.Select(c => c.Name);
         //}
+
+        public async Task<IEnumerable<ProductDetailsEntity>> GetAllWithCategoriesAsync()
+        {
+            return await _context.ProductDetails
+                .Include(p => p.Category)
+                    .ThenInclude(pc => pc.Category)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<ProductDetailsEntity>> GetAsync()
+        {
+            var products = await _context.ProductDetails.Include(x => x.Category).ThenInclude(x => x.Category).ToListAsync();
+            return products;
+        }
+
+        public async Task<ProductDetailsEntity> GetAsync(Expression<Func<ProductDetailsEntity, bool>> expression)
+        {
+            var product = await _context.ProductDetails.Include(x => x.Category).ThenInclude(x => x.Category).FirstOrDefaultAsync(expression);
+            return product!;
+
+        }
     }
 }
