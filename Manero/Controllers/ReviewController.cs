@@ -1,4 +1,5 @@
-﻿using Manero.Helpers.Services;
+﻿using Manero.Contexts;
+using Manero.Helpers.Services;
 using Manero.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -10,11 +11,13 @@ namespace Manero.Controllers
         {
             private readonly ReviewService _reviewService;
             private readonly ProductDetailsService _productService;
+            readonly DataContext _context;
 
-            public ReviewController(ReviewService reviewService, ProductDetailsService productDetailsService)
+        public ReviewController(ReviewService reviewService, ProductDetailsService productDetailsService, DataContext context)
             {
                 _reviewService = reviewService;
                 _productService = productDetailsService;
+                _context = context;
             }
             public async Task<IActionResult> Index(int productId)
             {

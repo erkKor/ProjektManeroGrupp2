@@ -1,4 +1,5 @@
-﻿using Manero.Helpers.Services;
+﻿using Manero.Contexts;
+using Manero.Helpers.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Manero.Controllers
@@ -6,10 +7,12 @@ namespace Manero.Controllers
     public class ProductDetailsController : Controller
     {
         private readonly ProductDetailsService _productService;
+        readonly DataContext _context;
 
-        public ProductDetailsController(ProductDetailsService productDetailsService)
+        public ProductDetailsController(ProductDetailsService productDetailsService, DataContext context)
         {
             _productService = productDetailsService;
+            _context = context;
         }
 
 

@@ -21,7 +21,7 @@ namespace Manero.Tests.ErikTests
             _context = new DataContext(_options);
             SeedData(_context);
 
-            _productService = new ProductService(new ProductRepository(_context));
+           /_productService = new ProductService(new ProductRepository(_context));
         }
 
         private void SeedData(DataContext context)
