@@ -66,23 +66,15 @@ namespace Manero.Helpers.Services
         //    return categories.Select(c => c.Name);
         //}
 
-        public async Task<IEnumerable<ProductDetailsEntity>> GetAllWithCategoriesAsync()
-        {
-            return await _context.ProductDetails
-                .Include(p => p.Category)
-                    .ThenInclude(pc => pc.Category)
-                .ToListAsync();
-        }
-
         public async Task<IEnumerable<ProductDetailsEntity>> GetAsync()
         {
-            var products = await _context.ProductDetails.Include(x => x.Category).ThenInclude(x => x.Category).ToListAsync();
+            var products = await _context.ProductDetails.ToListAsync();
             return products;
         }
 
         public async Task<ProductDetailsEntity> GetAsync(Expression<Func<ProductDetailsEntity, bool>> expression)
         {
-            var product = await _context.ProductDetails.Include(x => x.Category).ThenInclude(x => x.Category).FirstOrDefaultAsync(expression);
+            var product = await _context.ProductDetails.FirstOrDefaultAsync(expression);
             return product!;
 
         }

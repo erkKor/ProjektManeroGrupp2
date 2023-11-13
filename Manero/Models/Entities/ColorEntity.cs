@@ -13,7 +13,7 @@ namespace Manero.Models.Entities
     public class ProductColor
     {
         public int ProductId { get; set; }
-        public ProductDetailsEntity Product { get; set; } = null!;
+        public ProductDetailsEntity ProductDetails { get; set; } = null!;
 
         public int ColorId { get; set; }
         public ColorEntity Color { get; set; } = null!;

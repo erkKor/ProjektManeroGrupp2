@@ -16,7 +16,6 @@ namespace Manero.Models.Entities
         public string? Size { get; set; } = null!;
         public ICollection<ProductColor>? ProductColors { get; set; } = new List<ProductColor>();
         public int? Quantity { get; set; }
-        public ICollection<ProductCategoryEntity> Category { get; set; } = null!;
 
         public ICollection<ProductReviewEntity> ProductReviews { get; set; } = null!;
 

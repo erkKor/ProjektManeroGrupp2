@@ -37,7 +37,7 @@ namespace Manero.Contexts
             .HasKey(pr => new { pr.ProductId, pr.ReviewId });
 
             builder.Entity<ProductReviewEntity>()
-                .HasOne(pr => pr.Product)
+                .HasOne(pr => pr.ProductDetails)
                 .WithMany(p => p.ProductReviews)
                 .HasForeignKey(pr => pr.ProductId);
 
@@ -50,7 +50,7 @@ namespace Manero.Contexts
             .HasKey(pc => new { pc.ProductId, pc.ColorId });
 
             builder.Entity<ProductColor>()
-                .HasOne(pc => pc.Product)
+                .HasOne(pc => pc.ProductDetails)
                 .WithMany(p => p.ProductColors)
                 .HasForeignKey(pc => pc.ProductId);
 
