@@ -16,6 +16,10 @@
             </a>
             <a class="nav-links" asp-controller="ProfilePage" asp-action="Index">
                 <i class="fa-light fa-circle-user"></i>
+            @if (signInManager.IsSignedIn(User))
+            {
+                @ViewBag.FirstName
+            }
             </a>
         </div>
     </div>
