@@ -49,7 +49,7 @@ namespace Manero.Controllers
                     {
                         await _reviewService.AddProductReviewAsync(reviewModel.ProductId, reviewId);
 
-                        return RedirectToAction("Index", "Products");
+                        return RedirectToAction("Index", "Home");
                     }
                     else
                     {

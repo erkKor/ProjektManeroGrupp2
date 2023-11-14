@@ -7,12 +7,24 @@
     var product = await productService.GetAsync(x => x.ProductId == Model.ProductId);
     var reviews = await reviewService.GetReviewsByProductIdAsync(product.ProductId);
     var latestReviews = await reviewService.GetLatestReviewsByProductIdAsync(product.ProductId, 3);
+    var roundedPrice = Math.Round(@product.Price, 2);
 }
 
-<div class="productDetails">
+
+<section class="top-bar">
+    <div class="container">
+        <a asp-controller="Home" asp-action="Index"><i class="fa-sharp fa-solid fa-chevron-left"></i></a>
+        <h4>MANERO</h4>
+        <button>
+            <i class="fa-light fa-bag-shopping"></i>
+        </button>
+    </div>
+</section>
+
+<div class="product-details">
     <div class="container">
         <div class="product-details-image">
-            <img src="" alt="">
+            <img src="~/images/emptyImage.png" alt="">
 
             <nav class="nav-pagination">
                 <button class="current dots  first "></button>
@@ -24,47 +36,67 @@
         <hr>
 
         <div class="info">
-            <h3>@product.Name</h3>
+            <div class="name-and-heart">
+                <h3><b>@product.Name</b></h3>
+                <i class="fa-light fa-heart"></i>
+            </div>
 
+            <div class="rating">
+                @{
+                    char filledStarSymbol = '\u2605';
+                    char emptyStarSymbol = '\u2606';
+                    string starColor = "#FFBE00";
 
-            @* @{
-            // Assuming reviews is a list of ReviewViewModel objects with a Rating property
-            var ratings = reviews.Select(r => r.Rating).ToList();
+                    List<int> ratings = reviews.Select(r => r.Rating).ToList();
 
-            // Method to calculate the median from a list of integers
-            double CalculateMedian(List<int> values)
-            {
-            if (values.Count == 0) return 0;
+                    double CalculateMedian(List<int> values)
+                    {
+                        values.Sort();
 
-            values.Sort();
-            int count = values.Count;
-            int mid = count / 2;
+                        var count = values.Count;
+                        var middle = count / 2;
 
-            return count % 2 != 0 ? values[mid] : (values[mid - 1] + values[mid]) / 2.0;
-            }
+                        if (count % 2 == 0)
+                        {
+                            return (values[middle - 1] + values[middle]) / 2.0;
+                        }
+                        else
+                        {
+                            return values[middle];
+                        }
+                    }
 
-            // Call the method with the list of ratings to get the median value
-            var medianRating = CalculateMedian(ratings);
-            }
+                    double median = CalculateMedian(ratings);
+                    int totalStars = 5;
 
-            <div id="stars" class="star-rating">
-            <span class="star" data-value="1">@((medianRating >= 1 ? "&#9733;" : "&#9734;"))</span>
-            <span class="star" data-value="2">@((medianRating >= 2 ? "&#9733;" : "&#9734;"))</span>
-            <span class="star" data-value="3">@((medianRating >= 3 ? "&#9733;" : "&#9734;"))</span>
-            <span class="star" data-value="4">@((medianRating >= 4 ? "&#9733;" : "&#9734;"))</span>
-            <span class="star" data-value="5">@((medianRating >= 5 ? "&#9733;" : "&#9734;"))</span>
-            </div> *@
-
-            <div class="price">
-                @product.Price
+                    for (var i = 1; i <= totalStars; i++)
+                    {
+                        if (i <= median)
+                        {
+                            <span style="color: @starColor; font-size: 24px;">@filledStarSymbol</span>
+                        }
+                        else
+                        {
+                            <span style="color: @starColor; font-size: 24px;">@emptyStarSymbol</span>
+                        }
+                    }
+                }
             </div>
 
 
-            <div id="quantity-selector">
-                <span onclick="decrementQuantity()">-</span>
-                <span id="quantity-display">1</span>
-                <span onclick="incrementQuantity()">+</span>
+            <div class="price-and-quantity">
+                <div class="price">
+                    $ @roundedPrice
+                </div>
+
+                <div class="quantity-selector">
+                    <span onclick="decrementQuantity()">-</span>
+                    <span id="quantity-display">1</span>
+                    <span onclick="incrementQuantity()">+</span>
+                </div>
             </div>
+
+
 
             <div class="product-selection">
                 <form asp-action="ShoppingCart" method="post" novalidate>
@@ -72,7 +104,8 @@
                     <input type="hidden" asp-for="ProductColors" id="color-value" />
                     <input type="hidden" asp-for="Quantity" id="quantity-value" />
 
-                    <div id="sizes">
+                    Size<br />
+                    <div class="sizes">
                         <span class="size" data-value="XS" onclick="setSize('XS')">XS</span>
                         <span class="size" data-value="S" onclick="setSize('S')">S</span>
                         <span class="size" data-value="M" onclick="setSize('M')">M</span>
@@ -81,6 +114,7 @@
                         <span class="size" data-value="XXL" onclick="setSize('XXL')">XXL</span>
                     </div>
 
+                    Color
                     <div id="colors">
                         <span class="color" data-value="Red" onclick="setColor('Red')" style="color: red;">&#11044;</span>
                         <span class="color" data-value="Blue" onclick="setColor('Blue')" style="color: blue;">&#11044;</span>
@@ -88,12 +122,12 @@
                         <span class="color" data-value="White" onclick="setColor('White')" style="color: white;">&#11044;</span>
                     </div>
 
+                    Description <br />
                     <div class="product-details-description">
-                        <h5>Description</h5>
                         <p>@product.Description</p>
                     </div>
 
-                    <button type="submit" class="btn-theme">Add to Cart</button>
+                    <button type="submit" class="button-theme">Add to Cart</button>
                 </form>
 
             </div>
@@ -101,13 +135,42 @@
 
 
             <div class="reviews">
-                <h3>Reviews</h3><a asp-controller="Review" asp-action="AllReviews" asp-route-productId="@product.ProductId">View All<i class="fa-solid fa-arrow-right"></i></a>
+                <div class="review-and-view-all">
+                    <h3>Reviews</h3><a asp-controller="Review" asp-action="AllReviews" asp-route-productId="@product.ProductId">view all<i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
                 @foreach (var review in latestReviews)
                 {
-                    <div>
-                        <p>@review.CreatedAt.ToShortDateString()</p>
-                        <p>@review.Text</p>
-                        <p>Rating: @review.Rating</p>
+                    <div class="each-review">
+
+                        <div class="profile-pic"></div>
+
+                        <div>
+                            <div class="name-and-rating">
+                                <p>Förnamn Efternamn</p>
+                                <div class="rating">
+                                    @{
+                                   
+
+                                        for (var i = 1; i <= 5; i++)
+                                        {
+                                            if (i <= review.Rating)
+                                            {
+                                                <span style="color: @starColor; font-size: 16px;">@filledStarSymbol</span>
+                                            }
+                                            else
+                                            {
+                                                <span style="color: @starColor; font-size: 16px;">@emptyStarSymbol</span>
+                                            }
+                                        }
+                                    }
+                                </div>
+                             </div>
+
+                            <p class="created-at">@review.CreatedAt.ToShortDateString()</p>
+                            <p class="description">@review.Text</p>
+                        
+                        </div>
                     </div>
                 }
 
@@ -125,9 +188,9 @@
         const sizes = document.querySelectorAll('.size');
         sizes.forEach(s => {
             if (s.getAttribute('data-value') === size) {
-                s.style.fontWeight = 'bold';
+                s.classList.add('selected');
             } else {
-                s.style.fontWeight = 'normal';
+                s.classList.remove('selected');
             }
         });
     }
@@ -137,10 +200,12 @@
         const colors = document.querySelectorAll('.color');
         colors.forEach(c => {
             c.innerHTML = '&#11044;';
+            c.classList.remove('selected');
         });
         const selectedColor = document.querySelector('.color[data-value="' + color + '"]');
-        selectedColor.innerHTML = '&#10004;';
+        selectedColor.classList.add('selected');
     }
+
 
     function incrementQuantity() {
         const quantityDisplay = document.getElementById('quantity-display');
@@ -163,11 +228,14 @@
         const quantityDisplay = document.getElementById('quantity-display');
         quantityField.value = quantityDisplay.innerText;
     }
+
+
 </script>
 
 <style>
-    .size, .color {
-        margin-right: 10px;
+
+    .star-rating {
+        font-size: 30px;
         cursor: pointer;
     }
 </style>

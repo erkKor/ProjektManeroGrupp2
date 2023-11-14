@@ -7,11 +7,10 @@ namespace Manero.Models.ViewModels
     {
 
 
-        [Display(Name = "Rating")]
         public int Rating { get; set; }
 
 
-        [Display(Name = "Text")]
+        [Display(Name = "comment")]
         public string Text { get; set; } = null!;
 
         public int ProductId { get; set; }

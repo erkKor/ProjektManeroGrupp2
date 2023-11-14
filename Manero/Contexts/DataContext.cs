@@ -74,6 +74,7 @@ namespace Manero.Contexts
 
             builder.Entity<ProductDetailsEntity>().HasData
               (
+                new ProductDetailsEntity { ProductId = 1, Name = "Summer Pants", Description = "White", Price = 31 },
                   new ProductDetailsEntity { ProductId = 2, Name = "t-Shirt", Description = "White", Price = 1000 },
                   new ProductDetailsEntity { ProductId = 3, Name = "Shirt", Description = "Black", Price = 100 }
 

@@ -4,16 +4,59 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model Manero.Models.Entities.ProductDetailsEntity
 
+@{
+    char filledStarSymbol = '\u2605';
+    char emptyStarSymbol = '\u2606';
+    string starColor = "#FFBE00";
+}
+
+<section class="top-bar">
+    <div class="container">
+        <a asp-controller="Home" asp-action="Index"><i class="fa-sharp fa-solid fa-chevron-left"></i></a>
+        <h4>Reviews</h4>
+        <button>
+        </button>
+    </div>
+</section>
+
+<div class="all-reviews-page">
+
 @foreach (var review in await reviewService.GetReviewsByProductIdAsync(@Model.ProductId))
 {
-    @review.Rating
-    ;
-    @review.Text
-    ;
-    @review.CreatedAt
-    ;
+    <div class="each-review">
 
-}
-<div class="make-review">
-    <a asp-controller="Review" asp-action="Index" asp-route-productId="@Model.ProductId">Add Review</a>
+        <div class="profile-pic"></div>
+
+        <div>
+            <div class="name-and-rating">
+                <p>Förnamn Efternamn</p>
+                <div class="rating">
+                    @{
+
+
+                        for (var i = 1; i <= 5; i++)
+                        {
+                            if (i <= review.Rating)
+                            {
+                                <span style="color: @starColor; font-size: 16px;">@filledStarSymbol</span>
+                            }
+                            else
+                            {
+                                <span style="color: @starColor; font-size: 16px;">@emptyStarSymbol</span>
+                            }
+                        }
+                    }
+                </div>
+            </div>
+
+            <p class="created-at">@review.CreatedAt.ToShortDateString()</p>
+            <p class="description">@review.Text</p>
+
+        </div>
+    </div>
+
+    }
+    <div class="make-review">
+        <a class="button-theme" asp-controller="Review" asp-action="Index" asp-route-productId="@Model.ProductId">Add Review</a>
+    </div>
 </div>

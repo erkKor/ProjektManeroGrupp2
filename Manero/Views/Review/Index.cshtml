@@ -2,59 +2,74 @@
 
 @model Manero.Models.ViewModels.ReviewViewModel
 
+@{
+    char filledStarSymbol = '\u2605';
+    char emptyStarSymbol = '\u2606';
+    string starColor = "#FFBE00";
+}
+
+<section class="top-bar">
+    <div class="container">
+        <a asp-controller="Home" asp-action="Index"><i class="fa-sharp fa-solid fa-chevron-left"></i></a>
+        <h4>Leave a review</h4>
+        <button>
+        </button>
+    </div>
+</section>
+
+<div class="add-review-page">
+
 <div class="chat-bubble"><i class="fa-regular fa-comments"></i></div>
-<div class="review-product"><h1>Please rate the quality of service for the order!</h1></div>
+<div class="review-product"><h2>Please rate the quality of service for the order!</h2></div>
 
 <form asp-action="Index" method="post" novalidate>
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <input type="hidden" asp-for="ProductId" />
+        <div id="stars" class="star-rating">
+            @for (var i = 1; i <= 5; i++)
+            {
+                <span class="star" style="font-size: 30px;" data-value="@i">&#9734;</span>
+            }
+        </div>
 
-    <div id="stars" class="star-rating">
-        <span class="star" data-value="1">&#9734;</span>
-        <span class="star" data-value="2">&#9734;</span>
-        <span class="star" data-value="3">&#9734;</span>
-        <span class="star" data-value="4">&#9734;</span>
-        <span class="star" data-value="5">&#9734;</span>
-    </div>
-    <style>
-        .star-rating {
-            font-size: 30px;
-            cursor: pointer;
-        }
-    </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const stars = document.querySelectorAll('.star');
-            const ratingValue = document.getElementById('rating-value');
+        <input type="hidden" id="rating-value" value="0" />
 
-            stars.forEach(star => {
-                star.addEventListener('click', function () {
-                    const value = this.getAttribute('data-value');
-                    ratingValue.value = value;
 
-                    stars.forEach(s => {
-                        if (s.getAttribute('data-value') <= value) {
-                            s.innerHTML = '&#9733;';
-                        } else {
-                            s.innerHTML = '&#9734;';
-                        }
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const stars = document.querySelectorAll('.star');
+                const ratingValue = document.getElementById('rating-value');
+
+                stars.forEach(star => {
+                    star.addEventListener('click', function () {
+                        const value = this.getAttribute('data-value');
+                        ratingValue.value = value;
+
+                        stars.forEach((s, index) => {
+                            if (index < value) {
+                                s.innerHTML = '&#9733;'; // Filled star symbol
+                                s.style.color = '#FFBE00'; // Set the yellow color for filled stars
+                            } else {
+                                s.innerHTML = '&#9734;'; // Empty star symbol
+                                s.style.color = ''; // Reset to default color (empty star)
+                            }
+                        });
                     });
                 });
             });
-        });
-    </script>
-
-    <label asp-for="Rating" name="Rating" class="form-label"></label>
+        </script>
+        <label asp-for="Rating" name="Rating" class="form-label"></label>
     <input asp-for="Rating" name="Rating" class="form-control" type="hidden" id="rating-value" value="0" />
     <span asp-validation-for="Rating" class="text-danger"></span>
 
-    <h3>Your comments and suggestions help us improve the service quality better!</h3>
+    <h4>Your comments and suggestions help us improve the service quality better!</h4>
 
-    <label asp-for="Text" name="Text" class="form-label"></label>
+    <label asp-for="Text" name="Comment" class="form-label"></label>
     <textarea asp-for="Text" name="Text" class="form-control" rows="3"></textarea>
     <span asp-validation-for="Text" class="text-danger"></span>
 
 
     <button type="submit" class="button-theme">Submit</button>
-</form>
+    </form>
+</div>
