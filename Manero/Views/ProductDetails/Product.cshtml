@@ -49,37 +49,53 @@
 
                     List<int> ratings = reviews.Select(r => r.Rating).ToList();
 
-                    double CalculateMedian(List<int> values)
+                    if (ratings.Count == 0)
                     {
-                        values.Sort();
+                        int totalStars = 5;
 
-                        var count = values.Count;
-                        var middle = count / 2;
+                        for (var i = 1; i <= totalStars; i++)
+                        {
 
-                        if (count % 2 == 0)
-                        {
-                            return (values[middle - 1] + values[middle]) / 2.0;
-                        }
-                        else
-                        {
-                            return values[middle];
-                        }
-                    }
-
-                    double median = CalculateMedian(ratings);
-                    int totalStars = 5;
-
-                    for (var i = 1; i <= totalStars; i++)
-                    {
-                        if (i <= median)
-                        {
-                            <span style="color: @starColor; font-size: 24px;">@filledStarSymbol</span>
-                        }
-                        else
-                        {
                             <span style="color: @starColor; font-size: 24px;">@emptyStarSymbol</span>
+
                         }
                     }
+                    else
+                    {
+                        double CalculateMedian(List<int> values)
+                        {
+                            values.Sort();
+
+                            var count = values.Count;
+                            var middle = count / 2;
+
+                            if (count % 2 == 0)
+                            {
+                                return (values[middle - 1] + values[middle]) / 2.0;
+                            }
+                            else
+                            {
+                                return values[middle];
+                            }
+                        }
+
+                        double median = CalculateMedian(ratings);
+                        int totalStars = 5;
+
+                        for (var i = 1; i <= totalStars; i++)
+                        {
+                            if (i <= median)
+                            {
+                                <span style="color: @starColor; font-size: 24px;">@filledStarSymbol</span>
+                            }
+                            else
+                            {
+                                <span style="color: @starColor; font-size: 24px;">@emptyStarSymbol</span>
+                            }
+                        }
+                    }
+
+
                 }
             </div>
 
@@ -150,7 +166,7 @@
                                 <p>Förnamn Efternamn</p>
                                 <div class="rating">
                                     @{
-                                   
+
 
                                         for (var i = 1; i <= 5; i++)
                                         {
@@ -165,11 +181,11 @@
                                         }
                                     }
                                 </div>
-                             </div>
+                            </div>
 
                             <p class="created-at">@review.CreatedAt.ToShortDateString()</p>
                             <p class="description">@review.Text</p>
-                        
+
                         </div>
                     </div>
                 }
