@@ -12,8 +12,74 @@
         <button class="mx-1 promocodes-btg-black">Current</button>
         <a asp-controller="mypromocodesused"><button class="mx-1 promocodes-btg-blue">Used</button></a>
     </div>
-    <partial name="/Views/Partials/_MyPromocodesPartial_1.cshtml" />
-    <partial name="/Views/Partials/_MyPromocodesPartial_2.cshtml" />
-    <partial name="/Views/Partials/_MyPromocodesPartial_3.cshtml" />
+
+    <div id="duplicatedContent">
+        <partial name="/Views/Partials/_MyPromocodesPartial_1.cshtml" />
+    </div>
+
+    <div id="duplicatedContent">
+        <partial name="/Views/Partials/_MyPromocodesPartial_2.cshtml" />
+    </div>
+
+    <div id="duplicatedContent">
+        <partial name="/Views/Partials/_MyPromocodesPartial_3.cshtml" />
+    </div>
 
 </section>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#cloneButton1').on('click', function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: '@Url.Action("ClonePartial1", "MyPromocodes")',
+                type: 'GET',
+                dataType: 'html',
+                success: function (data) {
+                    $('#duplicatedContent').append(data);
+                },
+                error: function () {
+                    alert('Error cloning partial view.');
+                }
+            });
+        });
+    });
+
+        $(document).ready(function () {
+        $('#cloneButton2').on('click', function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: '@Url.Action("ClonePartial2", "MyPromocodes")',
+                type: 'GET',
+                dataType: 'html',
+                success: function (data) {
+                    $('#duplicatedContent').append(data);
+                },
+                error: function () {
+                    alert('Error cloning partial view.');
+                }
+            });
+        });
+    });
+
+    $(document).ready(function () {
+        $('#cloneButton3').on('click', function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: '@Url.Action("ClonePartial3", "MyPromocodes")',
+                type: 'GET',
+                dataType: 'html',
+                success: function (data) {
+                    $('#duplicatedContent').append(data);
+                },
+                error: function () {
+                    alert('Error cloning partial view.');
+                }
+            });
+        });
+    });
+</script>
