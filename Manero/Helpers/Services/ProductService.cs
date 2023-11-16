@@ -1,15 +1,21 @@
-﻿using Manero.Helpers.Repositories;
+﻿using Manero.Contexts;
+using Manero.Helpers.Repositories;
 using Manero.Models.Entities;
 using Manero.Models.ViewModels;
+using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace Manero.Helpers.Services
 {
     public class ProductService
     {
         private readonly ProductRepository _productRepo;
-        public ProductService( ProductRepository productRepo)
+        private readonly DataContext _context;
+
+        public ProductService( ProductRepository productRepo, DataContext context)
         {
             _productRepo = productRepo;
+            _context = context;
         }
 
         public async Task<ProductGridItemVM> GetProductAsync(int id)
@@ -59,5 +65,7 @@ namespace Manero.Helpers.Services
         //    var categories = await _categoryService.GetCategoriesAsync();
         //    return categories.Select(c => c.Name);
         //}
+
+     
     }
 }

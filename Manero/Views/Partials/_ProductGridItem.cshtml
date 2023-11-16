@@ -5,6 +5,7 @@
     string serializedModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model);
 }
 
+<a asp-controller="ProductDetails" asp-action="Product" asp-route-id="@Model.Id">
 <div class="product-card">
     <div class="product-image">
         <button><i class="fa-light fa-heart"></i></button>
@@ -29,3 +30,4 @@
         </div>
     </div>
 </div>
+</a>

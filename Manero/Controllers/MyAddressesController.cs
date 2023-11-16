@@ -1,26 +1,23 @@
-using Manero.Contexts;
+using Manero.Helpers.Services;
 using Manero.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Manero.Controllers
 {
+    [Authorize]
     public class MyAddressesController : Controller
     {
 
-        DataContext _context;
+        readonly AddressService _service;
 
-        public MyAddressesController(DataContext context) =>
-            _context = context;
+        public MyAddressesController(AddressService service) =>
+            _service = service;
 
         public async Task<IActionResult> Index()
         {
-
-            //TODO: User should not be able to modify all addresses on server, fix this once login is fixed
-
-            var addresses = await _context.Adresses.ToArrayAsync();
+            var addresses = await _service.FindAddressesForUserWithEmail(User.Identity!.Name!);
             return View(new MyAddressesVM() { Addresses = addresses });
-
         }
 
     }

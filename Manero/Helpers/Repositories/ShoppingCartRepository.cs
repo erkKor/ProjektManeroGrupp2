@@ -1,6 +1,5 @@
 ﻿using Manero.Contexts;
 using Manero.Models.Entities;
-using Microsoft.EntityFrameworkCore;
 using System.Net.NetworkInformation;
 
 namespace Manero.Helpers.Repositories
@@ -50,12 +49,6 @@ namespace Manero.Helpers.Repositories
             {
                 throw;
             }
-        }
-    }
-    public class CartItemRepository : Repository<CartItemEntity>
-    {
-        public CartItemRepository(DataContext context) : base(context)
-        {
         }
     }
 }

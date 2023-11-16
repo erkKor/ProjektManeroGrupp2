@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 
 
-namespace Manero.Tests
+namespace Manero.Tests.RickardTests
 {
     public class ConnectionString_test
     {

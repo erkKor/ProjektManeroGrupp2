@@ -6,39 +6,49 @@ using Moq;
 
 namespace Manero.Tests;
 
-public class SignUpService_Test
+public class SignInService_Test
 {
-    private readonly SignUpService _signUpService;
+    private readonly SignInService _signInService;
     private readonly Mock<UserManager<AppUser>> _userManagerMock;
+    private readonly Mock<SignInManager<AppUser>> _signInManagerMock;
 
-    public SignUpService_Test()
+    public SignInService_Test(Mock<SignInManager<AppUser>> signInManagerMock)
     {
         _userManagerMock = new Mock<UserManager<AppUser>>(
             new Mock<IUserStore<AppUser>>().Object,
             null!, null!, null!, null!, null!, null!, null!, null!);
-        
-        _signUpService = new SignUpService(_userManagerMock.Object);
+        _signInManagerMock = new Mock<SignInManager<AppUser>>();
+
+        _signInService = new SignInService(_userManagerMock.Object, _signInManagerMock.Object, null!);
+
     }
 
 
     [Fact]
-    public async Task SignUpAsync_CheckIf_User_gets_Created()
+    public async Task SignInAsync()
     {
         // Arrange
-        var signUpViewModel = new SignUpViewModel
+        var signInViewModel = new SignInViewModel
         {
-            FirstName = "Test",
-            LastName = "Test",
             Email = "test@domain.com",
-            Password = "Bytmig123!",
-            ConfirmPassword = "Bytmig123!"
+            Password = "Bytmig123!"
         };
 
+        // Set up an expectation on the SignInManager mock to check for a specific email.
+        _signInManagerMock
+            .Setup(x => x.PasswordSignInAsync(
+                It.Is<string>(email => email == signInViewModel.Email), // Verify email
+                It.IsAny<string>(), // Ignore password for now
+                It.IsAny<bool>(), It.IsAny<bool>())) // Ignore other parameters
+            .Returns(Task.FromResult(Microsoft.AspNetCore.Identity.SignInResult.Success));
+
         // Act
-        var result = await _signUpService.SignUpAsync(signUpViewModel);
+        var result = await _signInService.LoginAsync(signInViewModel);
 
         // Assert
-        Assert.True(result);
-        Assert.IsType<SignUpViewModel>(signUpViewModel);
+        Assert.True(result); // Assuming a successful login returns true.
+
+        // Verify that PasswordSignInAsync was called with the expected email.
+        _signInManagerMock.Verify(x => x.PasswordSignInAsync(signInViewModel.Email, It.IsAny<string>(), false, false), Times.Once);
     }
 }

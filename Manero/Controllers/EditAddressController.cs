@@ -23,8 +23,8 @@ namespace Manero.Controllers
 
         public async Task<IActionResult> Index(int? id = null)
         {
-            if (id.HasValue && await _context.Adresses.FirstOrDefaultAsync(a => a.Id == id) is AdressEntity address)
-                return View(new EditAddressVM() { Id = address.Id, AdressName = address.AdressName, StreetName = address.StreetName, City = address.City, PostalCode = address.PostalCode });
+            if (await _addressService.FindAsync(id) is AdressEntity address)
+                return View((EditAddressVM)address);
             else
                 return View(new EditAddressVM());
         }

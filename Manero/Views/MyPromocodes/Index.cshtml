@@ -1,6 +1,4 @@
-﻿@{
-    ViewData["Title"] = "My Promocodes";
-}
+﻿@model MyPromoViewModel
 
 <section class="section-mypromocodes">
     <div class="container">
@@ -12,42 +10,10 @@
 
     <div class="header-btg mt-4 mb-4">
         <button class="mx-1 promocodes-btg-black">Current</button>
-        <button class="mx-1 promocodes-btg-blue">Used</button>
+        <a asp-controller="mypromocodesused"><button class="mx-1 promocodes-btg-blue">Used</button></a>
     </div>
+    <partial name="/Views/Partials/_MyPromocodesPartial_1.cshtml" />
+    <partial name="/Views/Partials/_MyPromocodesPartial_2.cshtml" />
+    <partial name="/Views/Partials/_MyPromocodesPartial_3.cshtml" />
 
-    <div class="promocodes-discount">
-        <div class="container">
-            <div class="promcodes-blue-square"></div>
-            <div class="discount-text">
-                <p class="discount-first-text">Acme Co.</p>
-                <p class="discount-second-text text-danger">50% off</p>
-                <p class="discount-thrid-text">Vaild until June 30, 2022</p>
-            </div>
-            <a href=""><i class="fa-light fa-square"></i></a>
-        </div>
-    </div>
-
-    <div class="promocodes-discount">
-        <div class="container">
-            <div class="promcodes-blue-square"></div>
-            <div class="discount-text">
-                <p class="discount-first-text">Abstergo Ltd.</p>
-                <p class="discount-second-text text-warning">30% off</p>
-                <p class="discount-thrid-text">Vaild until June 30, 2022</p>
-            </div>
-            <a href=""><i class="fa-light fa-square"></i></a>
-        </div>
-    </div>
-
-    <div class="promocodes-discount promcodes-border">
-        <div class="container">
-            <div class="promcodes-blue-square"></div>
-            <div class="discount-text">
-                <p class="discount-first-text">Barone LLC.</p>
-                <p class="discount-second-text text-success">15% off</p>
-                <p class="discount-thrid-text">Vaild until June 30, 2022</p>
-            </div>
-            <a href=""><i class="fa-light fa-square"></i></a>
-        </div>
-    </div>
 </section>
