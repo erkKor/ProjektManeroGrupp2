@@ -18,7 +18,6 @@ namespace Manero.Controllers
             clonedModel.GenerateRandomCompanyName();
             clonedModel.GenerateRandomDiscountPercentage();
             clonedModel.GenerateRandomValidYearAndMonth();
-
             return PartialView("/Views/Partials/_MyPromocodesPartial_1.cshtml", clonedModel);
         }
 
@@ -35,7 +34,6 @@ namespace Manero.Controllers
             clonedModel.GenerateRandomCompanyName();
             clonedModel.GenerateRandomDiscountPercentage();
             clonedModel.GenerateRandomValidYearAndMonth();
-
             return PartialView("/Views/Partials/_MyPromocodesPartial_2.cshtml", clonedModel);
         }
 
@@ -52,7 +50,6 @@ namespace Manero.Controllers
             clonedModel.GenerateRandomCompanyName();
             clonedModel.GenerateRandomDiscountPercentage();
             clonedModel.GenerateRandomValidYearAndMonth();
-
             return PartialView("/Views/Partials/_MyPromocodesPartial_3.cshtml", clonedModel);
         }
 
