@@ -8,6 +8,8 @@
             <p class="discount-second-text text-warning">@Model.DiscountPercentage_2% off</p>
             <p class="discount-thrid-text">Valid until @Model.Month_2 30, @Model.VaildYear_2</p>
         </div>
-        <a href=""><i class="fa-light fa-square"></i></a>
+        <a id="cloneButton2" asp-controller="MyPromocodes" asp-action="ClonePartial2">
+            <i class="fa-light fa-clone fa-flip-vertical"></i>
+        </a>
     </div>
 </div>
