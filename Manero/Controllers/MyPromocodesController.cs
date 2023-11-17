@@ -53,9 +53,8 @@ namespace Manero.Controllers
             return PartialView("/Views/Partials/_MyPromocodesPartial_3.cshtml", clonedModel);
         }
 
-        public IActionResult Index()
+        public IActionResult Index(MyPromoViewModel model)
         {
-            var model = new MyPromoViewModel();
 
             // Generate new promocode temporarily
             model.GenerateRandomCompanyName();
