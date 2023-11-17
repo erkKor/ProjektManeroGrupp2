@@ -9,15 +9,16 @@ namespace Manero.Controllers
    
         public class ReviewController : Controller
         {
-            private readonly ReviewService _reviewService;
+        
+            private readonly IReviewService _reviewService; 
             private readonly ProductDetailsService _productService;
-            readonly DataContext _context;
+            
 
-        public ReviewController(ReviewService reviewService, ProductDetailsService productDetailsService, DataContext context)
+        public ReviewController(IReviewService reviewService, ProductDetailsService productDetailsService)
             {
                 _reviewService = reviewService;
                 _productService = productDetailsService;
-                _context = context;
+                
             }
             public async Task<IActionResult> Index(int productId)
             {

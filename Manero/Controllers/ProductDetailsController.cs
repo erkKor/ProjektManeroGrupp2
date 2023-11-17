@@ -6,10 +6,11 @@ namespace Manero.Controllers
 {
     public class ProductDetailsController : Controller
     {
-        private readonly ProductDetailsService _productService;
+        private readonly IProductDetailsService _productService;
+        private readonly IReviewService _reviewService;
         readonly DataContext _context;
 
-        public ProductDetailsController(ProductDetailsService productDetailsService, DataContext context)
+        public ProductDetailsController(IProductDetailsService productDetailsService, DataContext context)
         {
             _productService = productDetailsService;
             _context = context;
