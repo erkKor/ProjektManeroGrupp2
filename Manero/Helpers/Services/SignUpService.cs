@@ -1,5 +1,4 @@
-﻿using Manero.Helpers.Repositories;
-using Manero.Models.Identity;
+﻿using Manero.Models.Identity;
 using Manero.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +10,7 @@ namespace Manero.Helpers.Services
     {
         private readonly UserManager<AppUser> _userManager;
 
-        public SignUpService(SignUpRepo signUpRepo, UserManager<AppUser> userManager)
+        public SignUpService(UserManager<AppUser> userManager)
         {
             _userManager = userManager;
         }

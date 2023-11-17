@@ -1,28 +1,32 @@
 using Manero.Contexts;
+using Manero.Helpers.Services;
+using Manero.Models.Entities;
 using Manero.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Manero.Controllers
 {
+    [Authorize]
     public class EditAddressController : Controller
     {
 
         readonly DataContext _context;
+        readonly AddressService _addressService;
 
-        public EditAddressController(DataContext context) =>
-            _context = context;
-
-        public async Task<IActionResult> Index(int id)
+        public EditAddressController(DataContext context, AddressService addressService)
         {
+            _context = context;
+            _addressService = addressService;
+        }
 
-            //TODO: This should be moved into a service
-            var address = await _context.Adresses.FirstOrDefaultAsync(a => a.Id == id);
-            if (address is not null)
-                return View(new EditAddressVM() { Id = address.Id, AdressName = address.AdressName, StreetName = address.StreetName, City = address.City, PostalCode = address.PostalCode });
+        public async Task<IActionResult> Index(int? id = null)
+        {
+            if (await _addressService.FindAsync(id) is AdressEntity address)
+                return View((EditAddressVM)address);
             else
-                return View(new EditAddressVM() { IsCreatingNew = true });
-
+                return View(new EditAddressVM());
         }
 
         [HttpPost]
@@ -32,10 +36,29 @@ namespace Manero.Controllers
             if (!ModelState.IsValid)
                 return View(view);
 
-            //TODO: Add to database, once signin is fixed
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == User.Identity!.Name);
+            if (user is null)
+            {
+                ModelState.AddModelError("", "Could not find user.");
+                return View(view);
+            }
 
+            if ((view.Id.HasValue
+                ? await _addressService.UpdateAsync(view)
+                : await _addressService.AddAsync(view, user)))
+                return RedirectToAction("Index", "myaddresses");
+            else
+            {
+                ModelState.AddModelError("", "Something went wrong, please try again in a moment.");
+                return View(view);
+            }
+
+        }
+
+        public async Task<IActionResult> Remove(int id)
+        {
+            await _addressService.RemoveAsync(id);
             return RedirectToAction("Index", "myaddresses");
-
         }
 
     }

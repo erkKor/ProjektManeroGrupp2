@@ -1,0 +1,15 @@
+﻿@model MyPromoViewModel
+
+<div class="promocodes-discount promocodes-border">
+    <div class="container">
+        <div class="promcodes-blue-square"></div>
+        <div class="discount-text">
+            <p class="discount-first-text">@Model.CompanyName_3</p>
+            <p class="discount-second-text text-success">@Model.DiscountPercentage_3% off</p>
+            <p class="discount-thrid-text">Valid until @Model.Month_3 30, @Model.VaildYear_3</p>
+        </div>
+        <a id="cloneButton3" asp-controller="MyPromocodes" asp-action="ClonePartial3">
+            <i class="fa-light fa-clone fa-flip-vertical"></i>
+        </a>
+    </div>
+</div>

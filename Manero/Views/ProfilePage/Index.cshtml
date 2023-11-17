@@ -1,4 +1,9 @@
-﻿@{
+﻿@model Manero.Models.Identity.AppUser
+
+
+
+
+@{
     ViewData["Title"] = "Profile Page";
 }
 
@@ -17,10 +22,26 @@
 
 <section class="account">
     <div class="container">
-        <img src="./images/Ellipse 30.svg">
+        <div class="account-image">
+            @if (User.Identity.IsAuthenticated)
+            {
+                if (Model != null && !string.IsNullOrEmpty(Model.UploadProfileImage))
+                {
+                    <img src="@Model.UploadProfileImage">
+                }
+                else
+                {
+                    <img src="/images/page10-account-created.svg">
+                }
+            }
+            <a asp-controller="EditProfile" asp-action="Index"><i class="fa-light fa-pen profile-icon"></i></a>
+        </div>
         <div class="account-info">
-            <p class="account-name">User.Name</p>
-            <p class="account-email">User.Email</p>
+            @if (Model != null)
+            {
+                <p class="account-name">@Model.FirstName @Model.LastName</p>
+                <p class="account-email">@Model.Email</p>
+            }
         </div>
     </div>
 </section>
@@ -42,12 +63,12 @@
         <p>My Address</p>
         <span class="chevron"><i class="fa-regular fa-chevron-right"></i></span>
     </a>
-    <a href="#">
+    <a asp-controller="mypromocodesadd">
         <i class="icon"><i class="fa-light fa-gift"></i></i>
         <p>My Promocodes</p>
         <span class="chevron"><i class="fa-regular fa-chevron-right"></i></span>
     </a>
-    <a href="#">
+    <a asp-controller="signoutpopup">
         <i class="icon"><i class="fa-regular fa-arrow-right-from-bracket"></i></i>
         <p>Sign Out</p>
         <span class="chevron"><i class="fa-regular fa-chevron-right"></i></span>

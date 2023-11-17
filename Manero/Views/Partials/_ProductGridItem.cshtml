@@ -1,9 +1,19 @@
 ﻿@model ProductGridItemVM
 
+@{
+    // Serialize the entire model to JSON
+    string serializedModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model);
+}
+
+<a asp-controller="ProductDetails" asp-action="Product" asp-route-id="@Model.Id">
 <div class="product-card">
     <div class="product-image">
         <button><i class="fa-light fa-heart"></i></button>
-        <button><i class="fa-light fa-bag-shopping"></i></button>
+        @using (Html.BeginForm("Index", "ShoppingCart", FormMethod.Post))
+        {
+            <input type="hidden" id="modelData" name="modelData" value='@Html.Raw(serializedModel)' />
+            <button type="submit"><i class="fa-light fa-shopping-bag"></i></button>
+        }
     </div>
     <div class="product-content">
         <div class="stars">
@@ -20,3 +30,4 @@
         </div>
     </div>
 </div>
+</a>

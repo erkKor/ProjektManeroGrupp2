@@ -10,11 +10,13 @@ namespace Manero.Helpers.Services
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly ShoppingCartService _cartService;
 
-        public SignInService(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        public SignInService(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ShoppingCartService cartService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _cartService = cartService;
         }
 
         public async Task<bool> LoginAsync(SignInViewModel model)
@@ -23,6 +25,8 @@ namespace Manero.Helpers.Services
             if (appUpser != null)
             {
                 var result = await _signInManager.PasswordSignInAsync(appUpser, model.Password, model.RememberMe, false);
+                if(result.Succeeded)
+                    await _cartService.SaveCartToDB(appUpser.Id);
                 return result.Succeeded;
             }
 
