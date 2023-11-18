@@ -24,11 +24,12 @@ namespace Manero.Tests.HannahsTests
             using (var context = new DataContext(options))
             {
                 context.ProductDetails.Add(new ProductDetailsEntity { ProductId = 1, Name = "Shirt", Description = "blabla", Price = 5 });
+                context.SaveChanges();
 
                 var expectedProduct = new ProductDetailsEntity
                 {
                     ProductId = 1,
-                    Name = "Product",
+                    Name = "Shirt",
                     Description = "bla",
                     Price = 5
                 };
