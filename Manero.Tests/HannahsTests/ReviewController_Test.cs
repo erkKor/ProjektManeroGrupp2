@@ -13,7 +13,7 @@ namespace Manero.Tests.HannahsTests;
 public class ReviewControllerTests
 {
     [Fact]
-    public async Task Index_WithValidModelState_CreatesReviewAndRedirectsToHomeIndex()
+    public async Task Should_Create_AReviewAndCorrespondingMiddleTableToProduct()
     {
         // Arrange
         var options = new DbContextOptionsBuilder<DataContext>()
