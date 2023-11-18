@@ -11,6 +11,7 @@ namespace Manero.Contexts
         {
         }
 
+        public DbSet<WishListItemEntity> WishListItems { get; set; }
         public DbSet<AdressEntity> Adresses { get; set; }
         public DbSet<UserAdressEntity> UserAdresses { get; set; }
         public DbSet<CategoryEntity> Categories { get; set; }

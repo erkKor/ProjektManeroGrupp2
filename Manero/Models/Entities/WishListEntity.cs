@@ -9,5 +9,6 @@ namespace Manero.Models.Entities
         [ForeignKey("AppUser")]
         public string UserId { get; set; }
         public virtual AppUser AppUser { get; set; }
+        public virtual ICollection<WishListItemEntity> WishListItems { get; set; } = new List<WishListItemEntity>();
     }
 }

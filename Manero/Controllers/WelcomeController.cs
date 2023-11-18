@@ -18,7 +18,6 @@ namespace Manero.Controllers
                 // Add cookie "hasSeenWelcome"
                 Response.Cookies.Append("hasSeenWelcome", "true", cookieOptions);
             }
-
             return View();
         }
     }
