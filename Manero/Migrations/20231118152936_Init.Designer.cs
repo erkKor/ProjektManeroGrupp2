@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Manero.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231113230527_ProductDetailsAndReviews")]
-    partial class ProductDetailsAndReviews
+    [Migration("20231118152936_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -69,7 +69,7 @@ namespace Manero.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("money");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -258,6 +258,13 @@ namespace Manero.Migrations
                     b.HasData(
                         new
                         {
+                            ProductId = 1,
+                            Description = "White",
+                            Name = "Summer Pants",
+                            Price = 31m
+                        },
+                        new
+                        {
                             ProductId = 2,
                             Description = "White",
                             Name = "t-Shirt",
@@ -305,6 +312,32 @@ namespace Manero.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "White",
+                            Name = "Summer Pants",
+                            Price = 31m,
+                            Rating = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "White",
+                            Name = "t-Shirt",
+                            Price = 100m,
+                            Rating = 0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Black",
+                            Name = "Shirt",
+                            Price = 100m,
+                            Rating = 0
+                        });
                 });
 
             modelBuilder.Entity("Manero.Models.Entities.ProductReviewEntity", b =>
@@ -377,6 +410,26 @@ namespace Manero.Migrations
                     b.HasIndex("AdressId");
 
                     b.ToTable("UserAdresses");
+                });
+
+            modelBuilder.Entity("Manero.Models.Entities.WishListEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("WishListEntity");
                 });
 
             modelBuilder.Entity("Manero.Models.Identity.AppUser", b =>
@@ -689,6 +742,17 @@ namespace Manero.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Manero.Models.Entities.WishListEntity", b =>
+                {
+                    b.HasOne("Manero.Models.Identity.AppUser", "AppUser")
+                        .WithOne("WishList")
+                        .HasForeignKey("Manero.Models.Entities.WishListEntity", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -780,6 +844,9 @@ namespace Manero.Migrations
             modelBuilder.Entity("Manero.Models.Identity.AppUser", b =>
                 {
                     b.Navigation("Adresses");
+
+                    b.Navigation("WishList")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

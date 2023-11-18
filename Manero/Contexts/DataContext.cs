@@ -26,6 +26,7 @@ namespace Manero.Contexts
 
         public DbSet<ColorEntity> Colors { get; set; }
         public DbSet<ProductColor> ProductColors { get; set; }
+        public DbSet<WishListEntity> WishLists { get; set; }
 
 
 

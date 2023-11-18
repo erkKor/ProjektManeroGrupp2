@@ -11,6 +11,7 @@ namespace Manero.Models.Identity
         public string LastName { get; set; } = null!;
         public string? UploadProfileImage { get; set; }
         public int? ShoppingCartId { get; set; }
+        public virtual WishListEntity WishList { get; set; }
         public ICollection<UserAdressEntity> Adresses { get; set; } = new HashSet<UserAdressEntity>();
 
 

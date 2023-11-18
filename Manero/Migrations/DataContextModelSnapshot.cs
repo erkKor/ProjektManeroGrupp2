@@ -409,6 +409,26 @@ namespace Manero.Migrations
                     b.ToTable("UserAdresses");
                 });
 
+            modelBuilder.Entity("Manero.Models.Entities.WishListEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("WishLists");
+                });
+
             modelBuilder.Entity("Manero.Models.Identity.AppUser", b =>
                 {
                     b.Property<string>("Id")
@@ -719,6 +739,17 @@ namespace Manero.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Manero.Models.Entities.WishListEntity", b =>
+                {
+                    b.HasOne("Manero.Models.Identity.AppUser", "AppUser")
+                        .WithOne("WishList")
+                        .HasForeignKey("Manero.Models.Entities.WishListEntity", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -810,6 +841,9 @@ namespace Manero.Migrations
             modelBuilder.Entity("Manero.Models.Identity.AppUser", b =>
                 {
                     b.Navigation("Adresses");
+
+                    b.Navigation("WishList")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
