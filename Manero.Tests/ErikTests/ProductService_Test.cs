@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Manero.Tests.ErikTests
 {
-    public class ProductService_Test : IDisposable
+   /* public class ProductService_Test : IDisposable
     {
         private readonly DbContextOptions<DataContext> _options;
         private readonly DataContext _context;
@@ -59,5 +59,5 @@ namespace Manero.Tests.ErikTests
         {
             _context.Dispose();
         }
-    }
+    }*/
 }

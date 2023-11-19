@@ -4,6 +4,7 @@ using Manero.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Manero.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20231117172615_init_again")]
+    partial class init_again
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -309,32 +312,6 @@ namespace Manero.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "White",
-                            Name = "Summer Pants",
-                            Price = 31m,
-                            Rating = 0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "White",
-                            Name = "t-Shirt",
-                            Price = 100m,
-                            Rating = 0
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Description = "Black",
-                            Name = "Shirt",
-                            Price = 100m,
-                            Rating = 0
-                        });
                 });
 
             modelBuilder.Entity("Manero.Models.Entities.ProductReviewEntity", b =>

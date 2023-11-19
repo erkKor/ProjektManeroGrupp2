@@ -19,7 +19,7 @@ namespace Manero.Tests.RickardTests
             var connectionString = configuration.GetConnectionString("DatabaseConnection");
 
             // Assert
-            var expectedConnectionString = "Server=tcp:grupp2projekt.database.windows.net,1433;Initial Catalog=Projekt2;Persist Security Info=False;User ID=SqlAdmin;Password=Bytmig123!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            var expectedConnectionString = "Server=tcp:grupp2.database.windows.net,1433;Initial Catalog=Grupp2_Manero;Persist Security Info=False;User ID=SqlAdmin;Password=Bytmig123!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             Assert.Equal(expectedConnectionString, connectionString);
         }
 

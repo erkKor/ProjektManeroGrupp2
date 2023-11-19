@@ -23,6 +23,10 @@ builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<AddressService>();
 builder.Services.AddScoped<ProductDetailsService>();
 builder.Services.AddScoped<ReviewService>();
+builder.Services.AddScoped<IReviewService, ReviewService>();
+builder.Services.AddScoped<IProductDetailsService, ProductDetailsService>();
+
+
 
 //Repositories
 builder.Services.AddScoped<SignUpRepo>();

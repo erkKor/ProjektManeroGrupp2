@@ -5,7 +5,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Manero.Helpers.Services
 {
-    public class ReviewService
+    public interface IReviewService
+    {
+        Task<int> CreateAsync(ReviewViewModel reviewModel);
+        Task AddProductReviewAsync(int productId, int reviewId);
+        Task<List<ReviewEntity>> GetReviewsByProductIdAsync(int productId);
+        Task<List<ReviewEntity>> GetLatestReviewsByProductIdAsync(int productId, int count);
+    }
+
+    public class ReviewService : IReviewService
     {
 
         private readonly DataContext _context;
