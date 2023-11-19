@@ -10,12 +10,10 @@ namespace Manero.Helpers.Services
     public class ProductService
     {
         private readonly ProductRepository _productRepo;
-        private readonly DataContext _context;
 
-        public ProductService( ProductRepository productRepo, DataContext context)
+        public ProductService( ProductRepository productRepo)
         {
             _productRepo = productRepo;
-            _context = context;
         }
 
         public async Task<ProductGridItemVM> GetProductAsync(int id)

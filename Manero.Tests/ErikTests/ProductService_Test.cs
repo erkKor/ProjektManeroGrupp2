@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Manero.Tests.ErikTests
 {
-   /* public class ProductService_Test : IDisposable
+    public class ProductService_Test : IDisposable
     {
         private readonly DbContextOptions<DataContext> _options;
         private readonly DataContext _context;
@@ -21,7 +21,7 @@ namespace Manero.Tests.ErikTests
             _context = new DataContext(_options);
             SeedData(_context);
 
-           _productService = new ProductService(new ProductRepository(_context));
+            _productService = new ProductService(new ProductRepository(_context));
         }
 
         private void SeedData(DataContext context)
@@ -31,6 +31,8 @@ namespace Manero.Tests.ErikTests
             context.SaveChanges();
         }
 
+
+        //NEED TO RUN TESTS ONE AT A TIME
         [Fact]
         public async Task GetProductAsync_ByProductId_ReturnsSaidProduct()
         {
@@ -45,6 +47,7 @@ namespace Manero.Tests.ErikTests
             Assert.Equal(productId, product.Id);
         }
 
+        //NEED TO RUN TESTS ONE AT A TIME
         [Fact]
         public async Task GetAllProductsAsync_ReturnsAllProducts()
         {
@@ -59,5 +62,5 @@ namespace Manero.Tests.ErikTests
         {
             _context.Dispose();
         }
-    }*/
+    }
 }
