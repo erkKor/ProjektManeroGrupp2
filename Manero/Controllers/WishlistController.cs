@@ -62,7 +62,7 @@ namespace Manero.Controllers
         }
 
         // Action to add a product to the wishlist
-        public async Task<IActionResult> AddToWishlist(int productId)
+        public async Task<IActionResult> ToggleToWishlist(int productId)
         {
             var user = await _userManager.GetUserAsync(User);
 
@@ -96,6 +96,17 @@ namespace Manero.Controllers
                 user.WishList.WishListItems.Add(item);
 
                 await _dbContext.SaveChangesAsync();
+            }
+            else
+            {
+                var itemToDelete = await _dbContext.WishListItems
+                    .FirstOrDefaultAsync(i => i.ProductId == productId);
+
+                if (itemToDelete != null)
+                {
+                    _dbContext.WishListItems.Remove(itemToDelete);
+                    await _dbContext.SaveChangesAsync();
+                }
             }
 
             

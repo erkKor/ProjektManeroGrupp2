@@ -7,7 +7,7 @@
         {
             <div class="product-card">
                 <div class="product-image">
-                    <a asp-controller="WishList" asp-action="AddToWishlist" asp-route-productId="@item.Id">
+                    <a asp-controller="WishList" asp-action="ToggleToWishlist" asp-route-productId="@item.Id">
                         <button><i class="fa-light fa-heart"></i></button>
                     </a>                   
                     <button type="submit"><i class="fa-light fa-shopping-bag"></i></button>                    
